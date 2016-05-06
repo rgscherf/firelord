@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"F",
+				"FixedUpdate"
+			],
+			[
+				"end",
+				"endregion	endregion"
+			],
+			[
+				"Button",
+				"ButtonDispatch(Potion dispatch)	void"
+			],
+			[
+				"getcom",
+				"GetComponent<T>()	T"
+			],
+			[
+				"current",
+				"currentCloneTime"
+			],
+			[
+				"Overlap",
+				"OverlapPoint(Vector2 point)	Collider2D"
+			],
+			[
+				"OverlapP",
+				"OverlapPoint(Vector2 point, int layerMask)	Collider2D"
+			],
+			[
+				"Physi",
+				"Physics2D"
+			],
+			[
+				"possi",
+				"possibleSpawnPositionsArray	Vector2[]"
+			],
+			[
 				"Mist",
 				"MistFadeTwo	(PotionColors.cs)"
 			],
@@ -42,10 +78,6 @@
 			[
 				"I",
 				"IMapObject	(MapObject.cs)"
-			],
-			[
-				"current",
-				"currentRoom	(GameController.cs)"
 			],
 			[
 				"Potion",
@@ -101,6 +133,12 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/potionlord/potionlord.sublime-project",
 		"/Users/rgscherf/projects/unity/potion_test/Assets/Scripts/PotionColors.cs",
 		"/Users/rgscherf/projects/unity/potion_test/Assets/Scripts/MapObject.cs",
 		"/Users/rgscherf/projects/unity/potion_test/Assets/Scripts/GameController.cs",
@@ -127,6 +165,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"PotionSelection",
+			"potionSelection",
+			"PotionSelection",
+			"ButtonInput",
+			"buttonDispatch",
+			"ButtonDispatch",
+			"buttonDispatch",
+			"gm",
+			"geoparent",
+			"1",
+			"playerPos",
+			"possibleSpawnPositionsArray",
 			"MovingEntity",
 			"5f",
 			"geoparent",
@@ -179,9 +229,17 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 124.0
 	},
 	"pinned_build_system": "",
 	"replace":
@@ -196,16 +254,36 @@
 		"selected_items":
 		[
 			[
+				"playermo",
+				"Assets/Scripts/PlayerMovement.cs"
+			],
+			[
+				"mapo",
+				"Assets/Scripts/MapObject.cs"
+			],
+			[
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"entitie",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"gamc",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"sublime",
+				"potionlord.sublime-project"
+			],
+			[
 				"mistcon",
 				"Assets/Scripts/MistController.cs"
 			],
 			[
 				"color",
 				"Assets/Scripts/PotionColors.cs"
-			],
-			[
-				"room",
-				"Assets/Scripts/Room.cs"
 			],
 			[
 				"game",
@@ -226,10 +304,6 @@
 			[
 				"mist",
 				"Assets/Scripts/MistController.cs"
-			],
-			[
-				"mapo",
-				"Assets/Scripts/MapObject.cs"
 			],
 			[
 				"geom",
@@ -258,8 +332,10 @@
 	},
 	"settings":
 	{
+		"_vintageous_last_buffer_search": "    ",
+		"_vintageous_last_buffer_search_command": "vi_octothorp",
 		"_vintageous_last_char_search_command": "vi_t",
-		"_vintageous_last_character_search": ".",
+		"_vintageous_last_character_search": ")",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
@@ -269,7 +345,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 293.0,
 	"status_bar_visible": true,
 	"template_settings":

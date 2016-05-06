@@ -2,6 +2,7 @@
 
 public class PlayerController : MonoBehaviour {
 
+#region init
     const float speed = 19000;
     const float camRayLength = 100f;
     const float rollCooldown = 1.25f;
@@ -13,32 +14,31 @@ public class PlayerController : MonoBehaviour {
     SpriteRenderer playerSpriteRenderer;
     Color colorRollOffCooldown = PotionColors.White;
     Color colorRollOnCooldown;
-    GameController gm;
+    GameController game;
 
-    // GameController gameManager;
+    LineRenderer blastGuide;
 
-
-    // Animator anim;
-    // int floorMask;
+    Potion currentPotion;
 
     void Awake() {
-        // floorMask = LayerMask.GetMask("Floor");
-        // anim = GetComponent<Animator>();
-        gm = GameObject.Find("GameManager").GetComponent<GameController>();
-
+        game = GameObject.Find("GameManager").GetComponent<GameController>();
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerSpriteRenderer.color = colorRollOffCooldown;
+        currentPotion = Potion.None;
+
+        blastGuide = gameObject.AddComponent<LineRenderer>();
+        blastGuide.material = new Material (Shader.Find("Particles/Additive"));
+        blastGuide.SetWidth(1f, 1f);
+        blastGuide.SetVertexCount(2);
+
         colorRollOnCooldown = colorRollOffCooldown * new Color(1,1,1,0.5f);
         rollOnCooldown = false;
         currentRollCooldown = 0f;
     }
+#endregion
 
-    void Update() {
-        DecrementRollTimer();
-        ButtonInput();
-    }
-
+#region FixedUpdate
     void FixedUpdate() {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -62,6 +62,40 @@ public class PlayerController : MonoBehaviour {
         movement = movement * speed * dt * boost;
         playerRigidBody.AddForce(movement); 
     }
+#endregion
+
+#region update
+    void Update() {
+        DecrementRollTimer();
+        // did player select a new potion?
+        // did player roll?
+        // did player fire?
+        InputPotionSelection();
+        InputFire();
+    }
+
+    void InputFire() {
+        bool firing = 1 == Input.GetAxis("Fire");
+        if(firing) {
+            switch(currentPotion) {
+                case Potion.None:
+                    break;
+                case Potion.Blast:
+                    PaintBlastGuide();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    void PaintBlastGuide() {
+        Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        target.z = transform.position.z;
+        blastGuide.SetPosition(0, transform.position);
+        blastGuide.SetPosition(1, target);
+
+    }
 
     void DecrementRollTimer() {
         currentRollCooldown -= Time.deltaTime;
@@ -69,27 +103,31 @@ public class PlayerController : MonoBehaviour {
         playerSpriteRenderer.color = rollOnCooldown ? colorRollOnCooldown : colorRollOffCooldown;
     }
 
-    void ButtonInput() {
-        Potion buttonDispatch = Potion.None;
+    void InputPotionSelection() {
+        Potion potionSelection = Potion.None;
 
         if (Input.GetButtonDown("selectBlast")) {
-            buttonDispatch = Potion.Blast;
+            potionSelection = Potion.Blast;
         }
         else if (Input.GetButtonDown("selectQuick")) {
-            buttonDispatch = Potion.Quick;
+            potionSelection = Potion.Quick;
         }
         else if (Input.GetButtonDown("selectSpine")) {
-            buttonDispatch = Potion.Spine;
+            potionSelection = Potion.Spine;
         }
         else if (Input.GetButtonDown("selectVenom")) {
-            buttonDispatch = Potion.Venom;
+            potionSelection = Potion.Venom;
         }
 
-        if (buttonDispatch != Potion.None) {
-            gm.ButtonDispatch(buttonDispatch);
+        if (potionSelection != Potion.None) {
+            game.ButtonDispatch(potionSelection);
+            currentPotion = potionSelection;
         }
     }
 
+#endregion
+
+#region deadcode
     // void Turning() {
     //     Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
     //     RaycastHit floorHit;
@@ -105,4 +143,6 @@ public class PlayerController : MonoBehaviour {
     //     bool walking = h != 0f || v != 0f;
     //     anim.SetBool("IsWalking", walking);
     // }
+
+#endregion
 }
