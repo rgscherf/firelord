@@ -13,7 +13,7 @@ public class Entities : MonoBehaviour {
     public GameObject door;
     public GameObject lastRoomDoor;
 
-    public GameObject particle;
+    public GameObject mist;
 
     public GameObject empty;
     public GameObject newline;

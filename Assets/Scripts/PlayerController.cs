@@ -13,17 +13,22 @@ public class PlayerController : MonoBehaviour {
     SpriteRenderer playerSpriteRenderer;
     Color colorRollOffCooldown = PotionColors.White;
     Color colorRollOnCooldown;
-    GameController game;
+    GameController gm;
 
-    Potion currentPotion;
+    // GameController gameManager;
+
+
+    // Animator anim;
+    // int floorMask;
 
     void Awake() {
-        game = GameObject.Find("GameManager").GetComponent<GameController>();
+        // floorMask = LayerMask.GetMask("Floor");
+        // anim = GetComponent<Animator>();
+        gm = GameObject.Find("GameManager").GetComponent<GameController>();
+
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerSpriteRenderer.color = colorRollOffCooldown;
-        currentPotion = Potion.None;
-
         colorRollOnCooldown = colorRollOffCooldown * new Color(1,1,1,0.5f);
         rollOnCooldown = false;
         currentRollCooldown = 0f;
@@ -65,24 +70,23 @@ public class PlayerController : MonoBehaviour {
     }
 
     void ButtonInput() {
-        Potion potionSelection = Potion.None;
+        Potion buttonDispatch = Potion.None;
 
         if (Input.GetButtonDown("selectBlast")) {
-            potionSelection = Potion.Blast;
+            buttonDispatch = Potion.Blast;
         }
         else if (Input.GetButtonDown("selectQuick")) {
-            potionSelection = Potion.Quick;
+            buttonDispatch = Potion.Quick;
         }
         else if (Input.GetButtonDown("selectSpine")) {
-            potionSelection = Potion.Spine;
+            buttonDispatch = Potion.Spine;
         }
         else if (Input.GetButtonDown("selectVenom")) {
-            potionSelection = Potion.Venom;
+            buttonDispatch = Potion.Venom;
         }
 
-        if (potionSelection != Potion.None) {
-            game.ButtonDispatch(potionSelection);
-            currentPotion = potionSelection;
+        if (buttonDispatch != Potion.None) {
+            gm.ButtonDispatch(buttonDispatch);
         }
     }
 

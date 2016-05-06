@@ -7,7 +7,8 @@ public class GameController : MonoBehaviour {
     List<Room> rooms;
     UIController ui;
     CameraController gameCamera;
-    GeometryParentController geometryParentController;
+    public GeometryParentController geometryParentController;
+    public Entities entities;
     GameObject player;
     GameObject[] allGeometry;
     GameObject[] allDoors;
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour {
         ui = GameObject.Find("UI Manager").GetComponent<UIController>();
         gameCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         geometryParentController = GameObject.Find("GeometryParent").GetComponent<GeometryParentController>();
+        entities = GetComponent<Entities>();
         rooms = new List<Room>();
         rooms = MakeRooms();
         GetGlobalReferences();

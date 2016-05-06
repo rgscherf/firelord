@@ -83,7 +83,7 @@ public class Room : MonoBehaviour {
             case 'P':
                 return roomPositionInLevel == 1 ? entities.player : entities.empty;
             case 'M':
-                return entities.particle;
+                return entities.mist;
             case 'D':
                 bool isDoor = false;
                 bool isLastRoomDoor = false;
