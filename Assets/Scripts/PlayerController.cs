@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour {
     GameController game;
 
     LineRenderer blastGuide;
+    float blastHoldStrength;
+    float blastWindupSpeed = 15f;
+    public GameObject _blastOuterIndicator;
+    public GameObject _blastInnerIndicator;
+    GameObject blastOuterIndicator;
+    GameObject blastInnerIndicator;
 
     Potion currentPotion;
 
@@ -29,8 +35,11 @@ public class PlayerController : MonoBehaviour {
 
         blastGuide = gameObject.AddComponent<LineRenderer>();
         blastGuide.material = new Material (Shader.Find("Particles/Additive"));
-        blastGuide.SetWidth(1f, 1f);
+        blastGuide.SetWidth(0.01f, 0.01f);
         blastGuide.SetVertexCount(2);
+        blastGuide.useWorldSpace = false;
+
+        blastHoldStrength = 0f;
 
         colorRollOnCooldown = colorRollOffCooldown * new Color(1,1,1,0.5f);
         rollOnCooldown = false;
@@ -76,12 +85,14 @@ public class PlayerController : MonoBehaviour {
 
     void InputFire() {
         bool firing = 1 == Input.GetAxis("Fire");
+        BlastGuideCleanup(firing);
         if(firing) {
             switch(currentPotion) {
                 case Potion.None:
                     break;
                 case Potion.Blast:
-                    PaintBlastGuide();
+                    blastHoldStrength += Time.deltaTime * blastWindupSpeed;
+                    BlastGuidePaint();
                     break;
                 default:
                     break;
@@ -89,11 +100,38 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    void PaintBlastGuide() {
+    void BlastGuideCleanup(bool firing) {
+        if(!firing || currentPotion != Potion.Blast) {
+            blastGuide.enabled = false;
+            blastHoldStrength = 0f;
+            Object.Destroy(blastOuterIndicator);
+            Object.Destroy(blastInnerIndicator);
+        }
+
+    }
+    void BlastGuidePaint() {
+        if (!blastGuide.enabled) {
+            blastGuide.enabled = true;
+        }
+        if (blastOuterIndicator == null) {
+            blastOuterIndicator = (GameObject) Instantiate(_blastOuterIndicator, transform.position, Quaternion.identity);
+            blastOuterIndicator.transform.parent = transform;
+            blastOuterIndicator.GetComponent<SpriteRenderer>().color = PotionColors.Venom;
+
+            blastInnerIndicator = (GameObject) Instantiate(_blastInnerIndicator, transform.position, Quaternion.identity);
+            blastInnerIndicator.transform.parent = transform;
+            blastInnerIndicator.GetComponent<SpriteRenderer>().color = PotionColors.Venom;
+        }
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        target.z = transform.position.z;
-        blastGuide.SetPosition(0, transform.position);
-        blastGuide.SetPosition(1, target);
+        Vector3 localtarget = target - transform.position;
+        localtarget = Vector3.Scale(localtarget, new Vector3(100,100,1));
+        localtarget.z = transform.position.z;
+        blastGuide.SetPosition(0, new Vector3(0f,0f,0f));
+        blastGuide.SetPosition(1, localtarget);
+
+        Vector2 indicatorPos = ((Vector2)localtarget.normalized) * blastHoldStrength;
+        blastOuterIndicator.transform.localPosition = indicatorPos;
+        blastInnerIndicator.transform.localPosition = indicatorPos;
 
     }
 
