@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"rollov",
+				"rollOverlay2"
+			],
+			[
+				"rollV",
+				"rollOverlay2"
+			],
+			[
+				"roll",
+				"rollOverlay1	GameObject"
+			],
+			[
+				"_ro",
+				"_rollOverlay1"
+			],
+			[
+				"rollOverl",
+				"rollOverlay1"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"Tra",
+				"TransformPoint"
+			],
+			[
+				"For",
+				"ForceMode2D	ForceMode2D"
+			],
+			[
+				"time",
+				"timeToFinishRoll	float"
+			],
+			[
+				"rot",
+				"Rotate(Vector3 axis, float angle)	void"
+			],
+			[
+				"Enem",
+				"EnemyOoze	EnemyOoze"
+			],
+			[
+				"In",
+				"instantiator	GameObject"
+			],
+			[
+				"add",
+				"AddTorque(float torque)	void"
+			],
+			[
+				"Int",
+				"Instantiate<T>(T original)	T"
+			],
+			[
 				"par",
 				"particle"
 			],
@@ -98,10 +154,6 @@
 			[
 				"movem",
 				"movementVector"
-			],
-			[
-				"add",
-				"AddForce(Vector2 force)	void"
 			],
 			[
 				"startpa",
@@ -305,16 +357,18 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/RollOverlayController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AstarPath.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Enemy.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
@@ -348,6 +402,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"rollOverlay1",
+			"color",
+			"Jump",
+			"ins",
+			"flickerColor",
+			", ",
 			"spr.",
 			"CallDeathTimer",
 			"        ",
@@ -467,20 +527,56 @@
 		"selected_items":
 		[
 			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
-				"particle",
-				"Assets/Scripts/ParticleController.cs"
+				"roll",
+				"Assets/Scripts/RollOverlayController.cs"
 			],
 			[
 				"blast",
 				"Assets/Scripts/BlastPotionController.cs"
 			],
 			[
+				"mistcon",
+				"Assets/Scripts/MistController.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"rollover",
+				"Assets/Scripts/RollOverlayController.cs"
+			],
+			[
+				"potion",
+				"Assets/Scripts/PotionColors.cs"
+			],
+			[
 				"player",
 				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"blastp",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"par",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"part",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"ooze",
+				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"particle",
+				"Assets/Scripts/ParticleController.cs"
 			],
 			[
 				"enemyfollo",
@@ -493,14 +589,6 @@
 			[
 				"enem",
 				"Assets/Scripts/EnemyOoze.cs"
-			],
-			[
-				"ooze",
-				"Assets/Scripts/EnemyOoze.cs"
-			],
-			[
-				"health",
-				"Assets/Scripts/HealthController.cs"
 			],
 			[
 				"particl",
@@ -615,10 +703,6 @@
 				"potionlord.sublime-project"
 			],
 			[
-				"mistcon",
-				"Assets/Scripts/MistController.cs"
-			],
-			[
 				"color",
 				"Assets/Scripts/PotionColors.cs"
 			],
@@ -656,7 +740,7 @@
 		"_vintageous_last_buffer_search": "sprcol",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": "l",
+		"_vintageous_last_character_search": " ",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

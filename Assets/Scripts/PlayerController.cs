@@ -3,28 +3,40 @@
 public class PlayerController : MonoBehaviour {
 
 #region init
-    const float speed = 19000;
+    const float speed = 9000;
     const float camRayLength = 100f;
-    const float rollCooldown = 1.25f;
 
-    bool rollOnCooldown ;
-    float currentRollCooldown;
+    const float rollSpeedBoost = 2.5f;
+
     Vector2 movement;
     Rigidbody2D playerRigidBody;
     SpriteRenderer playerSpriteRenderer;
-    Color colorRollOffCooldown = PotionColors.White;
-    Color colorRollOnCooldown;
     GameController game;
 
     bool firing;
 
     LineRenderer blastGuide;
     float blastHoldStrength;
-    float blastWindupSpeed = 15f;
+    const float blastWindupSpeed = 15f;
+
     public GameObject _blastOuterIndicator;
     public GameObject _blastInnerIndicator;
     GameObject blastOuterIndicator;
     GameObject blastInnerIndicator;
+
+    public GameObject _rollOverlay1;
+    public GameObject _rollOverlay2;
+    GameObject rollOverlay1;
+    GameObject rollOverlay2;
+
+    const float timeToFinishRoll = 0.75f;
+    float timeToFinishRollCurrent;
+
+    const float rollCooldown = 0.75f;
+    float rollCooldownCurrent;
+
+    bool isRolling;
+    public bool isRollingInvuln;
 
     Entities entities;
 
@@ -35,7 +47,7 @@ public class PlayerController : MonoBehaviour {
         entities = GameObject.Find("GameManager").GetComponent<Entities>();
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        playerSpriteRenderer.color = colorRollOffCooldown;
+        playerSpriteRenderer.color = PotionColors.White;
 
         currentPotion = Potion.Blast;
 
@@ -51,9 +63,6 @@ public class PlayerController : MonoBehaviour {
 
         blastHoldStrength = 0f;
 
-        colorRollOnCooldown = colorRollOffCooldown * new Color(1,1,1,0.5f);
-        rollOnCooldown = false;
-        currentRollCooldown = 0f;
     }
 
 #endregion
@@ -62,36 +71,76 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        float j = Input.GetAxis("Jump");
-        Move(h, v, j);
+        Move(h, v);
         // Turning();
         // Animating(h, v);
     }
 
-    void Move(float h, float v, float j) {
+    void Move(float h, float v) {
         float dt = Time.deltaTime;
-        float boost = 1;
-
-        if (j > 0.1f && !rollOnCooldown) {
-            rollOnCooldown = true;
-            currentRollCooldown = rollCooldown;
-            boost = 1f;
-        }
+        float boost = isRolling ? rollSpeedBoost : 1f;
 
         movement = new Vector2(h, v).normalized;
         movement = movement * speed * dt * boost;
         playerRigidBody.AddForce(movement); 
+
     }
 #endregion
 
 #region update
     void Update() {
-        // DecrementRollTimer();
-        // did player select a new potion?
-        // did player roll?
-        // did player fire?
         InputPotionSelection();
+        InputDodge();
         InputFire();
+    }
+
+    void InputDodge() {
+        if (rollOverlay1 != null && rollOverlay2 != null) {
+            // update roll graphics every frame during roll. parenting didn't work...?
+            rollOverlay1.transform.position = (Vector2) gameObject.transform.position + new Vector2(0, -.20f);
+            rollOverlay2.transform.position = (Vector2) gameObject.transform.position + new Vector2(0, -.20f);
+
+        }
+        if (!isRolling && Input.GetAxis("Roll") == 1 && rollCooldownCurrent > rollCooldown) {
+            BeginRolling();
+        }
+        if (isRolling) {
+            ContinueRolling();
+        } else {
+            rollCooldownCurrent += Time.deltaTime;
+        }
+    }
+
+    void BeginRolling() {
+        isRollingInvuln = true;
+        isRolling = true;
+        timeToFinishRollCurrent = 0;
+        InitiateRollGraphics();
+    }
+
+    void ContinueRolling() {
+        timeToFinishRollCurrent += Time.deltaTime;
+        if(timeToFinishRollCurrent > timeToFinishRoll) {
+            FinishRolling();
+        }
+    }
+
+    void FinishRolling() {
+        isRollingInvuln = false;
+        isRolling = false;
+        rollCooldownCurrent = 0;
+    }
+
+    void InitiateRollGraphics() {
+        rollOverlay1 = (GameObject) Instantiate(_rollOverlay1, gameObject.transform.position, Quaternion.identity);
+        rollOverlay1.GetComponent<Rigidbody2D>().AddTorque(1200f);
+        rollOverlay1.GetComponent<SpriteRenderer>().color = PotionColors.GetColor(currentPotion);
+        Object.Destroy(rollOverlay1, timeToFinishRoll);
+
+        rollOverlay2 = (GameObject) Instantiate(_rollOverlay2, gameObject.transform.position, Quaternion.identity);
+        rollOverlay2.GetComponent<Rigidbody2D>().AddTorque(1200f);
+        rollOverlay2.GetComponent<SpriteRenderer>().color = PotionColors.GetColor(currentPotion);
+        Object.Destroy(rollOverlay2, timeToFinishRoll);
     }
 
     void ReleaseFire() {
@@ -134,6 +183,7 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
     void BlastGuidePaint() {
         if (!blastGuide.enabled) {
             blastGuide.enabled = true;
@@ -158,12 +208,6 @@ public class PlayerController : MonoBehaviour {
         blastOuterIndicator.transform.localPosition = indicatorPos;
         blastInnerIndicator.transform.localPosition = indicatorPos;
 
-    }
-
-    void DecrementRollTimer() {
-        currentRollCooldown -= Time.deltaTime;
-        rollOnCooldown = currentRollCooldown > 0f;
-        // playerSpriteRenderer.color = rollOnCooldown ? colorRollOnCooldown : colorRollOffCooldown;
     }
 
     void InputPotionSelection() {
@@ -193,22 +237,4 @@ public class PlayerController : MonoBehaviour {
 
 #endregion
 
-#region deadcode
-    // void Turning() {
-    //     Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //     RaycastHit floorHit;
-    //     if(Physics.Raycast(camRay, out floorHit, camRayLength, floorMask)) {
-    //         Vector3 playerToMouse = floorHit.point - transform.position;
-    //         playerToMouse.y = 0f;
-    //         Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-    //         // playerRigidBody.MoveRotation(newRotation);
-    //     }
-    // }
-
-    // void Animating(float h, float v) {
-    //     bool walking = h != 0f || v != 0f;
-    //     anim.SetBool("IsWalking", walking);
-    // }
-
-#endregion
 }

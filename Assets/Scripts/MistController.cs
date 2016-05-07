@@ -6,7 +6,7 @@ public class MistController : MapObject {
 
     const float cloneTime = 3f;
     const float speed = 0.5f;
-    const float deathTimer = 0.75f;
+    const float deathTimer = 0.35f;
 
     GameController game;
 

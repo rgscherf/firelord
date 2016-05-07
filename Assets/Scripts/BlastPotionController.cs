@@ -73,7 +73,7 @@ public class BlastPotionController : MonoBehaviour {
             Vector2 pos = (Vector2) gameObject.transform.position + (Random.insideUnitCircle * pushradius);
             var exp = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
             Color c = Vector2.Distance(pos, gameObject.transform.position) < damageradius ? PotionColors.Blast : PotionColors.White;
-            exp.GetComponent<ParticleController>().SetConstantColor(gameObject, c, 0.5f, expsize[Random.Range(0, expsize.Length)]);
+            exp.GetComponent<ParticleController>().Init(gameObject, false, c, 0.5f, expsize[Random.Range(0, expsize.Length)]);
             exp.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(exp.transform.position, gameObject.transform.position, blastForce / 60));
         }
 
@@ -95,7 +95,7 @@ public class BlastPotionController : MonoBehaviour {
         }
         foreach (var p in particles) {
             p.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(killed, p.transform.position, blastForce));
-            p.GetComponent<ParticleController>().SetFlickerColor(gameObject, PotionColors.Blast, 1.5f, 4);
+            p.GetComponent<ParticleController>().Init(gameObject, true, PotionColors.Blast, 1.5f, 4);
         }
     }
 }

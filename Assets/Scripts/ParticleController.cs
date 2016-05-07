@@ -13,7 +13,8 @@ public class ParticleController : MonoBehaviour {
     public Sprite sprite16;
     public Sprite sprite32;
 
-    Color flickerColor;
+    bool flicker;
+    Color color;
     Color[] flickerColorPalette;
 
     Color constantColor;
@@ -23,18 +24,7 @@ public class ParticleController : MonoBehaviour {
     }
 	
 	void Update () {
-
-        if (flickerColor != Color.clear && constantColor != Color.clear) {
-            throw new System.NotImplementedException("Particle has both flicker and constant color. Instantiated by " + instantiator);
-        }
-
-        if (flickerColor != Color.clear) {
-            spr.color = flickerColorPalette[Random.Range(0, flickerColorPalette.Length)];
-        }
-
-        if (constantColor != Color.clear ) {
-            spr.color = constantColor;
-        }
+        spr.color = flicker ? flickerColorPalette[Random.Range(0, flickerColorPalette.Length)] : color;
 	}
 
     void CallDeathTimer(float t) {
@@ -74,18 +64,26 @@ public class ParticleController : MonoBehaviour {
         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(collidersize, collidersize);
     }
 
-    public void SetFlickerColor(GameObject ins, Color col, float timer, int size) {
-        instantiator = ins;
+    public void Init(GameObject whoInstantiated, bool doesFlicker, Color col, float timer, int size) {
+        instantiator = whoInstantiated;
         MountSprite(size);
-        flickerColor = col;
-        flickerColorPalette = new Color[] {col, col * new Color(1,1,1,0.60f), col * new Color(1,1,1,0.85f)};
+        color = col;
+        flicker = doesFlicker;
+        if(flicker) {
+            flickerColorPalette = new Color[] {col, col * new Color(1,1,1,0.60f), col * new Color(1,1,1,0.85f)};
+        }
         CallDeathTimer(timer);
     }
 
-    public void SetConstantColor(GameObject ins, Color col, float timer, int size) {
-        instantiator = ins;
-        MountSprite(size);
-        constantColor = col;
-        CallDeathTimer(timer);
+    void OnTriggerEnter2D(Collider2D other) {
+        if (instantiator != null) {
+            if (instantiator.GetComponent<EnemyOoze>() != null) {
+            GameObject go = other.gameObject;
+                if (go.tag == "Player") {
+                    int dmgamt = EnemyOoze.damage;
+                    go.GetComponent<HealthController>().ReceiveDamage(dmgamt);
+                }
+            }
+        }
     }
 }

@@ -49,6 +49,11 @@ public class HealthController : MonoBehaviour {
     public bool ReceiveDamage(int debitamt) {
         // set health and send signal back if the object will die.
         if (!invulnState) {
+            if (gameObject.tag == "Player") {
+                if (gameObject.GetComponent<PlayerController>().isRollingInvuln) {
+                    return false;
+                }
+            }
             health -= debitamt;
         }
 

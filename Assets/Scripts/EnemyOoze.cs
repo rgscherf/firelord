@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyOoze : MapObject {
 
     float attackDistance = 2f;
-    const int damage = 1;
+    public const int damage = 1;
     public Transform playerTransform;
 
     GameObject child;
@@ -18,12 +18,16 @@ public class EnemyOoze : MapObject {
 
     Color[] attackColors = {PotionColors.White, PotionColors.Danger};
 
+    Entities entities;
+
 
 	// Use this for initialization
 	void Start () {
         
         GetComponent<HealthController>().health = 4;
         GetComponent<HealthController>().invulntimer = 0.1f;
+
+        entities = GameObject.Find("GameManager").GetComponent<Entities>();
 
         playerTransform = null;
         child = transform.GetChild(0).gameObject;
@@ -51,16 +55,15 @@ public class EnemyOoze : MapObject {
 	}
 
     void Attack() {
-        var inRadius = Physics2D.OverlapCircleAll(transform.position, attackDistance);
-        foreach (var r in inRadius) {
-            var i = r.gameObject;
-            if(i.tag == "Player") {
-                HealthController hc = i.gameObject.GetComponent<HealthController>();
-                if (i != null) {
-                    hc.ReceiveDamage(damage);
-                }
-            }
+        var objs = new GameObject[4];
+        foreach (var v in new Vector2[]{Vector2.up * 2, Vector2.right * 2, Vector2.down * 2, Vector2.left * 2, Vector2.up + Vector2.right, Vector2.up + Vector2.left, Vector2.down + Vector2.right, Vector2.down + Vector2.left}) {
+            Vector2 pos = (Vector2) gameObject.transform.position + v;
+            var obj = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
+            obj.GetComponent<ParticleController>().Init(gameObject, false, PotionColors.Danger * new Color(1,1,1,0.75f), 0.15f, 16);
+            obj.GetComponent<Rigidbody2D>().AddTorque(800f);
+            obj.transform.parent = gameObject.transform;
         }
+
         gameObject.GetComponent<SpriteRenderer>().color = PotionColors.White;
         attackWindupCurrent = 0;
         attackCooldownCurrent = 0;
