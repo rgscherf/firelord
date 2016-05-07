@@ -3,27 +3,51 @@
 public class PlayerController : MonoBehaviour {
 
 #region init
-    const float speed = 9000;
+    //////////////////////////////
+    // gameobjects and other inits
+    //////////////////////////////
+    Rigidbody2D playerRigidBody;
+    SpriteRenderer playerSpriteRenderer;
+    GameController game;
+    Entities entities;
+
+    Potion currentPotion;
+
+    bool firing;
+
+    ////////////////////
+    // vars for movement
+    ////////////////////
+    const float speed = 8000;
     const float camRayLength = 100f;
 
     const float rollSpeedBoost = 2.5f;
 
     Vector2 movement;
-    Rigidbody2D playerRigidBody;
-    SpriteRenderer playerSpriteRenderer;
-    GameController game;
 
-    bool firing;
-
-    LineRenderer blastGuide;
-    float blastHoldStrength;
-    const float blastWindupSpeed = 15f;
-
+    ////////////////////////
+    // vars for Blast potion
+    ////////////////////////
     public GameObject _blastOuterIndicator;
     public GameObject _blastInnerIndicator;
     GameObject blastOuterIndicator;
     GameObject blastInnerIndicator;
 
+    LineRenderer blastGuide;
+    float blastHoldStrength;
+    const float blastWindupSpeed = 12f;
+
+    ////////////////////////
+    // vars for Quick potion
+    ////////////////////////
+    const float quickCooldown = 0.75f;
+    float quickCooldownCurrent;
+
+    const float quickspeed = 1700f;
+
+    ///////////////////
+    // vars for rolling
+    ///////////////////
     public GameObject _rollOverlay1;
     public GameObject _rollOverlay2;
     GameObject rollOverlay1;
@@ -38,9 +62,9 @@ public class PlayerController : MonoBehaviour {
     bool isRolling;
     public bool isRollingInvuln;
 
-    Entities entities;
-
-    Potion currentPotion;
+///////////
+// end init
+///////////
 
     void Awake() {
         game = GameObject.Find("GameManager").GetComponent<GameController>();
@@ -89,6 +113,10 @@ public class PlayerController : MonoBehaviour {
 
 #region update
     void Update() {
+        // always tick these:
+        quickCooldownCurrent += Time.deltaTime;
+
+        // standard update operations:
         InputPotionSelection();
         InputDodge();
         InputFire();
@@ -168,10 +196,24 @@ public class PlayerController : MonoBehaviour {
                     blastHoldStrength += Time.deltaTime * blastWindupSpeed;
                     BlastGuidePaint();
                     break;
+                case Potion.Quick:
+                    FireQuick();
+                    break;
                 default:
                     break;
             }
         }
+    }
+
+    void FireQuick() {
+        if (quickCooldownCurrent < quickCooldown) { return; }
+        quickCooldownCurrent = 0f;
+
+        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 forceDirection = (target - (Vector2) gameObject.transform.position).normalized;
+        var qui = (GameObject) Instantiate(entities.thrownQuick, gameObject.transform.position, Quaternion.identity);
+        qui.GetComponent<Rigidbody2D>().AddForce(forceDirection * quickspeed);
+
     }
 
     void BlastGuideCleanup(bool firing) {
@@ -199,7 +241,8 @@ public class PlayerController : MonoBehaviour {
         }
         Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 localtarget = target - transform.position;
-        localtarget = Vector3.Scale(localtarget, new Vector3(100,100,1));
+        float mult = 100;
+        localtarget = Vector3.Scale(localtarget, new Vector3(mult,mult,1));
         localtarget.z = transform.position.z;
         blastGuide.SetPosition(0, new Vector3(0f,0f,0f));
         blastGuide.SetPosition(1, localtarget);

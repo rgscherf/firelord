@@ -13,6 +13,8 @@ public class HealthController : MonoBehaviour {
     SpriteRenderer spr;
     Color spriteBaseColor;
 
+    Entities entities;
+
     void Start() {
         SetSprite();
     }
@@ -22,6 +24,10 @@ public class HealthController : MonoBehaviour {
         spriteBaseColor = spr.color;
     }
     void Update() {
+        if (entities == null) {
+            entities = GameObject.Find("GameManager").GetComponent<Entities>();
+        }
+
         if(spr == null) {
             SetSprite();
         }
@@ -59,6 +65,7 @@ public class HealthController : MonoBehaviour {
 
         if (health <= 0) {
             Object.Destroy(gameObject);
+            entities.Kill(gameObject.transform.position);
             return true;
         }
 
@@ -73,5 +80,7 @@ public class HealthController : MonoBehaviour {
 
         return false;
     }
+
+
 
 }

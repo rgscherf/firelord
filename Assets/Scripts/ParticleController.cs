@@ -78,10 +78,17 @@ public class ParticleController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (instantiator != null) {
             if (instantiator.GetComponent<EnemyOoze>() != null) {
-            GameObject go = other.gameObject;
+                GameObject go = other.gameObject;
                 if (go.tag == "Player") {
                     int dmgamt = EnemyOoze.damage;
                     go.GetComponent<HealthController>().ReceiveDamage(dmgamt);
+                }
+            }
+            if (instantiator.GetComponent<QuickPotionController>() != null) {
+                GameObject go = other.gameObject;
+                QuickPotionController qp = instantiator.GetComponent<QuickPotionController>();
+                if (go.tag == "MovingEntity") {
+                    qp.ChainFrom(other.gameObject, gameObject.GetComponent<Rigidbody2D>().velocity);
                 }
             }
         }

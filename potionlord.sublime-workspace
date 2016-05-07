@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"stati",
+				"staticKillTimer"
+			],
+			[
+				"stat",
+				"staticKillTimer"
+			],
+			[
+				"parti",
+				"particle	(BlastPotionController.cs)"
+			],
+			[
+				"colli",
+				"collisions	Collider2D[]"
+			],
+			[
+				"rigi",
+				"rigidbody2D	Component { get; }"
+			],
+			[
+				"explode",
+				"Explode()	void"
+			],
+			[
+				"rollspeed",
+				"rollSpeedBoost"
+			],
+			[
+				"Finish",
+				"FinishRolling()	void"
+			],
+			[
 				"rollov",
 				"rollOverlay2"
 			],
@@ -357,21 +389,23 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/RollOverlayController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/QuickPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/RollOverlayController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AstarPath.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Enemy.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AI/AIPath.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/Path.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryParentController.cs",
@@ -402,6 +436,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"entities.g",
+			"entities",
+			"game.",
+			"getOutwardExplosionVector",
+			"5",
+			"killTimer",
+			"c",
 			"rollOverlay1",
 			"color",
 			"Jump",
@@ -527,20 +568,52 @@
 		"selected_items":
 		[
 			[
-				"roll",
-				"Assets/Scripts/RollOverlayController.cs"
+				"quick",
+				"Assets/Scripts/QuickPotionController.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"blast",
 				"Assets/Scripts/BlastPotionController.cs"
 			],
 			[
-				"mistcon",
+				"particl",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"geometrycon",
+				"Assets/Scripts/GeometryController.cs"
+			],
+			[
+				"mist",
 				"Assets/Scripts/MistController.cs"
+			],
+			[
+				"quickp",
+				"Assets/Scripts/QuickPotionController.cs"
 			],
 			[
 				"health",
 				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"roll",
+				"Assets/Scripts/RollOverlayController.cs"
+			],
+			[
+				"mistcon",
+				"Assets/Scripts/MistController.cs"
 			],
 			[
 				"rollover",
@@ -549,10 +622,6 @@
 			[
 				"potion",
 				"Assets/Scripts/PotionColors.cs"
-			],
-			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"blastp",
@@ -591,20 +660,12 @@
 				"Assets/Scripts/EnemyOoze.cs"
 			],
 			[
-				"particl",
-				"Assets/Scripts/ParticleController.cs"
-			],
-			[
 				"particlecon",
 				"Assets/Scripts/ParticleController.cs"
 			],
 			[
 				"entiti",
 				"Assets/Scripts/Entities.cs"
-			],
-			[
-				"mist",
-				"Assets/Scripts/MistController.cs"
 			],
 			[
 				"ui",
@@ -621,10 +682,6 @@
 			[
 				"enemyf",
 				"Assets/Scripts/EnemyFollow.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"enemyfoo",
@@ -657,10 +714,6 @@
 			[
 				"blastpotion",
 				"Assets/Scripts/BlastPotionController.cs"
-			],
-			[
-				"entities",
-				"Assets/Scripts/Entities.cs"
 			],
 			[
 				"enemyco",
@@ -740,7 +793,7 @@
 		"_vintageous_last_buffer_search": "sprcol",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": " ",
+		"_vintageous_last_character_search": "B",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
