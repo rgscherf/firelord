@@ -3,7 +3,7 @@
 public class BlastPotionController : MonoBehaviour {
 
     const int damage = 4;
-    const int forceamount = 400;
+    const int blastForce = 600;
     const float damageradius = 1f;
     const float pushradius = 2f;
     const float rotationSpeed = -600f;
@@ -50,19 +50,19 @@ public class BlastPotionController : MonoBehaviour {
         foreach (var p in pushedUnits) {
             GameObject go = p.gameObject;
             if (go.tag == "MovingEntity") {
-                go.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(gameObject.transform.position, go.transform.position, forceamount));
+                go.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce));
             }
 
             MistController mi = go.GetComponent<MistController>();
             if (mi != null) {
-                mi.ClearMist( getOutwardExplosionVector(gameObject.transform.position, go.transform.position, forceamount / 2) );
+                mi.ClearMist( getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce / 2) );
             }
         }
         Object.Destroy(gameObject);
     }
 
-    private Vector2 getOutwardExplosionVector(Vector2 exploder, Vector2 explodee, float forceamount) {
-        return -1 * forceamount * (exploder - explodee);
+    private Vector2 getOutwardExplosionVector(Vector2 exploder, Vector2 explodee, float blastForce) {
+        return -1 * blastForce * (exploder - explodee);
     }
 
     void Kill(Vector2 killed) {
@@ -74,8 +74,8 @@ public class BlastPotionController : MonoBehaviour {
             particles[i] = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
         }
         foreach (var p in particles) {
-            p.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(killed, p.transform.position, 500f));
-            p.GetComponent<ParticleController>().BaseColor(PotionColors.Blast);
+            p.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(killed, p.transform.position, blastForce));
+            p.GetComponent<ParticleController>().SetFlickerColor(gameObject, PotionColors.Blast);
         }
     }
 }

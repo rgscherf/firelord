@@ -44,7 +44,6 @@ public class HealthController : MonoBehaviour {
     void Flicker () {
         var colors = new Color[] { spriteBaseColor * new Color (1,1,1,0.75f), spriteBaseColor * new Color (1,1,1,0.5f) };
         spr.color = colors[Random.Range(0,colors.Length)];
-        Debug.Log("Sending flicker message, spr color is " +spr.color);
     }
 
     public bool ReceiveDamage(int debitamt) {
@@ -52,7 +51,7 @@ public class HealthController : MonoBehaviour {
         if (!invulnState) {
             health -= debitamt;
         }
-        
+
         if (health <= 0) {
             Object.Destroy(gameObject);
             return true;
