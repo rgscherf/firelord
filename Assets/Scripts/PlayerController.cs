@@ -45,6 +45,11 @@ public class PlayerController : MonoBehaviour {
 
     const float quickspeed = 1700f;
 
+    ////////////////////////
+    // vars for Spine potion
+    ////////////////////////
+    GameObject spineIndicator;
+
     ///////////////////
     // vars for rolling
     ///////////////////
@@ -115,6 +120,11 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         // always tick these:
         quickCooldownCurrent += Time.deltaTime;
+        if(currentPotion == Potion.Spine) {
+            PaintSpine();
+        } else {
+            UnpaintSpine();
+        }
 
         // standard update operations:
         InputPotionSelection();
@@ -199,10 +209,33 @@ public class PlayerController : MonoBehaviour {
                 case Potion.Quick:
                     FireQuick();
                     break;
+                case Potion.Spine:
+                    FireSpine();
+                    break;
                 default:
                     break;
             }
         }
+    }
+
+    void PaintSpine() {
+        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if(spineIndicator == null) {
+            spineIndicator = (GameObject) Instantiate(_blastInnerIndicator, target, Quaternion.identity);
+        } else {
+            spineIndicator.transform.position = target;
+        }
+    }
+
+    void UnpaintSpine() {
+        if(spineIndicator != null) {
+            Object.Destroy(spineIndicator);
+        }
+    }
+
+
+    void FireSpine() {
+        throw new System.NotImplementedException();
     }
 
     void FireQuick() {

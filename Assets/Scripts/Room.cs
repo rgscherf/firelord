@@ -128,17 +128,17 @@ public class Room : MonoBehaviour {
 
     readonly string[] level1 = {
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
-X...XXXXXXXXX....X............X
+X...XXXXXXXXX....X......oo....X
 X......XXXXX.....X............X
 X.......XXXX....XX............X
 X....XXXX.....................X
-X.............o...............X
+X.............................X
 D.............................D
 D.......X.....................D
-D.......X.....o...XXXXXXXXX...D
+D.......X.........XXXXXXXXX...D
 D.......X.........XMMMMMMMX...D
-X.......X.........XMMMMMMMX.o.X
-X.......X.........XMMMMMMMX...X
+X.o.....X.........XMMMMMMMX.o.X
+X.o.....X.........XMMMMMMMX...X
 X...XXXXX.......MMMMMXXXXXX.o.X
 X...ooooo.....................X
 X.............................X
