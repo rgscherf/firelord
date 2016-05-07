@@ -3,7 +3,7 @@
 public class BlastPotionController : MonoBehaviour {
 
     const int damage = 4;
-    const int forceamount = 500;
+    const int forceamount = 400;
     const float damageradius = 1f;
     const float pushradius = 2f;
     const float rotationSpeed = -600f;
@@ -37,7 +37,11 @@ public class BlastPotionController : MonoBehaviour {
             if (go.tag == "MovingEntity") {
                 HealthController hc = go.GetComponent<HealthController>();
                 if (hc != null) {
-                    hc.ReceiveDamage(damage);
+                    var gopos = hc.gameObject.transform.position;
+                    bool didDie = hc.ReceiveDamage(damage);
+                    if (didDie) {
+                        Kill(gopos);
+                    }
                 }
             }
         }
@@ -59,5 +63,19 @@ public class BlastPotionController : MonoBehaviour {
 
     private Vector2 getOutwardExplosionVector(Vector2 exploder, Vector2 explodee, float forceamount) {
         return -1 * forceamount * (exploder - explodee);
+    }
+
+    void Kill(Vector2 killed) {
+        Entities entities = GameObject.Find("GameManager").GetComponent<Entities>();
+
+        var particles = new GameObject[10];
+        for (int i = 0; i < 10; i++) {
+            var pos = (Vector2) killed + new Vector2(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f));
+            particles[i] = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
+        }
+        foreach (var p in particles) {
+            p.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(killed, p.transform.position, 500f));
+            p.GetComponent<ParticleController>().BaseColor(PotionColors.Blast);
+        }
     }
 }

@@ -36,7 +36,10 @@ public class PlayerController : MonoBehaviour {
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerSpriteRenderer.color = colorRollOffCooldown;
-        currentPotion = Potion.None;
+
+        currentPotion = Potion.Blast;
+
+        GetComponent<HealthController>().health = 6;
 
         blastGuide = gameObject.AddComponent<LineRenderer>();
         blastGuide.material = new Material (Shader.Find("Particles/Additive"));
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour {
         rollOnCooldown = false;
         currentRollCooldown = 0f;
     }
+
 #endregion
 
 #region FixedUpdate

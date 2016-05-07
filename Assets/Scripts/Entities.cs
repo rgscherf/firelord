@@ -17,6 +17,7 @@ public class Entities : MonoBehaviour {
 
     public GameObject empty;
     public GameObject newline;
+    public GameObject particle;
 
     public GameObject ooze;
 

@@ -4,10 +4,12 @@ public class HealthController : MonoBehaviour {
 
     public int health;
 
-    public void ReceiveDamage(int debitamt) {
+    public bool ReceiveDamage(int debitamt) {
         health -= debitamt;
         if (health <= 0) {
             Object.Destroy(gameObject);
+            return true;
         }
+        return false;
     }
 }

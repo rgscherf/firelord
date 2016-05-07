@@ -12,6 +12,8 @@ public static class PotionColors {
     public static Color MistFade = new Color(0.291f, 0.728f, 0.985f, 0.8f);
     public static Color MistFadeTwo = new Color(0.291f, 0.728f, 0.985f, 0.9f);
 
+    public static Color Danger = new Color(1f, 0.632f, 0f, 1f);
+
     // basic color
     public static Color White = new Color(1f,1f,1f,1f);
     // public static Color White = new Color(0.75f,0.75f,0.75f,1f);

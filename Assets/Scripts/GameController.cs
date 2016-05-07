@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour {
         GetGlobalReferences();
         AstarPath.active.Scan();
         geometryParentController.SwitchRooms(1, player);
+        ButtonDispatch(Potion.Blast);
 	}
 	
     List<Room> MakeRooms() {
