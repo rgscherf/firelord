@@ -23,7 +23,6 @@ public class EnemyFollow : MonoBehaviour {
     Seeker seeker;
 
 	void Start () {
-        GetComponent<HealthController>().health = 4;
         myrigidbody = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -52,12 +51,10 @@ public class EnemyFollow : MonoBehaviour {
         }
 
         if (path == null) {
-            Debug.Log("I have no path to follow..");
             return;
         }
 
         if (currentWaypoint >= path.vectorPath.Count) {
-            Debug.Log("I Reached my destination!");
             return;
         }
 

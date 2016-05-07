@@ -425,6 +425,14 @@
 		"selected_items":
 		[
 			[
+				"blast",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"particl",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
 				"particlecon",
 				"Assets/Scripts/ParticleController.cs"
 			],
@@ -435,10 +443,6 @@
 			[
 				"mist",
 				"Assets/Scripts/MistController.cs"
-			],
-			[
-				"blast",
-				"Assets/Scripts/BlastPotionController.cs"
 			],
 			[
 				"ui",

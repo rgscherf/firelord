@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour {
         currentPotion = Potion.Blast;
 
         GetComponent<HealthController>().health = 6;
+        GetComponent<HealthController>().invulntimer = 1f;
+
 
         blastGuide = gameObject.AddComponent<LineRenderer>();
         blastGuide.material = new Material (Shader.Find("Particles/Additive"));
@@ -84,7 +86,7 @@ public class PlayerController : MonoBehaviour {
 
 #region update
     void Update() {
-        DecrementRollTimer();
+        // DecrementRollTimer();
         // did player select a new potion?
         // did player roll?
         // did player fire?
@@ -161,7 +163,7 @@ public class PlayerController : MonoBehaviour {
     void DecrementRollTimer() {
         currentRollCooldown -= Time.deltaTime;
         rollOnCooldown = currentRollCooldown > 0f;
-        playerSpriteRenderer.color = rollOnCooldown ? colorRollOnCooldown : colorRollOffCooldown;
+        // playerSpriteRenderer.color = rollOnCooldown ? colorRollOnCooldown : colorRollOffCooldown;
     }
 
     void InputPotionSelection() {

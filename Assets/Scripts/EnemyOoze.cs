@@ -21,6 +21,10 @@ public class EnemyOoze : MapObject {
 
 	// Use this for initialization
 	void Start () {
+        
+        GetComponent<HealthController>().health = 4;
+        GetComponent<HealthController>().invulntimer = 0.1f;
+
         playerTransform = null;
         child = transform.GetChild(0).gameObject;
         child.SetActive(false);
