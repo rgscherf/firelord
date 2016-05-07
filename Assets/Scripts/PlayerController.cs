@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour {
     void Awake() {
         game = GameObject.Find("GameManager").GetComponent<GameController>();
         entities = GameObject.Find("GameManager").GetComponent<Entities>();
-        Debug.Log("entities status: " + entities);
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerSpriteRenderer.color = colorRollOffCooldown;

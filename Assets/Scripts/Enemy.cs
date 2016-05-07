@@ -5,7 +5,7 @@ using Pathfinding;
 public class Enemy : MapObject {
 
     public int health;
-    float speed = 3f;
+    float speed = 6f;
     public Path path;
     public Transform target;
     public float nextWaypointDistance = 0.01f;

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Rot",
+				"Rotate(Vector3 axis, float angle)	void"
+			],
+			[
+				"l",
+				"Length	int { get; }"
+			],
+			[
 				"en",
 				"entities	Entities"
 			],
@@ -193,19 +201,19 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Enemy.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Enemy.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AI/AIPath.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/Path.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryParentController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/potionlord.sublime-project",
 		"/Users/rgscherf/projects/unity/potion_test/Assets/Scripts/PotionColors.cs",
 		"/Users/rgscherf/projects/unity/potion_test/Assets/Scripts/MapObject.cs",
@@ -233,6 +241,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"debug",
 			"Vector3",
 			"isTweening",
 			"rigidbody",
@@ -298,18 +307,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -344,16 +346,28 @@
 		"selected_items":
 		[
 			[
+				"blast",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"mist",
+				"Assets/Scripts/MistController.cs"
+			],
+			[
 				"health",
 				"Assets/Scripts/HealthController.cs"
 			],
 			[
-				"mapo",
-				"Assets/Scripts/MapObject.cs"
+				"enem",
+				"Assets/Scripts/Enemy.cs"
 			],
 			[
-				"blast",
-				"Assets/Scripts/BlastPotionController.cs"
+				"mapo",
+				"Assets/Scripts/MapObject.cs"
 			],
 			[
 				"enemy",
@@ -364,20 +378,12 @@
 				"Assets/Scripts/Entities.cs"
 			],
 			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
 				"blastpotion",
 				"Assets/Scripts/BlastPotionController.cs"
 			],
 			[
 				"entities",
 				"Assets/Scripts/Entities.cs"
-			],
-			[
-				"enem",
-				"Assets/Scripts/Enemy.cs"
 			],
 			[
 				"enemyco",
@@ -444,10 +450,6 @@
 				"Assets/Scripts/IMapObject.cs"
 			],
 			[
-				"mist",
-				"Assets/Scripts/MistController.cs"
-			],
-			[
 				"geom",
 				"Assets/Scripts/GeometryParentController.cs"
 			]
@@ -476,8 +478,8 @@
 	{
 		"_vintageous_last_buffer_search": "target",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_big_f",
-		"_vintageous_last_character_search": "B",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": "0",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BlastPotionController : MonoBehaviour {
 
-    int damage = 4;
-    int forceamount = 500;
-
-    float damageradius = 1f;
-    float pushradius = 2f;
+    const int damage = 4;
+    const int forceamount = 500;
+    const float damageradius = 1f;
+    const float pushradius = 2f;
+    const float rotationSpeed = -600f;
 
     bool isTweening = true;
 
@@ -22,6 +21,8 @@ public class BlastPotionController : MonoBehaviour {
         if(!isTweening) {
             Explode();
         }
+
+        transform.Rotate(0,0,rotationSpeed * Time.deltaTime);
 	}
 
     public void Init(Vector2 end) {
@@ -30,7 +31,6 @@ public class BlastPotionController : MonoBehaviour {
     }
 
     void Explode() {
-        Debug.Log("I exploded@@");
         var damagedUnits = Physics2D.OverlapCircleAll(gameObject.transform.position, damageradius) ;
         foreach (var d in damagedUnits) {
             GameObject go = d.gameObject;
@@ -46,8 +46,6 @@ public class BlastPotionController : MonoBehaviour {
         foreach (var p in pushedUnits) {
             GameObject go = p.gameObject;
             if (go.tag == "MovingEntity") {
-                // Vector2 dir = -1 * (gameObject.transform.position - go.transform.position);
-                // go.GetComponent<Rigidbody2D>().AddForce(dir * forceamount);
                 go.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(gameObject.transform.position, go.transform.position, forceamount));
             }
 
