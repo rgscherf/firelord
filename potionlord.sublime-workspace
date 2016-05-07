@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"par",
+				"particle"
+			],
+			[
+				"Box",
+				"BoxCollider2D	BoxCollider2D"
+			],
+			[
+				"no",
+				"NotImplementedException	NotImplementedException"
+			],
+			[
+				"lo",
+				"Log(object message)	void"
+			],
+			[
+				"flci",
+				"flickerColor"
+			],
+			[
+				"flicker",
+				"flickerColorPalette"
+			],
+			[
+				"for",
+				"forceamount"
+			],
+			[
+				"invim",
+				"invulntimerCurrent"
+			],
+			[
+				"inv",
+				"invulntimerCurrent"
+			],
+			[
 				"baseco",
 				"baseColorPalette"
 			],
@@ -269,13 +305,15 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AstarPath.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Enemy.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
@@ -310,6 +348,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"spr.",
+			"CallDeathTimer",
+			"        ",
+			"float",
+			"baseColorPalette",
+			"forceamount",
+			"onInvuln",
+			"ResetInvulen",
+			"sprColor",
+			".color",
+			"#logpath",
 			"25",
 			", ",
 			"10f",
@@ -379,18 +428,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -425,8 +467,40 @@
 		"selected_items":
 		[
 			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"particle",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
 				"blast",
 				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"enemyfollo",
+				"Assets/Scripts/EnemyFollow.cs"
+			],
+			[
+				"astarpath",
+				"Assets/AstarPathfindingProject/Core/AstarPath.cs"
+			],
+			[
+				"enem",
+				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"ooze",
+				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
 			],
 			[
 				"particl",
@@ -453,10 +527,6 @@
 				"Assets/Scripts/PotionColors.cs"
 			],
 			[
-				"health",
-				"Assets/Scripts/HealthController.cs"
-			],
-			[
 				"uicon",
 				"Assets/Scripts/UIController.cs"
 			],
@@ -465,24 +535,12 @@
 				"Assets/Scripts/EnemyFollow.cs"
 			],
 			[
-				"ooze",
-				"Assets/Scripts/EnemyOoze.cs"
-			],
-			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
 				"gamecon",
 				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"enemyfoo",
 				"Assets/Scripts/EnemyFollow.cs"
-			],
-			[
-				"enem",
-				"Assets/Scripts/Enemy.cs"
 			],
 			[
 				"ooze.cs",
@@ -545,10 +603,6 @@
 				"Assets/Scripts/GeometryParentController.cs"
 			],
 			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
 				"playermo",
 				"Assets/Scripts/PlayerMovement.cs"
 			],
@@ -599,14 +653,14 @@
 	},
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "target",
+		"_vintageous_last_buffer_search": "sprcol",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": "V",
+		"_vintageous_last_character_search": "l",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
-			"_cmdline_cd": "/Applications/Sublime Text.app/Contents/MacOS"
+			"_cmdline_cd": "/Users/rgscherf/projects/unity/potionlord/Assets/Scripts"
 		}
 	},
 	"show_minimap": true,

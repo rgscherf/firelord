@@ -8,11 +8,13 @@ public class BlastPotionController : MonoBehaviour {
     const float pushradius = 2f;
     const float rotationSpeed = -600f;
 
+    Entities entities;
+
     bool isTweening = true;
 
 	// Use this for initialization
 	void Start () {
-	
+        entities = GameObject.Find("GameManager").GetComponent<Entities>();
 	}
 	
 	// Update is called once per frame
@@ -31,6 +33,8 @@ public class BlastPotionController : MonoBehaviour {
     }
 
     void Explode() {
+
+        // DEAL DAMAGE
         var damagedUnits = Physics2D.OverlapCircleAll(gameObject.transform.position, damageradius) ;
         foreach (var d in damagedUnits) {
             GameObject go = d.gameObject;
@@ -46,6 +50,7 @@ public class BlastPotionController : MonoBehaviour {
             }
         }
 
+        // PUSH UNITS
         var pushedUnits = Physics2D.OverlapCircleAll(gameObject.transform.position, pushradius);
         foreach (var p in pushedUnits) {
             GameObject go = p.gameObject;
@@ -53,11 +58,26 @@ public class BlastPotionController : MonoBehaviour {
                 go.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce));
             }
 
+            // clear mist
             MistController mi = go.GetComponent<MistController>();
             if (mi != null) {
                 mi.ClearMist( getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce / 2) );
             }
         }
+
+        // spawn explosion projectiles
+
+        const int numexplosionparticles = 70;
+        var expsize = new int[] {1, 1, 1, 2};
+        for (var i = 0; i < numexplosionparticles; i++) {
+            Vector2 pos = (Vector2) gameObject.transform.position + (Random.insideUnitCircle * pushradius);
+            var exp = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
+            Color c = Vector2.Distance(pos, gameObject.transform.position) < damageradius ? PotionColors.Blast : PotionColors.White;
+            exp.GetComponent<ParticleController>().SetConstantColor(gameObject, c, 0.5f, expsize[Random.Range(0, expsize.Length)]);
+            exp.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(exp.transform.position, gameObject.transform.position, blastForce / 60));
+        }
+
+        // finally, kill this game object
         Object.Destroy(gameObject);
     }
 
@@ -66,16 +86,16 @@ public class BlastPotionController : MonoBehaviour {
     }
 
     void Kill(Vector2 killed) {
-        Entities entities = GameObject.Find("GameManager").GetComponent<Entities>();
 
-        var particles = new GameObject[10];
-        for (int i = 0; i < 10; i++) {
+        const int numparticles = 40;
+        var particles = new GameObject[numparticles];
+        for (int i = 0; i < numparticles; i++) {
             var pos = (Vector2) killed + new Vector2(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f));
             particles[i] = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
         }
         foreach (var p in particles) {
             p.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(killed, p.transform.position, blastForce));
-            p.GetComponent<ParticleController>().SetFlickerColor(gameObject, PotionColors.Blast);
+            p.GetComponent<ParticleController>().SetFlickerColor(gameObject, PotionColors.Blast, 1.5f, 4);
         }
     }
 }

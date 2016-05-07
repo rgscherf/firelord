@@ -183,6 +183,9 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (potionSelection != Potion.None) {
+            if(firing) {
+                ReleaseFire();
+            }
             game.ButtonDispatch(potionSelection);
             currentPotion = potionSelection;
         }
