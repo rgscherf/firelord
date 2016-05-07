@@ -6,32 +6,36 @@ public class MistController : MapObject {
 
     const float cloneTime = 3f;
     const float speed = 0.5f;
+    const float deathTimer = 0.75f;
 
     GameController game;
 
     float currentCloneTime;
     Vector2 direction;
+    bool isDying;
 
     readonly Color[] mistColors = {PotionColors.Mist, PotionColors.MistFade, PotionColors.MistFadeTwo};
 
     void Start () {
+        isDying = false;
         gameObject.GetComponent<SpriteRenderer>().color = PotionColors.Mist;
         game = GameObject.Find("GameManager").GetComponent<GameController>();
         currentCloneTime = 0f;
     }
 
 
-    void FixedUpdate() {
-    }
-
 
     void Update () {
-        currentCloneTime = currentCloneTime + (Time.deltaTime * Random.Range(0.5f, 1f));
-        gameObject.GetComponent<SpriteRenderer>().color = mistColors[Random.Range(0, mistColors.Length)];
+        if (!isDying) {
+            gameObject.GetComponent<SpriteRenderer>().color = mistColors[Random.Range(0, mistColors.Length)];
+            currentCloneTime = currentCloneTime + (Time.deltaTime * Random.Range(0.5f, 1f));
 
-        if (currentCloneTime > cloneTime) {
-            SpawnNewMist();
-            currentCloneTime = 0f;
+            if (currentCloneTime > cloneTime) {
+                SpawnNewMist();
+                currentCloneTime = 0f;
+            }
+        } else {
+            gameObject.GetComponent<SpriteRenderer>().color = mistColors[Random.Range(0, mistColors.Length)] * new Color(1,1,1,0.5f);
         }
     }
 
@@ -68,7 +72,26 @@ public class MistController : MapObject {
             }
         }
     }
+
+    public void ClearMist( Vector2 pushVector) {
+        gameObject.GetComponent<Rigidbody2D>().AddForce(pushVector);
+        isDying = true;
+        Object.Destroy(gameObject, deathTimer);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

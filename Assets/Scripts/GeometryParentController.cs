@@ -18,8 +18,6 @@ public class GeometryParentController : MonoBehaviour {
                 } else {
                     mo.gameObject.SetActive(true);
                 }
-            } else {
-                Debug.Log(mo);
             }
         }
     }

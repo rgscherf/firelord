@@ -9,13 +9,18 @@ public class GameController : MonoBehaviour {
     CameraController gameCamera;
     public GeometryParentController geometryParentController;
     public Entities entities;
-    GameObject player;
+    public GameObject player;
     GameObject[] allGeometry;
     GameObject[] allDoors;
     GameObject[] allMovingEntities;
 
     public int currentRoom;
     int level;
+
+    void Awake() {
+        entities = GetComponent<Entities>();
+        player = GameObject.Find("Player");
+    }
 
 	void Start () {
         // this is the level of the game.
@@ -28,10 +33,12 @@ public class GameController : MonoBehaviour {
         ui = GameObject.Find("UI Manager").GetComponent<UIController>();
         gameCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         geometryParentController = GameObject.Find("GeometryParent").GetComponent<GeometryParentController>();
-        entities = GetComponent<Entities>();
+
+
         rooms = new List<Room>();
         rooms = MakeRooms();
         GetGlobalReferences();
+        AstarPath.active.Scan();
         geometryParentController.SwitchRooms(1, player);
 	}
 	
@@ -54,7 +61,6 @@ public class GameController : MonoBehaviour {
         allGeometry = GameObject.FindGameObjectsWithTag("Geometry");
         allDoors = allGeometry.Where(c => c.name.Contains("Door")).ToArray();
         allMovingEntities = GameObject.FindGameObjectsWithTag("MovingEntity");
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void ButtonDispatch(Potion dispatch) {

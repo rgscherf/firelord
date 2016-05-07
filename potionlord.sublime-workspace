@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"en",
+				"entities	Entities"
+			],
+			[
+				"inner",
+				"blastInnerIndicator	GameObject"
+			],
+			[
+				"Rigi",
+				"Rigidbody2D	Rigidbody2D"
+			],
+			[
+				"wpcool",
+				"wpCooldown"
+			],
+			[
+				"wpcoold",
+				"wpCooldownCurrent	float"
+			],
+			[
+				"wpcoo",
+				"wpCoolingDown"
+			],
+			[
+				"FindGameOb",
+				"FindGameObjectWithTag(string tag)	GameObject"
+			],
+			[
+				"scan",
+				"Scan()	void"
+			],
+			[
+				"tar",
+				"targetPosition"
+			],
+			[
+				"GetCOm",
+				"GetComponent<T>()	T"
+			],
+			[
+				"blast",
+				"blastIndicator"
+			],
+			[
+				"blas",
+				"blastHoldingTimer"
+			],
+			[
+				"bla",
+				"blastHoldingTimer"
+			],
+			[
+				"use",
+				"useWorldSpace	bool { get; set; }"
+			],
+			[
+				"SetPo",
+				"SetPosition(int index, Vector3 position)	void"
+			],
+			[
 				"F",
 				"FixedUpdate"
 			],
@@ -133,11 +193,19 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Enemy.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AI/AIPath.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/Path.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryParentController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/potionlord.sublime-project",
 		"/Users/rgscherf/projects/unity/potion_test/Assets/Scripts/PotionColors.cs",
 		"/Users/rgscherf/projects/unity/potion_test/Assets/Scripts/MapObject.cs",
@@ -165,6 +233,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Vector3",
+			"isTweening",
+			"rigidbody",
+			"Debug.Log",
+			"Rigidbody",
+			"target = ",
+			"nextWaypointDistance",
+			"targetPosition",
+			"_blastIndicator",
+			"blastIndicator",
+			"_blastIndicator",
+			"BlastGuideCleanup",
+			"blastThrowSpeed",
+			"blastHoldingTimer",
+			"0",
 			"PotionSelection",
 			"potionSelection",
 			"PotionSelection",
@@ -215,11 +298,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -239,7 +329,7 @@
 	},
 	"output.variable_get":
 	{
-		"height": 124.0
+		"height": 234.0
 	},
 	"pinned_build_system": "",
 	"replace":
@@ -254,20 +344,84 @@
 		"selected_items":
 		[
 			[
-				"playermo",
-				"Assets/Scripts/PlayerMovement.cs"
+				"health",
+				"Assets/Scripts/HealthController.cs"
 			],
 			[
 				"mapo",
 				"Assets/Scripts/MapObject.cs"
 			],
 			[
-				"room",
-				"Assets/Scripts/Room.cs"
+				"blast",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"enemy",
+				"Assets/Scripts/Enemy.cs"
 			],
 			[
 				"entitie",
 				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"blastpotion",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"enem",
+				"Assets/Scripts/Enemy.cs"
+			],
+			[
+				"enemyco",
+				"Assets/Scripts/EnemyFollow.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"enemyfoll",
+				"Assets/Scripts/EnemyFollow.cs"
+			],
+			[
+				"ai",
+				"Assets/AstarPathfindingProject/Core/AI/AIPath.cs"
+			],
+			[
+				"aipa",
+				"Assets/AstarPathfindingProject/Core/AI/AIPath.cs"
+			],
+			[
+				"game",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"path",
+				"Assets/AstarPathfindingProject/Core/Path.cs"
+			],
+			[
+				"geome",
+				"Assets/Scripts/GeometryParentController.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"playermo",
+				"Assets/Scripts/PlayerMovement.cs"
 			],
 			[
 				"gamc",
@@ -286,20 +440,8 @@
 				"Assets/Scripts/PotionColors.cs"
 			],
 			[
-				"game",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
 				"imap",
 				"Assets/Scripts/IMapObject.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"geome",
-				"Assets/Scripts/GeometryParentController.cs"
 			],
 			[
 				"mist",
@@ -332,10 +474,10 @@
 	},
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "    ",
-		"_vintageous_last_buffer_search_command": "vi_octothorp",
-		"_vintageous_last_char_search_command": "vi_t",
-		"_vintageous_last_character_search": ")",
+		"_vintageous_last_buffer_search": "target",
+		"_vintageous_last_buffer_search_command": "vi_slash",
+		"_vintageous_last_char_search_command": "vi_big_f",
+		"_vintageous_last_character_search": "B",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

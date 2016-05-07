@@ -18,6 +18,10 @@ public class Entities : MonoBehaviour {
     public GameObject empty;
     public GameObject newline;
 
+    public GameObject ooze;
+
+    public GameObject thrownBlast;
+
     
     void Awake() {
         walls = new GameObject[] {wall01, wall02, wall03};

@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour {
     Color colorRollOnCooldown;
     GameController game;
 
+    bool firing;
+
     LineRenderer blastGuide;
     float blastHoldStrength;
     float blastWindupSpeed = 15f;
@@ -24,10 +26,14 @@ public class PlayerController : MonoBehaviour {
     GameObject blastOuterIndicator;
     GameObject blastInnerIndicator;
 
+    Entities entities;
+
     Potion currentPotion;
 
     void Awake() {
         game = GameObject.Find("GameManager").GetComponent<GameController>();
+        entities = GameObject.Find("GameManager").GetComponent<Entities>();
+        Debug.Log("entities status: " + entities);
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerSpriteRenderer.color = colorRollOffCooldown;
@@ -83,8 +89,22 @@ public class PlayerController : MonoBehaviour {
         InputFire();
     }
 
+    void ReleaseFire() {
+        switch (currentPotion) {
+            case Potion.Blast:
+                var newBlast = (GameObject) Instantiate(entities.thrownBlast, transform.position, Quaternion.identity);
+                newBlast.GetComponent<BlastPotionController>().Init(blastInnerIndicator.transform.position);
+                break;
+        }
+
+    }
+
     void InputFire() {
-        bool firing = 1 == Input.GetAxis("Fire");
+        if (Input.GetAxis("Fire") != 1 && firing) {
+            ReleaseFire();
+            firing = false;
+        }
+        firing = 1 == Input.GetAxis("Fire");
         BlastGuideCleanup(firing);
         if(firing) {
             switch(currentPotion) {

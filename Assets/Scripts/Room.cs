@@ -80,10 +80,12 @@ public class Room : MonoBehaviour {
                 return entities.empty;
             case 'X':
                 return entities.walls[Random.Range(0, entities.walls.Length)];
-            case 'P':
-                return roomPositionInLevel == 1 ? entities.player : entities.empty;
+            // case 'P':
+            //     return roomPositionInLevel == 1 ? entities.player : entities.empty;
             case 'M':
                 return entities.mist;
+            case 'o':
+                return entities.ooze;
             case 'D':
                 bool isDoor = false;
                 bool isLastRoomDoor = false;
@@ -130,14 +132,14 @@ X...XXXXXXXXX....X............X
 X......XXXXX.....X............X
 X.......XXXX....XX............X
 X.............................X
-X.............................X
+X.............o...............X
 D.............................D
 D.............................D
-D..P..............XXXXXXXXX...D
+D.............o...XXXXXXXXX...D
 D.................XMMMMMMMX...D
+X.................XMMMMMMMX.o.X
 X.................XMMMMMMMX...X
-X.................XMMMMMMMX...X
-X...............MMMMMXXXXXX...X
+X...............MMMMMXXXXXX.o.X
 X.............................X
 X.............................X
 XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
@@ -148,11 +150,11 @@ X.............................X
 X.............................X
 X...............MMMMMMMMM.....X
 D................MMMMMMMMMMM..D
-D.P...........................D
 D.............................D
 D.............................D
-X.............................X
-X.............................X
+D.............................D
+X.....XXXXXXXXXXXXXXXXXXX.....X
+X.................oooo........X
 X.............................X
 X.............................X
 X.............................X
@@ -175,7 +177,7 @@ X.............................X
 X.............................X
 X.............................X
 X.............................X
-D.P...........................D
+D.............................D
 D.............................D
 X.............................X
 X.............................X

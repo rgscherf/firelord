@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 308daecc1a2f64aa3b79bcbf05d881d8
-timeCreated: 1462227143
+guid: 02b6dc0083a6949efac3c97e354ad7f7
+timeCreated: 1462559196
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - wall01: {fileID: 179570, guid: c0fefe95818664e8abc44275c914300b, type: 2}
-  - wall02: {fileID: 133928, guid: 86439772801874f3e897034182c9e271, type: 2}
-  - wall03: {fileID: 114696, guid: b3ad3f8e88724411ca292115b2b98f14, type: 2}
-  - empty: {fileID: 129844, guid: 46f02c4e8cf754baea445e604c2b5304, type: 2}
-  - newline: {fileID: 129844, guid: 38e120f7bfd004f9d9f48e943d1bd2ef, type: 2}
-  - player: {fileID: 107398, guid: c712166d4e3f44b27a4660a84f825106, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
