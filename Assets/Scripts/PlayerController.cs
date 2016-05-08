@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour {
     ////////////////////////
     // vars for Spine potion
     ////////////////////////
+    const float spineSpinSpeed = 60f;
+    const float spineCooldown = 0.75f;
+    float spineCooldownCurrent;
+
     GameObject spineIndicator;
 
     ///////////////////
@@ -120,6 +124,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         // always tick these:
         quickCooldownCurrent += Time.deltaTime;
+        spineCooldownCurrent += Time.deltaTime;
         if(currentPotion == Potion.Spine) {
             PaintSpine();
         } else {
@@ -221,10 +226,12 @@ public class PlayerController : MonoBehaviour {
     void PaintSpine() {
         Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if(spineIndicator == null) {
-            spineIndicator = (GameObject) Instantiate(_blastInnerIndicator, target, Quaternion.identity);
+            spineIndicator = (GameObject) Instantiate(_blastOuterIndicator, target, Quaternion.identity);
+            spineIndicator.GetComponent<SpriteRenderer>().color = PotionColors.Spine;
         } else {
             spineIndicator.transform.position = target;
         }
+        spineIndicator.transform.Rotate(new Vector3(0f,0f,spineSpinSpeed));
     }
 
     void UnpaintSpine() {
@@ -235,7 +242,11 @@ public class PlayerController : MonoBehaviour {
 
 
     void FireSpine() {
-        throw new System.NotImplementedException();
+        if (spineCooldownCurrent < spineCooldown) { return; }
+        spineCooldownCurrent = 0f;
+
+        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Instantiate(entities.thrownSpine, target, Quaternion.identity);
     }
 
     void FireQuick() {

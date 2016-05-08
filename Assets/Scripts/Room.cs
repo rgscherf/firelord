@@ -127,38 +127,38 @@ public class Room : MonoBehaviour {
     }
 
     readonly string[] level1 = {
-@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
-X...XXXXXXXXX....X......oo....X
-X......XXXXX.....X............X
-X.......XXXX....XX............X
-X....XXXX.....................X
-X.............................X
-D.............................D
-D.......X.....................D
-D.......X.........XXXXXXXXX...D
-D.......X.........XMMMMMMMX...D
-X.o.....X.........XMMMMMMMX.o.X
-X.o.....X.........XMMMMMMMX...X
-X...XXXXX.......MMMMMXXXXXX.o.X
-X...ooooo.....................X
-X.............................X
-XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
 // @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+// X...XXXXXXXXX....X......oo....X
+// X......XXXXX.....X............X
+// X.......XXXX....XX............X
+// X....XXXX.....................X
 // X.............................X
-// X.............................X
-// X.............................X
-// X.............................X
-// X...............MMMMMMMMM.....X
-// D................MMMMMMMMMMM..D
 // D.............................D
-// D.............................D
-// D.............................D
-// X.....XXXXXXXXXXXXXXXXXXX.....X
-// X.................oooo........X
+// D.......X.....................D
+// D.......X.........XXXXXXXXX...D
+// D.......X.........XMMMMMMMX...D
+// X.o.....X.........XMMMMMMMX.o.X
+// X.o.....X.........XMMMMMMMX...X
+// X...XXXXX.......MMMMMXXXXXX.o.X
+// X...ooooo.....................X
 // X.............................X
-// X.............................X
-// X.............................X
-// XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX"
+// XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X...............MMMMMMMMM.....X
+D................MMMMMMMMMMM..D
+D.............................D
+D.............................D
+D.............................D
+X.....XXXXXXXXXXXXXXXXXXX.....X
+X.................oooo........X
+X.............................X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX"
     };
 
    

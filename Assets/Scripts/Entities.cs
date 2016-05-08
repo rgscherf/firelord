@@ -23,6 +23,7 @@ public class Entities : MonoBehaviour {
 
     public GameObject thrownBlast;
     public GameObject thrownQuick;
+    public GameObject thrownSpine;
 
     
     void Awake() {

@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"local",
+				"localScale	Vector3 { get; set; }"
+			],
+			[
+				"_bla",
+				"_blastInnerIndicator	GameObject"
+			],
+			[
+				"Random",
+				"RandomizeVector(Vector2 baseVec, float noise)	Vector2"
+			],
+			[
+				"el",
+				"electrifyChance"
+			],
+			[
+				"clost",
+				"closestObj"
+			],
+			[
+				"fi",
+				"FindGameObjectsWithTag(string tag)	GameObject[]"
+			],
+			[
+				"order",
+				"OrderByDescending(Func<TSource, TKey> keySelector)	IOrderedEnumerable<TSource>"
+			],
+			[
 				"stati",
 				"staticKillTimer"
 			],
@@ -389,22 +417,24 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/QuickPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/QuickPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
+		"/Users/rgscherf/Library/Application Support/Sublime Text 3/Packages/OmniSharp/OmniSharpSublime.sublime-settings",
+		"/Users/rgscherf/Library/Application Support/Sublime Text 3/Packages/User/OmniSharpSublime.sublime-settings",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/RollOverlayController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AstarPath.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Enemy.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/AI/AIPath.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/AstarPathfindingProject/Core/Path.cs",
@@ -436,6 +466,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"basevec",
+			"base",
+			"25",
+			"5f",
+			"75f",
 			"entities.g",
 			"entities",
 			"game.",
@@ -553,7 +588,7 @@
 	},
 	"output.variable_get":
 	{
-		"height": 234.0
+		"height": 165.0
 	},
 	"pinned_build_system": "",
 	"replace":
@@ -568,7 +603,47 @@
 		"selected_items":
 		[
 			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"ooze",
+				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"blast",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"geome",
+				"Assets/Scripts/GeometryController.cs"
+			],
+			[
 				"quick",
+				"Assets/Scripts/QuickPotionController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"geomet",
+				"Assets/Scripts/GeometryController.cs"
+			],
+			[
+				"partic",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"quic",
 				"Assets/Scripts/QuickPotionController.cs"
 			],
 			[
@@ -578,10 +653,6 @@
 			[
 				"gamecon",
 				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"blast",
-				"Assets/Scripts/BlastPotionController.cs"
 			],
 			[
 				"particl",
@@ -598,14 +669,6 @@
 			[
 				"quickp",
 				"Assets/Scripts/QuickPotionController.cs"
-			],
-			[
-				"health",
-				"Assets/Scripts/HealthController.cs"
-			],
-			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"roll",
@@ -634,14 +697,6 @@
 			[
 				"part",
 				"Assets/Scripts/ParticleController.cs"
-			],
-			[
-				"ooze",
-				"Assets/Scripts/EnemyOoze.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"particle",
@@ -700,10 +755,6 @@
 				"Assets/Scripts/Enemy.cs"
 			],
 			[
-				"room",
-				"Assets/Scripts/Room.cs"
-			],
-			[
 				"mapo",
 				"Assets/Scripts/MapObject.cs"
 			],
@@ -738,10 +789,6 @@
 			[
 				"path",
 				"Assets/AstarPathfindingProject/Core/Path.cs"
-			],
-			[
-				"geome",
-				"Assets/Scripts/GeometryParentController.cs"
 			],
 			[
 				"playermo",
@@ -790,14 +837,14 @@
 	},
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "sprcol",
+		"_vintageous_last_buffer_search": "gameob",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": "B",
+		"_vintageous_last_character_search": "5",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
-			"_cmdline_cd": "/Users/rgscherf/projects/unity/potionlord/Assets/Scripts"
+			"_cmdline_cd": "/Applications/Sublime Text.app/Contents/MacOS"
 		}
 	},
 	"show_minimap": true,
