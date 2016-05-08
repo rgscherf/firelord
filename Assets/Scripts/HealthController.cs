@@ -10,31 +10,25 @@ public class HealthController : MonoBehaviour {
     float invulntimerCurrent;
     bool invulnState = false;
 
-    SpriteRenderer spr;
-    Color spriteBaseColor;
 
     Entities entities;
+    MapObject myObject;
 
     void Start() {
-        SetSprite();
+        myObject = gameObject.GetComponent<MapObject>();
     }
 
-    void SetSprite() {
-        spr = gameObject.GetComponent<SpriteRenderer>();
-        spriteBaseColor = spr.color;
-    }
     void Update() {
         if (entities == null) {
             entities = GameObject.Find("GameManager").GetComponent<Entities>();
         }
 
-        if(spr == null) {
-            SetSprite();
-        }
 
         if (invulnState) {
             invulntimerCurrent += Time.deltaTime;
-            Flicker();
+            if (!myObject.isFlickering) {
+                myObject.isFlickering = true;
+            }
         }
         if (invulntimerCurrent > invulntimer) {
             ResetInvuln();
@@ -42,14 +36,9 @@ public class HealthController : MonoBehaviour {
     }
 
     void ResetInvuln() {
-        spr.color = spriteBaseColor;
         invulnState = false;
         invulntimerCurrent = 0;
-    }
-
-    void Flicker () {
-        var colors = new Color[] { spriteBaseColor * new Color (1,1,1,0.75f), spriteBaseColor * new Color (1,1,1,0.5f) };
-        spr.color = colors[Random.Range(0,colors.Length)];
+        myObject.isFlickering = false;
     }
 
     public bool ReceiveDamage(int debitamt) {
@@ -61,11 +50,15 @@ public class HealthController : MonoBehaviour {
                 }
             }
             health -= debitamt;
+            DamagePhantom(debitamt);
         }
 
         if (health <= 0) {
             Object.Destroy(gameObject);
             entities.Kill(gameObject.transform.position);
+
+            RollForPotion();
+
             return true;
         }
 
@@ -79,6 +72,29 @@ public class HealthController : MonoBehaviour {
         }
 
         return false;
+    }
+
+    void RollForPotion() {
+        if (Random.value < 0.6f) {
+            Vector2 pos = (Vector2) gameObject.transform.position + new Vector2(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f));
+            var newPot = (GameObject) Instantiate(entities.ammoPickup, pos, Quaternion.identity );
+            newPot.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 10f);
+
+        }
+    }
+
+    void DamagePhantom(int amt) {
+        var dp = (GameObject) Instantiate(entities.damagePhantom, gameObject.transform.position, Quaternion.identity);
+        var spr = dp.GetComponent<SpriteRenderer>();
+        var sourceSpr = gameObject.GetComponent<SpriteRenderer>();
+        Sprite sourceSprite = sourceSpr.sprite;
+        spr.sprite = sourceSprite;
+        spr.color = sourceSpr.color * new Color(1f,1f,1f,0.4f);
+        var tex = dp.transform.GetChild(0).gameObject.GetComponent<TextMesh>();
+        tex.color = PotionColors.Danger * new Color(1f,1f,1f,0.6f);
+        tex.text = amt.ToString();
+        dp.GetComponent<Rigidbody2D>().AddForce(((Vector2)gameObject.transform.position + new Vector2(10f,20f)) * 5f);
+        Object.Destroy(dp, 0.6f);
     }
 
 

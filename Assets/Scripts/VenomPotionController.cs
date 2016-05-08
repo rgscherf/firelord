@@ -5,14 +5,17 @@ public class VenomPotionController : MonoBehaviour {
     Entities entities;
 
     const float lifetime = 1.75f;
-    const float cloudLifetime = 5f;
+    public float cloudLifetime = 5f;
+    public int cloudSize = 8;
+
+    float spawningTimer;
 
     const float spawnCooldown = 0.25f;
     float spawnCooldownCurrent;
 
 	// Use this for initialization
 	void Start () {
-        Object.Destroy(gameObject, lifetime);
+        Object.Destroy(gameObject, lifetime + cloudLifetime * 2);
         entities = GameObject.Find("GameManager").GetComponent<Entities>();
 	}
 	
@@ -20,7 +23,20 @@ public class VenomPotionController : MonoBehaviour {
 	void Update () {
         gameObject.transform.localScale += new Vector3(0.06f, 0.06f, 0f);
 
-        SpawnChild();
+        spawningTimer += Time.deltaTime;
+
+        // wallchecking. 
+        var coll = Physics2D.OverlapPointAll(gameObject.transform.position);
+        foreach (var c in coll) {
+            if (c.gameObject.tag == "Geometry") {
+                spawningTimer = 99;
+                // Object.Destroy(gameObject);
+            }
+        }
+
+        if (spawningTimer < lifetime) {
+            SpawnChild();
+        }
 	}
 
     void SpawnChild() {
@@ -30,7 +46,7 @@ public class VenomPotionController : MonoBehaviour {
         var ch = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
         ParticleController pc = ch.gameObject.GetComponent<ParticleController>();
         if (pc != null) {
-            pc.Init(gameObject, true, PotionColors.Venom, cloudLifetime, 8);
+            pc.Init(ParticleType.venom, true, PotionColors.Venom, cloudLifetime, cloudSize);
         }
     }
 }

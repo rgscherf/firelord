@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
 
     List<Room> rooms;
-    UIController ui;
     CameraController gameCamera;
     public GeometryParentController geometryParentController;
     public Entities entities;
@@ -15,7 +14,11 @@ public class GameController : MonoBehaviour {
     GameObject[] allMovingEntities;
 
     public int currentRoom;
-    int level;
+    int highestRoomCompleted;
+    int level = 0;
+    int mobsInRoom;
+    List<GameObject> doorsInRoom;
+    List<GameObject> finalDoorsInRoom;
 
     void Awake() {
         entities = GetComponent<Entities>();
@@ -23,32 +26,85 @@ public class GameController : MonoBehaviour {
     }
 
 	void Start () {
-        // this is the level of the game.
-        // 4 rooms per level.
-        // level 0 is the start screen/tutorial.
-        level = 1;
-        currentRoom = 1;
-
-        allGeometry = null;
-        ui = GameObject.Find("UI Manager").GetComponent<UIController>();
-        gameCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         geometryParentController = GameObject.Find("GeometryParent").GetComponent<GeometryParentController>();
 
+        GenerateLevel();
+
+        ButtonDispatch(Potion.Blast);
+	}
+
+    void GenerateLevel () {
+        level += 1;
+        currentRoom = 1;
+        allGeometry = null;
+
+        doorsInRoom = new List<GameObject>();
+        finalDoorsInRoom = new List<GameObject>();
 
         rooms = new List<Room>();
         rooms = MakeRooms();
         GetGlobalReferences();
         AstarPath.active.Scan();
-        geometryParentController.SwitchRooms(1, player);
-        ButtonDispatch(Potion.Blast);
-	}
-	
+        SetupRoom(1, player);
+    }
+
+    void SetupRoom(int room, GameObject player) {
+        mobsInRoom = 0;
+        doorsInRoom.Clear();
+        finalDoorsInRoom.Clear();
+        geometryParentController.SwitchRooms(room, player);
+        foreach( Transform t in geometryParentController.transform ) {
+            GameObject go = t.gameObject;
+            if(go.GetComponent<MapObject>().room == room) {
+                if (go.GetComponent<IsDoor>() != null) {
+                    doorsInRoom.Add(go);
+                } else if (go.GetComponent<IsFinalDoor>() != null) {
+                    finalDoorsInRoom.Add(go);
+                } else if (go.tag == "MovingEntity") {
+                    mobsInRoom++;
+                }
+            }
+        }
+        foreach(var d in doorsInRoom) {
+            d.GetComponent<Collider2D>().isTrigger = false;
+            d.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        foreach(var f in finalDoorsInRoom) {
+            f.GetComponent<Collider2D>().isTrigger = false;
+            f.GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
+
+
+    void Update() {
+        bool complete = CheckRoomCompletion();
+        if (complete) {
+            highestRoomCompleted = highestRoomCompleted > currentRoom ? highestRoomCompleted : currentRoom;
+            foreach (var d in doorsInRoom) {
+                d.GetComponent<Collider2D>().isTrigger = true;
+                d.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            if (highestRoomCompleted == 4) {
+                foreach (var f in finalDoorsInRoom) {
+                    f.GetComponent<Collider2D>().isTrigger = true;
+                    f.GetComponent<SpriteRenderer>().enabled = false;
+                }
+            }
+        }
+    }
+
+    bool CheckRoomCompletion() {
+        int allActiveEntities = GameObject.FindGameObjectsWithTag("MovingEntity").Where(e => e.active).Count();
+        return allActiveEntities == 0;
+    }
+
+
     List<Room> MakeRooms() {
         // eventually this will have to be moved into a Level class.
-        var room1 = gameObject.AddComponent<Room>().Init(1,1);
-        var room2 = gameObject.AddComponent<Room>().Init(1,2);
-        var room3 = gameObject.AddComponent<Room>().Init(1,3);
-        var room4 = gameObject.AddComponent<Room>().Init(1,4);
+        var room1 = gameObject.AddComponent<Room>().Init(level, 1);
+        var room2 = gameObject.AddComponent<Room>().Init(level, 2);
+        var room3 = gameObject.AddComponent<Room>().Init(level, 3);
+        var room4 = gameObject.AddComponent<Room>().Init(level, 4);
 
         rooms.Add(room1);
         rooms.Add(room2);
@@ -62,6 +118,7 @@ public class GameController : MonoBehaviour {
         allGeometry = GameObject.FindGameObjectsWithTag("Geometry");
         allDoors = allGeometry.Where(c => c.name.Contains("Door")).ToArray();
         allMovingEntities = GameObject.FindGameObjectsWithTag("MovingEntity");
+        gameCamera = Camera.main.GetComponent<CameraController>();
     }
 
     public void ButtonDispatch(Potion dispatch) {
@@ -74,11 +131,14 @@ public class GameController : MonoBehaviour {
     }
 
     public void RoomChangeSignal(int signal) {
+        if (signal == 5 ) {
+            GenerateLevel();
+        }
         if (signal != currentRoom) {
             currentRoom = signal;
             gameCamera.ChangeRoom(currentRoom);
         }
-        geometryParentController.SwitchRooms(currentRoom, player);
+        SetupRoom(currentRoom, player);
     }
 
 

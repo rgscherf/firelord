@@ -14,12 +14,22 @@ public class UIController : MonoBehaviour {
     Image SpineImage;
     Image VenomImage;
 
+    Text Blastammo;
+    Text Quickammo;
+    Text Spineammo;
+    Text Venomammo;
+
 	// Use this for initialization
 	void Start () {
         BlastImage = GameObject.Find("blast-image").GetComponent<Image>();
         QuickImage = GameObject.Find("quick-image").GetComponent<Image>();
         SpineImage = GameObject.Find("spine-image").GetComponent<Image>();
         VenomImage = GameObject.Find("venom-image").GetComponent<Image>();
+
+        Blastammo = GameObject.Find("blast-num").GetComponent<Text>();
+        Quickammo = GameObject.Find("quick-num").GetComponent<Text>();
+        Spineammo = GameObject.Find("spine-num").GetComponent<Text>();
+        Venomammo = GameObject.Find("venom-num").GetComponent<Text>();
 
         BlastImage.color = PotionColors.Blast;
         QuickImage.color = PotionColors.Quick;
@@ -38,7 +48,15 @@ public class UIController : MonoBehaviour {
 	void Update () {
         RenderPlayerHealth(); 
         RenderPotionCooldown();
+        RenderPotionAmmo();
 	}
+
+    void RenderPotionAmmo() {
+        Blastammo.text = playerController.blastammo.ToString();
+        Quickammo.text = playerController.quickammo.ToString();
+        Spineammo.text = playerController.spineammo.ToString();
+        Venomammo.text = playerController.venomammo.ToString();
+    }
 
     void RenderPotionCooldown() {
         BlastImage.color = playerController.blastCooldownCurrent > playerController.blastCooldown ? PotionColors.Blast : PotionColors.Blast * new Color(1f,1f,1f,0.25f);

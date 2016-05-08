@@ -17,10 +17,13 @@ public class Entities : MonoBehaviour {
 
     public GameObject empty;
     public GameObject newline;
+    public GameObject damagePhantom;
     public GameObject particle;
 
     public GameObject ooze;
 
+    public GameObject ammoPickup;
+    
     public GameObject thrownBlast;
     public GameObject thrownQuick;
     public GameObject thrownSpine;
@@ -40,7 +43,7 @@ public class Entities : MonoBehaviour {
         }
         foreach (var p in particles) {
             p.GetComponent<Rigidbody2D>().AddForce(getOutwardExplosionVector(killed, p.transform.position, 600));
-            p.GetComponent<ParticleController>().Init(gameObject, true, PotionColors.White * new Color (0.5f,0.5f,0.5f,1f), 1.5f, 4);
+            p.GetComponent<ParticleController>().Init(ParticleType.effects, true, PotionColors.White * new Color (0.5f,0.5f,0.5f,1f), 1.5f, 4);
         }
     }
 

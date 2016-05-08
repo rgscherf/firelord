@@ -17,7 +17,7 @@ public class SpinePotionController : MonoBehaviour {
 
     Entities entities;
 
-    List<ParticleController> thorns;
+    // List<ParticleController> thorns;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +27,7 @@ public class SpinePotionController : MonoBehaviour {
 
     void Init() {
         Object.Destroy(gameObject, lifetime);
-        thorns = new List<ParticleController>();
+        // thorns = new List<ParticleController>();
         MakeThorns();
     }
 	
@@ -38,8 +38,8 @@ public class SpinePotionController : MonoBehaviour {
             var t = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
             ParticleController pc = t.GetComponent<ParticleController>();
             if (pc != null) {
-                pc.Init(gameObject, true, PotionColors.Spine, lifetime, spineSizes[Random.Range(0,spineSizes.Length)]);
-                thorns.Add(pc);
+                pc.Init(ParticleType.spine, true, PotionColors.Spine, lifetime, spineSizes[Random.Range(0,spineSizes.Length)]);
+                // thorns.Add(pc);
             }
         }
     }

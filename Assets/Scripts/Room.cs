@@ -20,7 +20,7 @@ public class Room : MonoBehaviour {
 	}
 
 	public Room Init(int level, int roomPositionInLevel) {
-        mapDefinition = def(level);
+        mapDefinition = def(level, roomPositionInLevel);
         instantiateRoom(roomPositionInLevel, mapDefinition);
         return this;
     }
@@ -117,32 +117,42 @@ public class Room : MonoBehaviour {
         }
     }
 
-    string def(int level) {
+    string def(int level, int roomPositionInLevel) {
+        if (level == 0) {
+            // special rooms for tutorial / intro will go here.
+            return baseRoom;
+        }
+        if (roomPositionInLevel == 1) {
+            // special encounter rooms
+            return special[Random.Range(0, special.Length)];
+
+        }
         switch (level) {
             case 1:
                 return level1[Random.Range(0, level1.Length)];
-            default:
-                return "";
+            case 2:
+                return level1[Random.Range(0, level1.Length)];
         }
+        return "";
     }
 
     readonly string[] level1 = {
-// @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
-// X...XXXXXXXXX....X......oo....X
-// X......XXXXX.....X............X
-// X.......XXXX....XX............X
-// X....XXXX.....................X
-// X.............................X
-// D.............................D
-// D.......X.....................D
-// D.......X.........XXXXXXXXX...D
-// D.......X.........XMMMMMMMX...D
-// X.o.....X.........XMMMMMMMX.o.X
-// X.o.....X.........XMMMMMMMX...X
-// X...XXXXX.......MMMMMXXXXXX.o.X
-// X...ooooo.....................X
-// X.............................X
-// XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X...XXXXXXXXX....X......oo....X
+X......XXXXX.....X............X
+X.......XXXX....XX............X
+X....XXXX.....................X
+X.............................X
+D.............................D
+D.......X.....................D
+D.......X.........XXXXXXXXX...D
+D.......X.........XMMMMMMMX...D
+X.o.....X.........XMMMMMMMX.o.X
+X.o.....X.........XMMMMMMMX...X
+X...XXXXX.......MMMMMXXXXXX.o.X
+X...ooooo.....................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
 X.............................X
 X.............................X
@@ -159,19 +169,49 @@ X.............................X
 X.............................X
 X.............................X
 XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX"
-    };
+};
 
    
 
-
-
-
+    readonly string[] special = {
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+D.............XXX.............D
+D.............X.X.............D
+D.............XXX.............D
+D.............................D
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X........X..........X.........X
+X........X..........X.........X
+X........X..........X.........X
+X........X..........X.........X
+D........X..........X.........D
+D.............................D
+D.............................D
+D........XXXXXXXXXXXX.........D
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX"
+};
 
 
 
     const string baseRoom =
-@"XXXXXXXXXXXXXXDDXXXXXXXXXXXXXXX
-X.............................X
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
 X.............................X
 X.............................X
 X.............................X
@@ -179,14 +219,14 @@ X.............................X
 X.............................X
 D.............................D
 D.............................D
+D.............................D
+D.............................D
 X.............................X
 X.............................X
 X.............................X
 X.............................X
 X.............................X
-X.............................X
-XXXXXXXXXXXXXXDDXXXXXXXXXXXXXXX";
-
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX";
 }
 
 

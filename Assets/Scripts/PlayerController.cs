@@ -15,10 +15,19 @@ public class PlayerController : MonoBehaviour {
 
     bool firing;
 
+    ////////
+    // ammo
+    ///////
+
+    public int blastammo = 3;
+    public int quickammo = 3;
+    public int spineammo = 3;
+    public int venomammo = 3;
+
     ////////////////////
     // vars for movement
     ////////////////////
-    const float speed = 8000;
+    const float speed = 9000;
     const float camRayLength = 100f;
 
     const float rollSpeedBoost = 2.5f;
@@ -61,7 +70,7 @@ public class PlayerController : MonoBehaviour {
     ////////////////////////
     // vars for venom potion
     ////////////////////////
-    public float venomCooldown = 1f;
+    public float venomCooldown = 2f;
     public float venomCooldownCurrent = 99f;
 
     const float venomRollSpeed = 250f;
@@ -206,6 +215,7 @@ public class PlayerController : MonoBehaviour {
                 var newBlast = (GameObject) Instantiate(entities.thrownBlast, transform.position, Quaternion.identity);
                 newBlast.GetComponent<BlastPotionController>().Init(blastInnerIndicator.transform.position);
                 blastCooldownCurrent = 0;
+                blastammo -= 1;
                 break;
         }
 
@@ -213,7 +223,7 @@ public class PlayerController : MonoBehaviour {
 
     void InputFire() {
         if (Input.GetAxis("Fire") != 1 && firing) {
-            if (blastCooldownCurrent > blastCooldown) {
+            if (blastCooldownCurrent > blastCooldown && blastammo > 0) {
                 ReleaseFire();
             }
 
@@ -247,7 +257,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FireVenom() {
-        if (venomCooldownCurrent < venomCooldown) { return; }
+        if (venomCooldownCurrent < venomCooldown || venomammo <= 0) { return; }
+        venomammo -= 1;
         venomCooldownCurrent = 0;
 
         Vector2 targetDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -275,7 +286,8 @@ public class PlayerController : MonoBehaviour {
 
 
     void FireSpine() {
-        if (spineCooldownCurrent < spineCooldown) { return; }
+        if (spineCooldownCurrent < spineCooldown || spineammo <= 0) { return; }
+        spineammo -= 1;
         spineCooldownCurrent = 0f;
 
         Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -283,7 +295,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     void FireQuick() {
-        if (quickCooldownCurrent < quickCooldown) { return; }
+        if (quickCooldownCurrent < quickCooldown || quickammo <= 0) { return; }
+        quickammo -= 1;
         quickCooldownCurrent = 0f;
 
         Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -327,6 +340,23 @@ public class PlayerController : MonoBehaviour {
             Vector2 indicatorPos = ((Vector2)localtarget.normalized) * blastHoldStrength;
             blastOuterIndicator.transform.localPosition = indicatorPos;
             blastInnerIndicator.transform.localPosition = indicatorPos;
+        }
+    }
+
+    public void ReceivePotion(Potion newPotion) {
+        switch (newPotion) {
+            case Potion.Blast:
+                blastammo++;
+                break;
+            case Potion.Quick:
+                quickammo++;
+                break;
+            case Potion.Spine:
+                spineammo++;
+                break;
+            case Potion.Venom:
+                venomammo++;
+                break;
         }
     }
 

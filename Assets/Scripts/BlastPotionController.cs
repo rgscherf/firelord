@@ -2,7 +2,7 @@
 
 public class BlastPotionController : MonoBehaviour {
 
-    const int damage = 3;
+    const int damage = 2;
     const int blastForce = 600;
     const float damageradius = 1f;
     const float pushradius = 2f;
@@ -53,6 +53,12 @@ public class BlastPotionController : MonoBehaviour {
                     hc.ReceiveDamage(damage);
                 }
             }
+            if (go.tag == "Particle") {
+                ParticleController pc = go.GetComponent<ParticleController>();
+                if (pc != null && pc.instantiator == ParticleType.venom) {
+                    pc.ExplodeVenom();
+                }
+            }
         }
 
         // PUSH UNITS
@@ -64,7 +70,7 @@ public class BlastPotionController : MonoBehaviour {
             }
             if (go.tag == "Particle") {
                 ParticleController pc = go.gameObject.GetComponent<ParticleController>();
-                if (pc != null) {
+                if (pc != null && pc.instantiator == ParticleType.spine) {
                     pc.ApplyForce(entities.getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce));
                 }
             }
@@ -83,7 +89,7 @@ public class BlastPotionController : MonoBehaviour {
             Vector2 pos = (Vector2) gameObject.transform.position + (Random.insideUnitCircle * pushradius);
             var exp = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
             Color c = Vector2.Distance(pos, gameObject.transform.position) < damageradius ? PotionColors.Blast : PotionColors.White;
-            exp.GetComponent<ParticleController>().Init(gameObject, false, c, 0.5f, expsize[Random.Range(0, expsize.Length)]);
+            exp.GetComponent<ParticleController>().Init(ParticleType.effects, false, c, 0.5f, expsize[Random.Range(0, expsize.Length)]);
             exp.GetComponent<Rigidbody2D>().AddForce(entities.getOutwardExplosionVector(exp.transform.position, gameObject.transform.position, blastForce / 60));
         }
 

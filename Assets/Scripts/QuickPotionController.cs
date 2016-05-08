@@ -5,7 +5,8 @@ public class QuickPotionController : MonoBehaviour {
 
     const float rotationSpeed = -600f;
     const float collideRadius = 1f;
-    const int damage = 1;
+    const int damage = 2;
+    const int chaindamage = 1;
     const float killTimer = 4f;
 
     const float staticRadius = 0.5f;
@@ -61,7 +62,8 @@ public class QuickPotionController : MonoBehaviour {
             var p = (GameObject) Instantiate(entities.particle, gameObject.transform.position, Quaternion.identity);
             var pc = p.gameObject.GetComponent<ParticleController>();
             if (pc != null) {
-                pc.Init(gameObject, true, PotionColors.Quick, staticKillTimer, 4);
+                pc.Init(ParticleType.quick, true, PotionColors.Quick, staticKillTimer, 4);
+                pc.quickController = this;
             }
 
             // Vector2 dir = (target.transform.position - gameObject.transform.position).normalized;
@@ -105,7 +107,7 @@ public class QuickPotionController : MonoBehaviour {
     public void ChainFrom(GameObject other, Vector2 rechainvector) {
         HealthController hc = other.GetComponent<HealthController>();
         if (hc != null) {
-            hc.ReceiveDamage(damage);
+            hc.ReceiveDamage(chaindamage);
         }
 
         foreach (var c in chainRecord) {
@@ -119,7 +121,8 @@ public class QuickPotionController : MonoBehaviour {
             var newpar = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
             var pc = newpar.GetComponent<ParticleController>();
             if (pc != null) {
-                pc.Init(gameObject, true, PotionColors.Quick, staticKillTimer, 4);
+                pc.Init(ParticleType.quick, true, PotionColors.Quick, staticKillTimer, 4);
+                pc.quickController = this;
             }
             rechainvector = RandomizeVector(rechainvector, 0.25f);
             newpar.GetComponent<Rigidbody2D>().AddForce(rechainvector * 30f);
