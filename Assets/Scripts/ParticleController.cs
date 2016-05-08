@@ -92,12 +92,14 @@ public class ParticleController : MonoBehaviour {
     }
 
     public void ApplyForce(Vector2 forceDirection) {
-        SpinePotionController sc = instantiator.GetComponent<SpinePotionController>();
-        if (sc != null) {
-            gameObject.GetComponent<Collider2D>().isTrigger = false;
-            gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection / 2);
-            Object.Destroy(gameObject, 1f);
-            spineShrapnel = true;
+        if (instantiator != null) {
+            SpinePotionController sc = instantiator.GetComponent<SpinePotionController>();
+            if (sc != null) {
+                gameObject.GetComponent<Collider2D>().isTrigger = false;
+                gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection / 2);
+                Object.Destroy(gameObject, 1f);
+                spineShrapnel = true;
+            }
         }
 
     }
