@@ -7,4 +7,5 @@ public class MapObject : MonoBehaviour {
     public int GetRoom() {
         return room;
     }
+
 }

@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour {
     ////////////////////////
     // vars for Blast potion
     ////////////////////////
+    public float blastCooldown = 1f;
+    public float blastCooldownCurrent = 99f;
+
     public GameObject _blastOuterIndicator;
     public GameObject _blastInnerIndicator;
     GameObject blastOuterIndicator;
@@ -37,32 +40,31 @@ public class PlayerController : MonoBehaviour {
     float blastHoldStrength;
     const float blastWindupSpeed = 12f;
 
-    public float blastCooldown = 1f;
-    public float blastCooldownCurrent = 0f;
-
     ////////////////////////
     // vars for Quick potion
     ////////////////////////
     public float quickCooldown = 0.75f;
-    public float quickCooldownCurrent;
+    public float quickCooldownCurrent = 99f;
 
     const float quickspeed = 1700f;
 
     ////////////////////////
     // vars for Spine potion
     ////////////////////////
-    const float spineSpinSpeed = 60f;
     public float spineCooldown = 2f;
-    public float spineCooldownCurrent;
+    public float spineCooldownCurrent = 99f;
+
+    const float spineSpinSpeed = 60f;
 
     GameObject spineIndicator;
 
     ////////////////////////
     // vars for venom potion
     ////////////////////////
-    public float venomCooldown = 0.25f;
-    public float venomCooldownCurrent;
+    public float venomCooldown = 1f;
+    public float venomCooldownCurrent = 99f;
 
+    const float venomRollSpeed = 250f;
 
     ///////////////////
     // vars for rolling
@@ -132,10 +134,11 @@ public class PlayerController : MonoBehaviour {
 
 #region update
     void Update() {
-        // always tick these:
         blastCooldownCurrent += Time.deltaTime;
         quickCooldownCurrent += Time.deltaTime;
         spineCooldownCurrent += Time.deltaTime;
+        venomCooldownCurrent += Time.deltaTime;
+
         if(currentPotion == Potion.Spine) {
             PaintSpine();
         } else {
@@ -234,10 +237,23 @@ public class PlayerController : MonoBehaviour {
                 case Potion.Spine:
                     FireSpine();
                     break;
+                case Potion.Venom:
+                    FireVenom();
+                    break;
                 default:
                     break;
             }
         }
+    }
+
+    void FireVenom() {
+        if (venomCooldownCurrent < venomCooldown) { return; }
+        venomCooldownCurrent = 0;
+
+        Vector2 targetDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetDir = targetDir - (Vector2) gameObject.transform.position;
+        var vgo = (GameObject) Instantiate(entities.thrownVenom, gameObject.transform.position, Quaternion.identity);
+        vgo.GetComponent<Rigidbody2D>().AddForce(targetDir.normalized * venomRollSpeed);
     }
 
     void PaintSpine() {

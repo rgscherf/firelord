@@ -24,6 +24,7 @@ public class Entities : MonoBehaviour {
     public GameObject thrownBlast;
     public GameObject thrownQuick;
     public GameObject thrownSpine;
+    public GameObject thrownVenom;
 
     
     void Awake() {

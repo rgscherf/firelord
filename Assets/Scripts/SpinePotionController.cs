@@ -5,8 +5,8 @@ public class SpinePotionController : MonoBehaviour {
 
     const float lifetime = 5f;
     const float spinSpeed = 60f;
-    const int numThorns = 150;
-    const float radius = 2f;
+    const int numThorns = 130;
+    const float radius = 1.75f;
 
     public float slowFactor = 0.75f;
     public int shrapnelDamage = 1; 
@@ -34,7 +34,7 @@ public class SpinePotionController : MonoBehaviour {
     void MakeThorns() {
         var spineSizes = new int[] {1,1,2};
         for (int i = 0; i < numThorns; i++) {
-            Vector2 pos = (Random.insideUnitCircle * 2 ) + (Vector2) gameObject.transform.position;
+            Vector2 pos = (Random.insideUnitCircle * radius ) + (Vector2) gameObject.transform.position;
             var t = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
             ParticleController pc = t.GetComponent<ParticleController>();
             if (pc != null) {

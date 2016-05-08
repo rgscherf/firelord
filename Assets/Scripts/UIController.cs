@@ -44,6 +44,7 @@ public class UIController : MonoBehaviour {
         BlastImage.color = playerController.blastCooldownCurrent > playerController.blastCooldown ? PotionColors.Blast : PotionColors.Blast * new Color(1f,1f,1f,0.25f);
         QuickImage.color = playerController.quickCooldownCurrent > playerController.quickCooldown ? PotionColors.Quick : PotionColors.Quick * new Color(1f,1f,1f,0.25f);
         SpineImage.color = playerController.spineCooldownCurrent > playerController.spineCooldown ? PotionColors.Spine : PotionColors.Spine * new Color(1f,1f,1f,0.25f);
+        VenomImage.color = playerController.venomCooldownCurrent > playerController.venomCooldown ? PotionColors.Venom : PotionColors.Venom * new Color(1f,1f,1f,0.25f);
     }
 
     void RenderPlayerHealth() {
