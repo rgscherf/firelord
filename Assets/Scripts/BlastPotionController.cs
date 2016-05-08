@@ -62,6 +62,12 @@ public class BlastPotionController : MonoBehaviour {
             if (go.tag == "MovingEntity") {
                 go.GetComponent<Rigidbody2D>().AddForce(entities.getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce));
             }
+            if (go.tag == "Particle") {
+                ParticleController pc = go.gameObject.GetComponent<ParticleController>();
+                if (pc != null) {
+                    pc.ApplyForce(entities.getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce));
+                }
+            }
 
             // clear mist
             MistController mi = go.GetComponent<MistController>();

@@ -5,7 +5,6 @@ public class ParticleController : MonoBehaviour {
     GameObject instantiator;
 
     SpriteRenderer spr;
-
     public Sprite sprite1;
     public Sprite sprite2;
     public Sprite sprite4;
@@ -13,9 +12,14 @@ public class ParticleController : MonoBehaviour {
     public Sprite sprite16;
     public Sprite sprite32;
 
+
+    bool spineShrapnel;
     bool flicker;
+
     Color color;
     Color[] flickerColorPalette;
+
+    SpinePotionController spineController;
 
     Color constantColor;
 
@@ -25,6 +29,18 @@ public class ParticleController : MonoBehaviour {
 	
 	void Update () {
         spr.color = flicker ? flickerColorPalette[Random.Range(0, flickerColorPalette.Length)] : color;
+
+        if (spineShrapnel) {
+            if (spineController == null ) {
+                spineController = instantiator.GetComponent<SpinePotionController>();
+            }
+            var coll = Physics2D.OverlapPointAll(gameObject.transform.position);
+            foreach (var c in coll) {
+                if (c.gameObject.tag == "MovingEntity") {
+                    c.GetComponent<HealthController>().ReceiveDamage(spineController.shrapnelDamage);
+                }
+            }
+        }
 	}
 
     void CallDeathTimer(float t) {
@@ -75,6 +91,17 @@ public class ParticleController : MonoBehaviour {
         CallDeathTimer(timer);
     }
 
+    public void ApplyForce(Vector2 forceDirection) {
+        SpinePotionController sc = instantiator.GetComponent<SpinePotionController>();
+        if (sc != null) {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(forceDirection / 2);
+            Object.Destroy(gameObject, 1f);
+            spineShrapnel = true;
+        }
+
+    }
+
     void OnTriggerEnter2D(Collider2D other) {
         if (instantiator != null) {
             if (instantiator.GetComponent<EnemyOoze>() != null) {
@@ -90,6 +117,27 @@ public class ParticleController : MonoBehaviour {
                 if (go.tag == "MovingEntity") {
                     qp.ChainFrom(other.gameObject, gameObject.GetComponent<Rigidbody2D>().velocity);
                 }
+            }
+
+            if (instantiator.GetComponent<SpinePotionController>() != null) {
+                GameObject go = other.gameObject;
+                SpinePotionController sp = instantiator.GetComponent<SpinePotionController>();
+                if(go.tag == "Mist") {
+                    MistController mi = go.GetComponent<MistController>();
+                    if (mi != null) {
+                        mi.ClearMist(new Vector2(0f,0f));
+                    }
+                }
+
+                if(go.tag == "MovingEntity") {
+                    var entrigid = go.GetComponent<Rigidbody2D>();
+                    if (entrigid != null) {
+                        entrigid.velocity *= sp.slowFactor;
+                    }
+                }
+                // mist -> clear away mist
+
+                // movingentity -> knock back/ slow
             }
         }
     }

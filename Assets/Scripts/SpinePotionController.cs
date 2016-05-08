@@ -8,6 +8,9 @@ public class SpinePotionController : MonoBehaviour {
     const int numThorns = 150;
     const float radius = 2f;
 
+    public float slowFactor = 0.75f;
+    public int shrapnelDamage = 1; 
+
     const float spawnTimer = 1f;
     float spawnTimerCurrent;
     bool spawned;

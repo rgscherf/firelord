@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"Ro",
+				"Rotate(Vector3 eulerAngles)	void"
+			],
+			[
+				"_blast",
+				"_blastOuterIndicator"
+			],
+			[
+				"rotat",
+				"Rotate(Vector3 eulerAngles)	void"
+			],
+			[
 				"local",
 				"localScale	Vector3 { get; set; }"
 			],
@@ -603,20 +615,32 @@
 		"selected_items":
 		[
 			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
+				"blast",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"part",
+				"Assets/Scripts/ParticleController.cs"
 			],
 			[
 				"room",
 				"Assets/Scripts/Room.cs"
 			],
 			[
-				"ooze",
-				"Assets/Scripts/EnemyOoze.cs"
+				"spine",
+				"Assets/Scripts/SpinePotionController.cs"
 			],
 			[
-				"blast",
-				"Assets/Scripts/BlastPotionController.cs"
+				"entit",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"ooze",
+				"Assets/Scripts/EnemyOoze.cs"
 			],
 			[
 				"geome",
@@ -692,10 +716,6 @@
 			],
 			[
 				"par",
-				"Assets/Scripts/ParticleController.cs"
-			],
-			[
-				"part",
 				"Assets/Scripts/ParticleController.cs"
 			],
 			[
@@ -840,7 +860,7 @@
 		"_vintageous_last_buffer_search": "gameob",
 		"_vintageous_last_buffer_search_command": "vi_slash",
 		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": "5",
+		"_vintageous_last_character_search": "2",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
