@@ -34,8 +34,8 @@ public class EnemyOoze : MapObject {
         currentColor = baseColor;
 
         healthController = gameObject.GetComponent<HealthController>();
-        healthController.health = 7;
-        healthController.invulntimer = 0.4f;
+        healthController.health = healthController.defaultEnemyHealth;
+        healthController.invulntimer = healthController.defaultEnemyInvulnTimer;
 
         spr = gameObject.GetComponent<SpriteRenderer>();
 
@@ -49,8 +49,10 @@ public class EnemyOoze : MapObject {
         poisonComeDownCurrent += Time.deltaTime;
 
         if (isWinding) {
-            Flicker();
+            const float windupshake = 0.1f;
+            transform.position = (Vector2) transform.position + new Vector2(Random.Range(-windupshake, windupshake), Random.Range(-windupshake, windupshake));
             attackWindupCurrent += Time.deltaTime;
+
             if (attackWindupCurrent > attackWindup) {
                 Attack();
             }

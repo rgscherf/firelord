@@ -20,8 +20,10 @@ public class PickupController : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Player") {
             var pc = other.gameObject.GetComponent<PlayerController>();
-            pc.ReceivePotion(potionType);
-            Destroy(gameObject);
+            bool wasfull = pc.ReceivePotion(potionType);
+            if (!wasfull) {
+                Destroy(gameObject);
+            }
         }
     }
 }

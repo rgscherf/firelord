@@ -86,6 +86,10 @@ public class Room : MonoBehaviour {
                 return entities.mist;
             case 'o':
                 return entities.ooze;
+            case 'C':
+                return entities.chest;
+            case 'w':
+                return entities.wizard;
             case 'D':
                 bool isDoor = false;
                 bool isLastRoomDoor = false;
@@ -120,7 +124,20 @@ public class Room : MonoBehaviour {
     string def(int level, int roomPositionInLevel) {
         if (level == 0) {
             // special rooms for tutorial / intro will go here.
-            return baseRoom;
+            switch (roomPositionInLevel) {
+                case 1:
+                    return baseRoom;
+                    break;
+                case 2:
+                    return tut2;
+                    break;
+                case 3:
+                    return tut3;
+                    break;
+                case 4:
+                    return baseRoom;
+                    break;
+            }
         }
         if (roomPositionInLevel == 1) {
             // special encounter rooms
@@ -130,7 +147,7 @@ public class Room : MonoBehaviour {
         switch (level) {
             case 1:
                 return level1[Random.Range(0, level1.Length)];
-            case 2:
+            default:
                 return level1[Random.Range(0, level1.Length)];
         }
         return "";
@@ -139,28 +156,80 @@ public class Room : MonoBehaviour {
     readonly string[] level1 = {
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
 X...XXXXXXXXX....X......oo....X
-X......XXXXX.....X............X
+X..oo..XXXXX.....X............X
 X.......XXXX....XX............X
 X....XXXX.....................X
 X.............................X
 D.............................D
 D.......X.....................D
 D.......X.........XXXXXXXXX...D
-D.......X.........XMMMMMMMX...D
-X.o.....X.........XMMMMMMMX.o.X
-X.o.....X.........XMMMMMMMX...X
-X...XXXXX.......MMMMMXXXXXX.o.X
-X...ooooo.....................X
+D.......X.........X.......X...D
+X.......X.........X.......X...X
+X.o.....X.........X..ooo..X...X
+X...XXXXX............XXXXXX.o.X
+X...ooo.......................X
 X.............................X
 XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.....o.......................X
+X.............................X
+X.............................X
+X........XXXXXXXXXXXXXX.......X
+D.......XX............XX......D
+D.............................D
+D................w............D
+D.......XX............XX......D
+X........XXXXXXXXXXXXXX.......X
+X.............................X
+X.............................X
+X.....................o.......X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
 X.............................X
 X.............................X
+X.....XXXXX.........XXXXX.....X
+X.......XXX........XXXX.......X
+X.............................X
+D............oooo.............D
+D..........ooooo..............D
+D...........oooo..............D
+D............XXX..............D
+X............XXX..............X
+X.......XXXXXXXXXXX...........X
 X.............................X
 X.............................X
-X...............MMMMMMMMM.....X
-D................MMMMMMMMMMM..D
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.....................XXX.....X
+X.....XX......................X
+X............XX...............X
+X.......oo.........XX.........X
+D..............w..............D
+D.......XX....................D
 D.............................D
+D.............XXX.............D
+X..........ooo................X
+X....................XX.......X
+X......XXX....................X
+X.....................XX......X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.......w.....................X
+X.............................X
+X.................X.....XXXXXXX
+XXXXXXXXX.........X...........X
+D.................X...........D
+D........oo.......X...........D
 D.............................D
 D.............................D
 X.....XXXXXXXXXXXXXXXXXXX.....X
@@ -178,12 +247,12 @@ XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX"
 X.............................X
 X.............................X
 X.............................X
-X.............................X
-X.............................X
-D.............XXX.............D
-D.............X.X.............D
-D.............XXX.............D
+X........XXXXXXXXXXXXX........X
+X..........XXXXXXXXX..........X
 D.............................D
+D..............C..............D
+D.............................D
+D............XXXXX............D
 X.............................X
 X.............................X
 X.............................X
@@ -196,18 +265,71 @@ X........X..........X.........X
 X........X..........X.........X
 X........X..........X.........X
 X........X..........X.........X
-D........X..........X.........D
+D........XX........XX.........D
 D.............................D
 D.............................D
-D........XXXXXXXXXXXX.........D
+D........XXXX...XXXXX.........D
+X.............................X
+X.............C...............X
 X.............................X
 X.............................X
 X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X..........X......X...........X
+X..........X......X...........X
+X..........XXXXXXXX...........X
+D.............................D
+D.............................D
+D.............................D
+D..........X......X...........D
+X....XXXXXXX......XXXXXXX.....X
+X..........X......X...........X
+X........C.X......X...........X
 X.............................X
 X.............................X
 XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX"
+
 };
 
+
+    const string tut2 =
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+D.............................D
+D.............................D
+D.............................D
+D.............................D
+X........................o....X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX";
+
+    const string tut3 =
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X........o.........o..........X
+X................o............X
+X.............................X
+D.............................D
+D.............................D
+D.............................D
+D.............................D
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX";
 
 
     const string baseRoom =

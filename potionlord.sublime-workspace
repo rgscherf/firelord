@@ -4,12 +4,124 @@
 		"selected_items":
 		[
 			[
-				"re",
-				"ReceiveDamage(int debitamt)	bool"
+				"Getk",
+				"GetKeyDown(string name)	bool"
+			],
+			[
+				"bas",
+				"baseRoom"
+			],
+			[
+				"FindGame",
+				"FindGameObjectWithTag(string tag)	GameObject"
+			],
+			[
+				"Destr",
+				"Destroy(Object obj)	void"
+			],
+			[
+				"tu",
+				"tutorialMessages"
+			],
+			[
+				"Mes",
+				"MestText"
+			],
+			[
+				"thislve",
+				"thisLevelThrown"
+			],
+			[
+				"Rigid",
+				"Rigidbody2D	Rigidbody2D"
+			],
+			[
+				"is",
+				"activeSelf	bool { get; }"
+			],
+			[
+				"GetC",
+				"GetChild(int index)	Transform"
+			],
+			[
+				"target",
+				"targetDirection"
+			],
+			[
+				"cooling",
+				"coolingDownTimer	float"
+			],
+			[
+				"coolingdon",
+				"coolingDownTimerCurrent"
+			],
+			[
+				"wiz",
+				"wizorb	GameObject"
+			],
+			[
+				"wining",
+				"windingUpTimerCurrent"
+			],
+			[
+				"winin",
+				"windingUpTimer"
+			],
+			[
+				"windingup",
+				"windingUpTimerCurrent"
+			],
+			[
+				"RigidBo",
+				"Rigidbody2D	(HealthController.cs)"
+			],
+			[
+				"attackcool",
+				"attackCooldown	float"
+			],
+			[
+				"def",
+				"defaultEnemyHealth	int"
+			],
+			[
+				"insi",
+				"insideUnitSphere	Vector3 { get; }"
+			],
+			[
+				"camera",
+				"cameraOriginalPos"
 			],
 			[
 				"Potion",
-				"Potion	Potion"
+				"PotionColors"
+			],
+			[
+				"dama",
+				"DamageAnimation	bool"
+			],
+			[
+				"Spr",
+				"SpriteRenderer	(HealthController.cs)"
+			],
+			[
+				"damagai",
+				"DamageAnimationFirstFrame	bool"
+			],
+			[
+				"Collidr",
+				"Collider2D	Collider2D"
+			],
+			[
+				"door",
+				"doorsInRoom"
+			],
+			[
+				"geome",
+				"geometryParentController"
+			],
+			[
+				"re",
+				"ReceiveDamage(int debitamt)	bool"
 			],
 			[
 				"final",
@@ -82,10 +194,6 @@
 			[
 				"spawn",
 				"spawningTimer	(VenomPotionController.cs)"
-			],
-			[
-				"Destr",
-				"Destroy(Object obj, float t)	void"
 			],
 			[
 				"spa",
@@ -360,10 +468,6 @@
 				"didDie"
 			],
 			[
-				"is",
-				"isWinding"
-			],
-			[
 				"ga",
 				"gameObject"
 			],
@@ -410,110 +514,6 @@
 			[
 				"l",
 				"Length	int { get; }"
-			],
-			[
-				"en",
-				"entities	Entities"
-			],
-			[
-				"inner",
-				"blastInnerIndicator	GameObject"
-			],
-			[
-				"Rigi",
-				"Rigidbody2D	Rigidbody2D"
-			],
-			[
-				"wpcool",
-				"wpCooldown"
-			],
-			[
-				"wpcoold",
-				"wpCooldownCurrent	float"
-			],
-			[
-				"wpcoo",
-				"wpCoolingDown"
-			],
-			[
-				"FindGameOb",
-				"FindGameObjectWithTag(string tag)	GameObject"
-			],
-			[
-				"scan",
-				"Scan()	void"
-			],
-			[
-				"tar",
-				"targetPosition"
-			],
-			[
-				"GetCOm",
-				"GetComponent<T>()	T"
-			],
-			[
-				"blas",
-				"blastHoldingTimer"
-			],
-			[
-				"bla",
-				"blastHoldingTimer"
-			],
-			[
-				"use",
-				"useWorldSpace	bool { get; set; }"
-			],
-			[
-				"SetPo",
-				"SetPosition(int index, Vector3 position)	void"
-			],
-			[
-				"F",
-				"FixedUpdate"
-			],
-			[
-				"end",
-				"endregion	endregion"
-			],
-			[
-				"Button",
-				"ButtonDispatch(Potion dispatch)	void"
-			],
-			[
-				"getcom",
-				"GetComponent<T>()	T"
-			],
-			[
-				"current",
-				"currentCloneTime"
-			],
-			[
-				"Overlap",
-				"OverlapPoint(Vector2 point)	Collider2D"
-			],
-			[
-				"OverlapP",
-				"OverlapPoint(Vector2 point, int layerMask)	Collider2D"
-			],
-			[
-				"Physi",
-				"Physics2D"
-			],
-			[
-				"possi",
-				"possibleSpawnPositionsArray	Vector2[]"
-			],
-			[
-				"FindGame",
-				"FindGameObjectWithTag(string tag)	GameObject"
-			],
-			[
-				"gmae",
-				"gameObject"
-			],
-			[
-				"geo",
-				"geometryParentController"
 			]
 		]
 	},
@@ -524,7 +524,7 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 388.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
@@ -553,27 +553,33 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/TutorialText.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyWizard.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/QuickPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/CameraController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/WizorbController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyWizardMovement.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PickupController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/SpinePotionController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PickupController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPuke.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ChestController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryParentController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PoisonController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/QuickPotionController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPuke.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PoisonController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BaseVenom.cs",
 		"/Users/rgscherf/Library/Application Support/Sublime Text 3/Packages/User/OmniSharpSublime.sublime-settings",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
 		"/Users/rgscherf/Library/Application Support/Sublime Text 3/Packages/OmniSharp/OmniSharpSublime.sublime-settings",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/RollOverlayController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MistController.cs",
@@ -594,7 +600,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -608,6 +614,36 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"venomammo",
+			"death",
+			"dea",
+			"camera",
+			"currentLevelob",
+			"level",
+			"Level",
+			"level",
+			"statsDisplay",
+			"ActivateEverything",
+			"blastammo",
+			"pickedup",
+			"x(",
+			"quickammo",
+			"Attack",
+			"0.03",
+			".1",
+			"0.05f",
+			"cameraori",
+			"05",
+			"PotionColors",
+			"0.2f",
+			"shrap",
+			".25",
+			"switch",
+			"player",
+			"level2",
+			"venom",
+			"allGeometry",
+			"bool",
 			".25",
 			"ammoBlast",
 			"        ",
@@ -718,7 +754,7 @@
 	},
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -762,7 +798,7 @@
 	"pinned_build_system": "",
 	"replace":
 	{
-		"height": 50.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -772,36 +808,168 @@
 		"selected_items":
 		[
 			[
-				"game",
-				"Assets/Scripts/GameController.cs"
+				"uicon",
+				"Assets/Scripts/UIController.cs"
 			],
 			[
-				"part",
-				"Assets/Scripts/ParticleController.cs"
-			],
-			[
-				"spine",
-				"Assets/Scripts/SpinePotionController.cs"
+				"camera",
+				"Assets/Scripts/CameraController.cs"
 			],
 			[
 				"entities",
 				"Assets/Scripts/Entities.cs"
 			],
 			[
+				"game",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
 				"health",
 				"Assets/Scripts/HealthController.cs"
 			],
 			[
-				"pick",
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"tutorial",
+				"Assets/Scripts/TutorialText.cs"
+			],
+			[
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"quick",
+				"Assets/Scripts/QuickPotionController.cs"
+			],
+			[
+				"venom",
+				"Assets/Scripts/VenomPotionController.cs"
+			],
+			[
+				"eoze",
+				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"enemyw",
+				"Assets/Scripts/EnemyWizard.cs"
+			],
+			[
+				"blas",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"wizard",
+				"Assets/Scripts/EnemyWizard.cs"
+			],
+			[
+				"wizer",
+				"Assets/Scripts/WizorbController.cs"
+			],
+			[
+				"camer",
+				"Assets/Scripts/CameraController.cs"
+			],
+			[
+				"enemoo",
+				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"pickup",
 				"Assets/Scripts/PickupController.cs"
 			],
 			[
-				"uicon",
-				"Assets/Scripts/UIController.cs"
+				"enti",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"wizorbcon",
+				"Assets/Scripts/WizorbController.cs"
+			],
+			[
+				"particle",
+				"Assets/Scripts/ParticleController.cs"
 			],
 			[
 				"ooze",
 				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"enemywiz",
+				"Assets/Scripts/EnemyWizardMovement.cs"
+			],
+			[
+				"enemy",
+				"Assets/Scripts/EnemyFollow.cs"
+			],
+			[
+				"ene",
+				"Assets/Scripts/EnemyWizard.cs"
+			],
+			[
+				"spine",
+				"Assets/Scripts/SpinePotionController.cs"
+			],
+			[
+				"blast",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"part",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"partic",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"parti",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"chest",
+				"Assets/Scripts/ChestController.cs"
+			],
+			[
+				"chestcon",
+				"Assets/Scripts/ChestController.cs"
+			],
+			[
+				"gamec",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"particl",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"mapo",
+				"Assets/Scripts/MapObject.cs"
+			],
+			[
+				"geometr",
+				"Assets/Scripts/GeometryParentController.cs"
+			],
+			[
+				"enemfoll",
+				"Assets/Scripts/EnemyFollow.cs"
+			],
+			[
+				"oo",
+				"Assets/Scripts/EnemyOoze.cs"
+			],
+			[
+				"rooms",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"pick",
+				"Assets/Scripts/PickupController.cs"
 			],
 			[
 				"venompu",
@@ -828,20 +996,8 @@
 				"Assets/Scripts/VenomPuke.cs"
 			],
 			[
-				"partic",
-				"Assets/Scripts/ParticleController.cs"
-			],
-			[
-				"blast",
-				"Assets/Scripts/BlastPotionController.cs"
-			],
-			[
 				"en",
 				"Assets/Scripts/Entities.cs"
-			],
-			[
-				"quick",
-				"Assets/Scripts/QuickPotionController.cs"
 			],
 			[
 				"poison",
@@ -850,18 +1006,6 @@
 			[
 				"ve",
 				"Assets/Scripts/VenomPuke.cs"
-			],
-			[
-				"venom",
-				"Assets/Scripts/VenomPotionController.cs"
-			],
-			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
-				"enti",
-				"Assets/Scripts/Entities.cs"
 			],
 			[
 				"map",
@@ -896,28 +1040,12 @@
 				"Assets/Scripts/MistController.cs"
 			],
 			[
-				"mapo",
-				"Assets/Scripts/MapObject.cs"
-			],
-			[
 				"ven",
 				"Assets/Scripts/VenomPotionController.cs"
 			],
 			[
 				"ui",
 				"Assets/Scripts/UIController.cs"
-			],
-			[
-				"enemy",
-				"Assets/Scripts/EnemyFollow.cs"
-			],
-			[
-				"particle",
-				"Assets/Scripts/ParticleController.cs"
-			],
-			[
-				"room",
-				"Assets/Scripts/Room.cs"
 			],
 			[
 				"entit",
@@ -930,14 +1058,6 @@
 			[
 				"quic",
 				"Assets/Scripts/QuickPotionController.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
-				"particl",
-				"Assets/Scripts/ParticleController.cs"
 			],
 			[
 				"geometrycon",
@@ -1078,14 +1198,14 @@
 	},
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "spr",
+		"_vintageous_last_buffer_search": "shrap",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_t",
-		"_vintageous_last_character_search": ".",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": "j",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
-			"_cmdline_cd": "/Applications/Sublime Text.app/Contents/MacOS"
+			"_cmdline_cd": "/Users/rgscherf/projects/unity/potionlord/Assets/Scripts"
 		}
 	},
 	"show_minimap": true,

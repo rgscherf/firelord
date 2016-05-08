@@ -14,11 +14,27 @@ public class GameController : MonoBehaviour {
     GameObject[] allMovingEntities;
 
     public int currentRoom;
+    public int level = -1;
     int highestRoomCompleted;
-    int level = 0;
     int mobsInRoom;
     List<GameObject> doorsInRoom;
     List<GameObject> finalDoorsInRoom;
+
+    float thisLevelTime;
+    public int thisLevelDamage;
+    public int thisLevelThrown;
+
+    float lastLevelTime;
+    int lastLevelDamage;
+    int lastLevelThrown;
+
+    GameObject stats;
+
+    public GameObject _tutorialMessages;
+    private GameObject tutorialMessages;
+
+    bool endoflevel;
+    float panlength = 2f;
 
     void Awake() {
         entities = GetComponent<Entities>();
@@ -26,15 +42,33 @@ public class GameController : MonoBehaviour {
     }
 
 	void Start () {
+        stats = GameObject.Find("stats");
         geometryParentController = GameObject.Find("GeometryParent").GetComponent<GeometryParentController>();
-
-        GenerateLevel();
-
-        ButtonDispatch(Potion.Blast);
+        GameStart();
 	}
 
+    void GameStart() {
+        level = -1;
+        GenerateLevel();
+        ButtonDispatch(Potion.Blast);
+    }
+
+    public void Restart() {
+        GameStart();
+    }
+
+    void TreardownLevel() {
+        foreach (Transform g in geometryParentController.transform) {
+            Object.Destroy(g.gameObject);
+        }
+
+    }
     void GenerateLevel () {
+        endoflevel = false;
+        SwapLevelStats();
+        TreardownLevel();
         level += 1;
+        highestRoomCompleted = 0;
         currentRoom = 1;
         allGeometry = null;
 
@@ -45,17 +79,51 @@ public class GameController : MonoBehaviour {
         rooms = MakeRooms();
         GetGlobalReferences();
         AstarPath.active.Scan();
-        SetupRoom(1, player);
+        player.transform.position = new Vector2(-13, -3);
+
+        // stats
+        if (level < 2) {
+            stats.SetActive(false);
+        } else {
+            stats.SetActive(true);
+            TextMesh tm = stats.GetComponent<TextMesh>();
+            if (tm != null) {
+                tm.text = System.String.Format("Time last level: {0:F02} seconds. \nDamage Taken: {1}. \nPotions thrown: {2}. \nGood luck!!", lastLevelTime, lastLevelDamage, lastLevelThrown);
+            }
+        }
+
+        // tutorial stuff
+        if (level == 0) {
+            var tutorialMessages = (GameObject) Instantiate(_tutorialMessages, new Vector2(0.2318467f, 1.47479f), Quaternion.identity);
+        } else {
+            var tut = GameObject.FindGameObjectWithTag("Tutorial");
+            Object.Destroy(tut);
+            // tutorialMessages.SetActive(false);
+            // Object.Destroy(tutorialMessages);
+        }
+        SetupRoom(currentRoom, player);
     }
 
+    void SwapLevelStats() {
+        lastLevelTime = thisLevelTime;
+        lastLevelDamage = thisLevelDamage;
+        lastLevelThrown = thisLevelThrown;
+
+        thisLevelTime = 0f;
+        thisLevelDamage = 0;
+        thisLevelThrown = 0;
+    }
     void SetupRoom(int room, GameObject player) {
+        gameCamera.ChangeRoom(currentRoom);
         mobsInRoom = 0;
-        doorsInRoom.Clear();
-        finalDoorsInRoom.Clear();
-        geometryParentController.SwitchRooms(room, player);
-        foreach( Transform t in geometryParentController.transform ) {
-            GameObject go = t.gameObject;
-            if(go.GetComponent<MapObject>().room == room) {
+        doorsInRoom = new List<GameObject>();
+        finalDoorsInRoom = new List<GameObject>();
+        player.GetComponent<MapObject>().room = currentRoom;
+
+        foreach (Transform t in geometryParentController.gameObject.transform) {
+            var go = t.gameObject;
+            if (go.GetComponent<MapObject>().room == currentRoom) {
+                go.SetActive(true);
                 if (go.GetComponent<IsDoor>() != null) {
                     doorsInRoom.Add(go);
                 } else if (go.GetComponent<IsFinalDoor>() != null) {
@@ -63,8 +131,11 @@ public class GameController : MonoBehaviour {
                 } else if (go.tag == "MovingEntity") {
                     mobsInRoom++;
                 }
+            } else {
+                go.SetActive(false);
             }
         }
+
         foreach(var d in doorsInRoom) {
             d.GetComponent<Collider2D>().isTrigger = false;
             d.GetComponent<SpriteRenderer>().enabled = true;
@@ -73,34 +144,52 @@ public class GameController : MonoBehaviour {
             f.GetComponent<Collider2D>().isTrigger = false;
             f.GetComponent<SpriteRenderer>().enabled = true;
         }
+        ButtonDispatch(player.GetComponent<PlayerController>().currentPotion);
+        if(gameCamera.signal != currentRoom) {
+            gameCamera.ChangeRoom(currentRoom);
+        }
     }
 
-
     void Update() {
+
+        if (endoflevel) {
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+        } else {
+            thisLevelTime += Time.deltaTime;
+        }
+
+
+
         bool complete = CheckRoomCompletion();
-        if (complete) {
-            highestRoomCompleted = highestRoomCompleted > currentRoom ? highestRoomCompleted : currentRoom;
-            foreach (var d in doorsInRoom) {
-                d.GetComponent<Collider2D>().isTrigger = true;
-                d.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            if (highestRoomCompleted == 4) {
-                foreach (var f in finalDoorsInRoom) {
-                    f.GetComponent<Collider2D>().isTrigger = true;
-                    f.GetComponent<SpriteRenderer>().enabled = false;
+        if (doorsInRoom != null && finalDoorsInRoom != null) {
+            if (complete) {
+                highestRoomCompleted = highestRoomCompleted > currentRoom ? highestRoomCompleted : currentRoom;
+                foreach (var d in doorsInRoom) {
+                    if (d != null) {
+                        d.GetComponent<Collider2D>().isTrigger = true;
+                        d.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+                }
+                if (highestRoomCompleted == 4 || level == 0) {
+                    foreach (var f in finalDoorsInRoom) {
+                        if (f != null) {
+                            f.GetComponent<Collider2D>().isTrigger = true;
+                            f.GetComponent<SpriteRenderer>().enabled = false;
+                        }
+                    }
                 }
             }
         }
     }
 
     bool CheckRoomCompletion() {
-        int allActiveEntities = GameObject.FindGameObjectsWithTag("MovingEntity").Where(e => e.active).Count();
-        return allActiveEntities == 0;
+        mobsInRoom = GameObject.FindGameObjectsWithTag("MovingEntity").Where(e => e.active).Count();
+        return mobsInRoom == 0;
     }
 
 
     List<Room> MakeRooms() {
-        // eventually this will have to be moved into a Level class.
+        // eventually this will have to be moved into a level class.
         var room1 = gameObject.AddComponent<Room>().Init(level, 1);
         var room2 = gameObject.AddComponent<Room>().Init(level, 2);
         var room3 = gameObject.AddComponent<Room>().Init(level, 3);
@@ -122,23 +211,28 @@ public class GameController : MonoBehaviour {
     }
 
     public void ButtonDispatch(Potion dispatch) {
-
+        allGeometry = GameObject.FindGameObjectsWithTag("Geometry");
         foreach (var g in allGeometry) {
             var geo = g.GetComponent<GeometryController>();
             geo.ColorSwap(dispatch);
         }
+    }
 
+    void EndOfLevelPan() {
+        endoflevel = true;
+        Invoke("GenerateLevel", panlength);
+        LeanTween.move(Camera.main.gameObject, new Vector3(-51, 17, -10), panlength);
     }
 
     public void RoomChangeSignal(int signal) {
-        if (signal == 5 ) {
-            GenerateLevel();
+        if (mobsInRoom == 0) {
+            if (signal == 5 ) {
+                EndOfLevelPan();
+            } else if (signal != currentRoom) {
+                currentRoom = signal;
+                SetupRoom(currentRoom, player);
+            }
         }
-        if (signal != currentRoom) {
-            currentRoom = signal;
-            gameCamera.ChangeRoom(currentRoom);
-        }
-        SetupRoom(currentRoom, player);
     }
 
 

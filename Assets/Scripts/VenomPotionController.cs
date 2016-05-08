@@ -9,6 +9,7 @@ public class VenomPotionController : MonoBehaviour {
     public int cloudSize = 8;
 
     float spawningTimer;
+    int spawnflip;
 
     const float spawnCooldown = 0.25f;
     float spawnCooldownCurrent;
@@ -35,7 +36,10 @@ public class VenomPotionController : MonoBehaviour {
         }
 
         if (spawningTimer < lifetime) {
-            SpawnChild();
+            if(spawnflip % 3 != 0) {
+                SpawnChild();
+            }
+            spawnflip++;
         }
 	}
 
@@ -46,7 +50,7 @@ public class VenomPotionController : MonoBehaviour {
         var ch = (GameObject) Instantiate(entities.particle, pos, Quaternion.identity);
         ParticleController pc = ch.gameObject.GetComponent<ParticleController>();
         if (pc != null) {
-            pc.Init(ParticleType.venom, true, PotionColors.Venom, cloudLifetime, cloudSize);
+            pc.Init(ParticleType.venom, true, PotionColors.Venom * new Color (1f,1f,1f,0.8f), cloudLifetime, cloudSize);
         }
     }
 }

@@ -62,7 +62,7 @@ public class QuickPotionController : MonoBehaviour {
             var p = (GameObject) Instantiate(entities.particle, gameObject.transform.position, Quaternion.identity);
             var pc = p.gameObject.GetComponent<ParticleController>();
             if (pc != null) {
-                pc.Init(ParticleType.quick, true, PotionColors.Quick, staticKillTimer, 4);
+                pc.Init(ParticleType.quick, true, PotionColors.Quick * new Color(1f,1f,1f,0.8f), staticKillTimer, 4);
                 pc.quickController = this;
             }
 

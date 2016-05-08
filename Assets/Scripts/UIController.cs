@@ -9,6 +9,10 @@ public class UIController : MonoBehaviour {
     HealthController playerHealth;
     PlayerController playerController;
 
+    float cameraShakeAmt = 0.075f;
+    Camera maincamera;
+    Vector3 cameraOriginalPos;
+
     Image BlastImage;
     Image QuickImage;
     Image SpineImage;
@@ -18,6 +22,16 @@ public class UIController : MonoBehaviour {
     Text Quickammo;
     Text Spineammo;
     Text Venomammo;
+
+    SpriteRenderer background;
+
+    GameObject playerDeath;
+
+    float animationTime;
+    float animationTimeCurrent;
+    bool DamageAnimationFirstFrame;
+    bool DamageAnimation;
+
 
 	// Use this for initialization
 	void Start () {
@@ -40,15 +54,57 @@ public class UIController : MonoBehaviour {
         health2 = GameObject.Find("health2").GetComponent<Image>();
         health3 = GameObject.Find("health3").GetComponent<Image>();
 
+        playerDeath = GameObject.Find("death");
+
         playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        maincamera = Camera.main;
+
+        background = GameObject.Find("spritebackground").GetComponent<SpriteRenderer>();
+
+        animationTime = playerHealth.invulntimer;
 	}
+
+
+    public void AnimateDamage() {
+        DamageAnimationFirstFrame = true;
+        DamageAnimation = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
         RenderPlayerHealth(); 
         RenderPotionCooldown();
         RenderPotionAmmo();
+
+        if (playerController.dead) {
+            playerDeath.SetActive(true);
+        } else {
+            playerDeath.SetActive(false);
+        }
+
+        if(DamageAnimationFirstFrame) {
+            background.color = PotionColors.White;
+            DamageAnimationFirstFrame = false;
+            cameraOriginalPos = maincamera.transform.position;
+        }
+        if(DamageAnimation) {
+            animationTimeCurrent += Time.deltaTime;
+            float colorCo = (1 - (animationTimeCurrent / animationTime)) * 0.3f;
+            Color[] animationColors = new[] {PotionColors.Danger * new Color(colorCo, colorCo, colorCo, 1f), Color.black};
+            background.color = animationColors[Random.Range(0, animationColors.Length)];
+
+            if(animationTimeCurrent < 0.5f) {
+                var rand = new Vector3(Random.Range(-cameraShakeAmt, cameraShakeAmt), Random.Range(-cameraShakeAmt, cameraShakeAmt), 0f);
+                maincamera.transform.position += (Vector3) rand;
+            }
+            if (animationTimeCurrent > animationTime) {
+                maincamera.transform.position = cameraOriginalPos;
+                DamageAnimation = false;
+                animationTimeCurrent = 0f;
+            }
+        }
+
 	}
 
     void RenderPotionAmmo() {

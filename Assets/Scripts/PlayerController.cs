@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     GameController game;
     Entities entities;
 
-    Potion currentPotion;
+    public Potion currentPotion;
 
     bool firing;
 
@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour {
     // ammo
     ///////
 
-    public int blastammo = 3;
-    public int quickammo = 3;
-    public int spineammo = 3;
-    public int venomammo = 3;
+    public int blastammo = 5;
+    public int quickammo = 5;
+    public int spineammo = 5;
+    public int venomammo = 5;
 
     ////////////////////
     // vars for movement
@@ -92,6 +92,8 @@ public class PlayerController : MonoBehaviour {
     bool isRolling;
     public bool isRollingInvuln;
 
+    public bool dead;
+
 ///////////
 // end init
 ///////////
@@ -103,11 +105,7 @@ public class PlayerController : MonoBehaviour {
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerSpriteRenderer.color = PotionColors.White;
 
-        currentPotion = Potion.Blast;
-
-        GetComponent<HealthController>().health = 6;
-        GetComponent<HealthController>().invulntimer = 1f;
-
+        playerStart();
 
         blastGuide = gameObject.AddComponent<LineRenderer>();
         blastGuide.material = new Material (Shader.Find("Particles/Additive"));
@@ -119,10 +117,23 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    void playerStart() {
+        dead = false;
+        blastammo = 5; 
+        quickammo = 5; 
+        spineammo = 5; 
+        venomammo = 5; 
+        GetComponent<HealthController>().health = 6;
+        GetComponent<HealthController>().invulntimer = 1f;
+        currentPotion = Potion.Blast;
+        blastHoldStrength = 0f;
+    }
+
 #endregion
 
 #region FixedUpdate
     void FixedUpdate() {
+        if(dead) {return;}
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         Move(h, v);
@@ -142,7 +153,21 @@ public class PlayerController : MonoBehaviour {
 #endregion
 
 #region update
+
+    void Restart() {
+        playerStart();
+        game.Restart();
+    }
+
     void Update() {
+        if (dead) {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                Debug.Log("hello");
+                Restart();
+            }
+        return;
+        }
+
         blastCooldownCurrent += Time.deltaTime;
         quickCooldownCurrent += Time.deltaTime;
         spineCooldownCurrent += Time.deltaTime;
@@ -216,9 +241,16 @@ public class PlayerController : MonoBehaviour {
                 newBlast.GetComponent<BlastPotionController>().Init(blastInnerIndicator.transform.position);
                 blastCooldownCurrent = 0;
                 blastammo -= 1;
+                game.thisLevelThrown += 1;
                 break;
         }
 
+    }
+
+    public void PlayerDeath() {
+        dead = true;
+        transform.position = new Vector2(100f,100f);
+        entities.Kill(transform.position);
     }
 
     void InputFire() {
@@ -259,6 +291,7 @@ public class PlayerController : MonoBehaviour {
     void FireVenom() {
         if (venomCooldownCurrent < venomCooldown || venomammo <= 0) { return; }
         venomammo -= 1;
+        game.thisLevelThrown += 1;
         venomCooldownCurrent = 0;
 
         Vector2 targetDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -288,6 +321,7 @@ public class PlayerController : MonoBehaviour {
     void FireSpine() {
         if (spineCooldownCurrent < spineCooldown || spineammo <= 0) { return; }
         spineammo -= 1;
+        game.thisLevelThrown += 1;
         spineCooldownCurrent = 0f;
 
         Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -297,6 +331,7 @@ public class PlayerController : MonoBehaviour {
     void FireQuick() {
         if (quickCooldownCurrent < quickCooldown || quickammo <= 0) { return; }
         quickammo -= 1;
+        game.thisLevelThrown += 1;
         quickCooldownCurrent = 0f;
 
         Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -343,20 +378,38 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void ReceivePotion(Potion newPotion) {
+    public bool ReceivePotion(Potion newPotion) {
         switch (newPotion) {
             case Potion.Blast:
-                blastammo++;
-                break;
+                if (blastammo >= 9) {
+                    return true;
+                } else {
+                    blastammo++;
+                    return false;
+                }
             case Potion.Quick:
-                quickammo++;
-                break;
+                if (quickammo >= 9) {
+                    return true;
+                } else {
+                    quickammo++;
+                    return false;
+                }
             case Potion.Spine:
-                spineammo++;
-                break;
+                if (spineammo >= 9) {
+                    return true;
+                } else {
+                    spineammo++;
+                    return false;
+                }
             case Potion.Venom:
-                venomammo++;
-                break;
+                if (venomammo >= 9) {
+                    return true;
+                } else {
+                    venomammo++;
+                    return false;
+                }
+            default:
+                return false;
         }
     }
 

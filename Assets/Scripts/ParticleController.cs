@@ -40,14 +40,14 @@ public class ParticleController : MonoBehaviour {
             var coll = Physics2D.OverlapPointAll(gameObject.transform.position);
             foreach (var c in coll) {
                 if (c.gameObject.tag == "MovingEntity") {
-                    c.GetComponent<HealthController>().ReceiveDamage(1);
+                    c.GetComponent<HealthController>().ReceiveDamage(2);
                 }
             }
         }
 	}
 
     public void ExplodeVenom() {
-        Invoke("PrivateExplodeVenom", 0.1f);
+        Invoke("PrivateExplodeVenom", 0.2f);
     }
 
     void PrivateExplodeVenom() {
@@ -71,14 +71,14 @@ public class ParticleController : MonoBehaviour {
                 if (pc != null && pc.instantiator == ParticleType.venom) {
                     pc.ExplodeVenom();
                     found++;
-                    if (found == 2) {
+                    if (found == 1) {
                         break;
                     }
                 }
             }
         }
 
-        const int numexplosionparticles = 10;
+        const int numexplosionparticles = 20;
         
         for (var i = 0; i < numexplosionparticles; i++) {
             Vector2 pos = (Vector2) gameObject.transform.position + (Random.insideUnitCircle * blastRadius);
@@ -198,7 +198,7 @@ public class ParticleController : MonoBehaviour {
                     if (entrigid != null) {
                         entrigid.velocity *= 0.75f;
                     }
-                    if (Random.value < 0.5 * Time.deltaTime) {
+                    if (Random.value < 0.75 * Time.deltaTime) {
                         var hc = go.GetComponent<HealthController>();
                         if (hc != null) {
                             hc.ReceiveDamage(1);

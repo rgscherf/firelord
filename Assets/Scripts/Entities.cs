@@ -21,6 +21,8 @@ public class Entities : MonoBehaviour {
     public GameObject particle;
 
     public GameObject ooze;
+    public GameObject wizard;
+    public GameObject wizorb;
 
     public GameObject ammoPickup;
     
@@ -28,6 +30,8 @@ public class Entities : MonoBehaviour {
     public GameObject thrownQuick;
     public GameObject thrownSpine;
     public GameObject thrownVenom;
+
+    public GameObject chest;
 
     
     void Awake() {

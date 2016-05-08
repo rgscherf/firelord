@@ -10,6 +10,11 @@ public class HealthController : MonoBehaviour {
     float invulntimerCurrent;
     bool invulnState = false;
 
+    //////////////////////////////////
+    // default values for the lazy dev
+    //////////////////////////////////
+    public float defaultEnemyInvulnTimer = 0.5f;
+    public int defaultEnemyHealth = 5;
 
     Entities entities;
     MapObject myObject;
@@ -51,13 +56,21 @@ public class HealthController : MonoBehaviour {
             }
             health -= debitamt;
             DamagePhantom(debitamt);
+            if(gameObject.tag == "Player") {
+                GameObject.Find("UI Manager").GetComponent<UIController>().AnimateDamage();
+                GameObject.Find("GameManager").GetComponent<GameController>().thisLevelDamage += debitamt;
+            }
         }
 
         if (health <= 0) {
-            Object.Destroy(gameObject);
-            entities.Kill(gameObject.transform.position);
+            if (gameObject.tag == "Player") {
+                gameObject.GetComponent<PlayerController>().PlayerDeath();
+            } else {
+                Object.Destroy(gameObject);
+                entities.Kill(gameObject.transform.position);
 
-            RollForPotion();
+                RollForPotion();
+            }
 
             return true;
         }
@@ -75,7 +88,7 @@ public class HealthController : MonoBehaviour {
     }
 
     void RollForPotion() {
-        if (Random.value < 0.6f) {
+        if (Random.value < 0.2f) {
             Vector2 pos = (Vector2) gameObject.transform.position + new Vector2(Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f));
             var newPot = (GameObject) Instantiate(entities.ammoPickup, pos, Quaternion.identity );
             newPot.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 10f);

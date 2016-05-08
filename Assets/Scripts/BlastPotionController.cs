@@ -2,7 +2,7 @@
 
 public class BlastPotionController : MonoBehaviour {
 
-    const int damage = 2;
+    const int damage = 3;
     const int blastForce = 600;
     const float damageradius = 1f;
     const float pushradius = 2f;
@@ -71,7 +71,7 @@ public class BlastPotionController : MonoBehaviour {
             if (go.tag == "Particle") {
                 ParticleController pc = go.gameObject.GetComponent<ParticleController>();
                 if (pc != null && pc.instantiator == ParticleType.spine) {
-                    pc.ApplyForce(entities.getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce));
+                    pc.ApplyForce(entities.getOutwardExplosionVector(gameObject.transform.position, go.transform.position, blastForce / 1.5f));
                 }
             }
 
