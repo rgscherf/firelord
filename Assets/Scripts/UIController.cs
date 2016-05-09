@@ -121,6 +121,18 @@ public class UIController : MonoBehaviour {
         VenomImage.color = playerController.venomCooldownCurrent > playerController.venomCooldown ? PotionColors.Venom : PotionColors.Venom * new Color(1f,1f,1f,0.25f);
     }
 
+    public void UpdateRoom() {
+        PotionSwap(playerController.currentPotion);
+    }
+
+    public void PotionSwap(Potion dispatch) {
+        var activeGeometry = GameObject.FindGameObjectsWithTag("Geometry");
+        foreach (var g in activeGeometry) {
+            var geo = g.GetComponent<GeometryController>();
+            geo.ColorSwap(dispatch);
+        }
+    }
+
     void RenderPlayerHealth() {
         switch (playerHealth.health) {
             case 6:

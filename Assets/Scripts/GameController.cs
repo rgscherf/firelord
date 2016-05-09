@@ -30,8 +30,10 @@ public class GameController : MonoBehaviour {
 
     GameObject stats;
 
+    UIController uiController;
+    PlayerController playerController;
+
     public GameObject _tutorialMessages;
-    private GameObject tutorialMessages;
 
     bool endoflevel;
     float panlength = 2f;
@@ -39,6 +41,8 @@ public class GameController : MonoBehaviour {
     void Awake() {
         entities = GetComponent<Entities>();
         player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
+        uiController = GameObject.Find("UI Manager").GetComponent<UIController>();
     }
 
 	void Start () {
@@ -50,7 +54,7 @@ public class GameController : MonoBehaviour {
     void GameStart() {
         level = -1;
         GenerateLevel();
-        ButtonDispatch(Potion.Blast);
+        playerController.currentPotion = Potion.Blast;
     }
 
     public void Restart() {
@@ -93,14 +97,13 @@ public class GameController : MonoBehaviour {
         }
 
         // tutorial stuff
+        var tut = GameObject.FindGameObjectWithTag("Tutorial");
+        Object.Destroy(tut);
+
         if (level == 0) {
-            var tutorialMessages = (GameObject) Instantiate(_tutorialMessages, new Vector2(0.2318467f, 1.47479f), Quaternion.identity);
-        } else {
-            var tut = GameObject.FindGameObjectWithTag("Tutorial");
-            Object.Destroy(tut);
-            // tutorialMessages.SetActive(false);
-            // Object.Destroy(tutorialMessages);
-        }
+            Instantiate(_tutorialMessages, new Vector2(0.2318467f, 1.47479f), Quaternion.identity);
+        } 
+
         SetupRoom(currentRoom, player);
     }
 
@@ -113,7 +116,9 @@ public class GameController : MonoBehaviour {
         thisLevelDamage = 0;
         thisLevelThrown = 0;
     }
+
     void SetupRoom(int room, GameObject player) {
+
         gameCamera.ChangeRoom(currentRoom);
         mobsInRoom = 0;
         doorsInRoom = new List<GameObject>();
@@ -136,6 +141,8 @@ public class GameController : MonoBehaviour {
             }
         }
 
+        uiController.UpdateRoom();
+
         foreach(var d in doorsInRoom) {
             d.GetComponent<Collider2D>().isTrigger = false;
             d.GetComponent<SpriteRenderer>().enabled = true;
@@ -144,7 +151,6 @@ public class GameController : MonoBehaviour {
             f.GetComponent<Collider2D>().isTrigger = false;
             f.GetComponent<SpriteRenderer>().enabled = true;
         }
-        ButtonDispatch(player.GetComponent<PlayerController>().currentPotion);
         if(gameCamera.signal != currentRoom) {
             gameCamera.ChangeRoom(currentRoom);
         }
@@ -211,11 +217,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void ButtonDispatch(Potion dispatch) {
-        allGeometry = GameObject.FindGameObjectsWithTag("Geometry");
-        foreach (var g in allGeometry) {
-            var geo = g.GetComponent<GeometryController>();
-            geo.ColorSwap(dispatch);
-        }
+        uiController.PotionSwap(dispatch);
     }
 
     void EndOfLevelPan() {

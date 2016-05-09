@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
     GameController game;
     Entities entities;
 
-    public Potion currentPotion;
 
     bool firing;
 
@@ -94,6 +93,17 @@ public class PlayerController : MonoBehaviour {
 
     public bool dead;
 
+    UIController uiController;
+
+    Potion _currentPotion;
+    public Potion currentPotion {
+        get { return _currentPotion; }
+        set {
+            _currentPotion = value;
+            uiController.PotionSwap(value);
+        }
+    }
+
 ///////////
 // end init
 ///////////
@@ -104,6 +114,8 @@ public class PlayerController : MonoBehaviour {
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerSpriteRenderer.color = PotionColors.White;
+
+        uiController = GameObject.Find("UI Manager").GetComponent<UIController>();
 
         playerStart();
 
@@ -430,7 +442,6 @@ public class PlayerController : MonoBehaviour {
             if(firing) {
                 ReleaseFire();
             }
-            game.ButtonDispatch(potionSelection);
             currentPotion = potionSelection;
         }
     }
