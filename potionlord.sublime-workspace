@@ -808,6 +808,14 @@
 		"selected_items":
 		[
 			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
 				"uicon",
 				"Assets/Scripts/UIController.cs"
 			],
@@ -824,16 +832,8 @@
 				"Assets/Scripts/GameController.cs"
 			],
 			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
 				"health",
 				"Assets/Scripts/HealthController.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"tutorial",

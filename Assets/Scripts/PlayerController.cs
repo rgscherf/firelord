@@ -160,12 +160,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        if (dead) {
-            if (Input.GetKeyDown(KeyCode.R)) {
-                Debug.Log("hello");
-                Restart();
-            }
-        return;
+        if (Input.GetKeyDown(KeyCode.R)) {
+            Restart();
+            return;
         }
 
         blastCooldownCurrent += Time.deltaTime;
