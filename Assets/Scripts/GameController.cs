@@ -58,6 +58,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void Restart() {
+        uiController.ChangePlayerDeathState(false);
         GameStart();
     }
 

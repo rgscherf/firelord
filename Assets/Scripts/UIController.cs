@@ -25,7 +25,8 @@ public class UIController : MonoBehaviour {
 
     SpriteRenderer background;
 
-    GameObject playerDeath;
+    public GameObject _playerDeathUI;
+    GameObject playerDeathUI;
 
     float animationTime;
     float animationTimeCurrent;
@@ -54,7 +55,7 @@ public class UIController : MonoBehaviour {
         health2 = GameObject.Find("health2").GetComponent<Image>();
         health3 = GameObject.Find("health3").GetComponent<Image>();
 
-        playerDeath = GameObject.Find("death");
+        // _playerDeathUI = GameObject.Find("death");
 
         playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -71,17 +72,21 @@ public class UIController : MonoBehaviour {
         DamageAnimation = true;
     }
 	
+    public void ChangePlayerDeathState(bool playerIsDead) {
+        if (playerIsDead) {
+            playerDeathUI = (GameObject) Instantiate(_playerDeathUI);
+            var canvas = GameObject.Find("UICanvas");
+            playerDeathUI.transform.SetParent(canvas.transform, false);
+        } else {
+            Object.Destroy(playerDeathUI);
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
         RenderPlayerHealth(); 
         RenderPotionCooldown();
         RenderPotionAmmo();
-
-        if (playerController.dead) {
-            playerDeath.SetActive(true);
-        } else {
-            playerDeath.SetActive(false);
-        }
 
         if(DamageAnimationFirstFrame) {
             background.color = PotionColors.White;

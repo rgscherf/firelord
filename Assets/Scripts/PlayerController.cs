@@ -257,9 +257,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void PlayerDeath() {
-        dead = true;
-        transform.position = new Vector2(100f,100f);
-        entities.Kill(transform.position);
+        if (!dead) {
+            dead = true;
+            transform.position = new Vector2(100f,100f);
+            entities.Kill(transform.position);
+            uiController.ChangePlayerDeathState(true);
+        }
     }
 
     void InputFire() {
