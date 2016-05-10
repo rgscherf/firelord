@@ -23,6 +23,12 @@ public class UIController : MonoBehaviour {
     Text Spineammo;
     Text Venomammo;
 
+    GameObject tutroom1;
+    GameObject tutroom2;
+    GameObject tutroom3;
+    GameObject tutroom4;
+    GameObject[] tutrooms;
+
     SpriteRenderer background;
 
     public GameObject _playerDeathUI;
@@ -39,6 +45,26 @@ public class UIController : MonoBehaviour {
     void Awake () {
         playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        tutroom1 = transform.Find("UICanvas").Find("room1").gameObject;
+        tutroom2 = transform.Find("UICanvas").Find("room2").gameObject;
+        tutroom3 = transform.Find("UICanvas").Find("room3").gameObject;
+        tutroom4 = transform.Find("UICanvas").Find("room4").gameObject;
+        tutrooms = new[] {tutroom1, tutroom2, tutroom3, tutroom4};
+        ClearTutoral();
+    }
+
+    public void ClearTutoral() {
+        foreach (var r in tutrooms) {
+            r.SetActive(false);
+        }
+    }
+
+    public void SetRoom(int room) {
+        ClearTutoral();
+        if (room ==5) { return; }
+        Debug.Log(room);
+        tutrooms[room - 1].SetActive(true);
     }
 
 	void Start () {

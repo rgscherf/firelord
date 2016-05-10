@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"World",
+				"WorldToViewportPoint(Vector3 position)	Vector3"
+			],
+			[
+				"Set",
+				"SetRoom	(GameController.cs)"
+			],
+			[
+				"Update",
+				"UpdateTutorial"
+			],
+			[
+				"tutorial",
+				"tutorialMessages"
+			],
+			[
+				"tutor",
+				"tutorialMessages"
+			],
+			[
+				"tut",
+				"tutorialMessages"
+			],
+			[
+				"Instantiate",
+				"Instantiate(_tutorialMessages"
+			],
+			[
 				"veom",
 				"venomammo"
 			],
@@ -486,34 +514,6 @@
 			[
 				"attackcu",
 				"attackWindupCurrent"
-			],
-			[
-				"attackCool",
-				"attackCooldown	float"
-			],
-			[
-				"attackCoolD",
-				"attackCooldownCurrent"
-			],
-			[
-				"attack",
-				"attackDistance"
-			],
-			[
-				"GetCil",
-				"GetChild(int index)	Transform"
-			],
-			[
-				"chi",
-				"GetChild(int index)	Transform"
-			],
-			[
-				"movem",
-				"movementVector"
-			],
-			[
-				"startpa",
-				"StartPath(Vector3 start, Vector3 end, OnPathDelegate callback)	Path"
 			]
 		]
 	},
@@ -553,6 +553,7 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/TutorialController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
@@ -601,7 +602,7 @@
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -615,6 +616,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"_tutorialMessages",
+			"_tutorial",
 			"1f",
 			"playerDeathUI",
 			"playerDeath",
@@ -740,8 +743,7 @@
 			"geoparent",
 			"mo",
 			"child",
-			"1f",
-			", "
+			"1f"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -758,7 +760,7 @@
 	},
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -773,11 +775,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -802,7 +811,7 @@
 	"pinned_build_system": "",
 	"replace":
 	{
-		"height": 52.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -812,7 +821,27 @@
 		"selected_items":
 		[
 			[
+				"game",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
 				"uicon",
+				"Assets/Scripts/UIController.cs"
+			],
+			[
+				"tutor",
+				"Assets/Scripts/TutorialController.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"tutorialcon",
+				"Assets/Scripts/TutorialController.cs"
+			],
+			[
+				"uicontroller",
 				"Assets/Scripts/UIController.cs"
 			],
 			[
@@ -836,20 +865,12 @@
 				"Assets/Scripts/UIController.cs"
 			],
 			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
-			],
-			[
 				"camera",
 				"Assets/Scripts/CameraController.cs"
 			],
 			[
 				"entities",
 				"Assets/Scripts/Entities.cs"
-			],
-			[
-				"game",
-				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"health",
@@ -1208,12 +1229,12 @@
 	{
 		"_vintageous_last_buffer_search": "_tut",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_big_f",
-		"_vintageous_last_character_search": ".",
+		"_vintageous_last_char_search_command": "vi_t",
+		"_vintageous_last_character_search": ",",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
-			"_cmdline_cd": "/Users/rgscherf/projects/unity/potionlord/Assets/Scripts"
+			"_cmdline_cd": "/Applications/Sublime Text.app/Contents/MacOS"
 		}
 	},
 	"show_minimap": true,

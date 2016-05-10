@@ -283,7 +283,7 @@ public class PlayerController : MonoBehaviour {
 
     void InputFire() {
         if (Input.GetAxis("Fire") != 1 && firing) {
-            if (blastCooldownCurrent > blastCooldown && blastammo > 0) {
+            if (blastCooldownCurrent > blastCooldown && blastammo > 0 && currentPotion == Potion.Blast) {
                 uiController.PotionSwap(currentPotion, AmmoCount(currentPotion) - 1);
                 ReleaseFire();
             }

@@ -33,8 +33,6 @@ public class GameController : MonoBehaviour {
     UIController uiController;
     PlayerController playerController;
 
-    public GameObject _tutorialMessages;
-
     bool endoflevel;
     float panlength = 2f;
 
@@ -68,14 +66,31 @@ public class GameController : MonoBehaviour {
         }
 
     }
+
+    void TutorialTextCheck() {
+        if(level == 0) {
+            uiController.SetRoom(currentRoom);
+        } else {
+            uiController.ClearTutoral();
+        }
+    }
+    
+    void UpdateTutorial() {
+        if (level != 0) {
+            return;
+        } 
+        uiController.SetRoom(currentRoom);
+    }
+
     void GenerateLevel () {
+        level += 1;
         endoflevel = false;
         SwapLevelStats();
         TreardownLevel();
-        level += 1;
         highestRoomCompleted = 0;
         currentRoom = 1;
         allGeometry = null;
+        TutorialTextCheck();
 
         doorsInRoom = new List<GameObject>();
         finalDoorsInRoom = new List<GameObject>();
@@ -97,16 +112,11 @@ public class GameController : MonoBehaviour {
             }
         }
 
-        // tutorial stuff
-        // var tut = GameObject.FindGameObjectWithTag("Tutorial");
-        // Object.Destroy(tut);
-
-        // if (level == 0) {
-        //     Instantiate(_tutorialMessages, new Vector2(0.2318467f, 1.47479f), Quaternion.identity);
-        // } 
-
         SetupRoom(currentRoom, player);
     }
+
+
+
 
     void SwapLevelStats() {
         lastLevelTime = thisLevelTime;
@@ -119,6 +129,8 @@ public class GameController : MonoBehaviour {
     }
 
     void SetupRoom(int room, GameObject player) {
+
+        UpdateTutorial();
 
         gameCamera.ChangeRoom(currentRoom);
         mobsInRoom = 0;
@@ -230,6 +242,7 @@ public class GameController : MonoBehaviour {
     public void RoomChangeSignal(int signal) {
         if (mobsInRoom == 0) {
             if (signal == 5 ) {
+                uiController.ClearTutoral();
                 EndOfLevelPan();
             } else if (signal != currentRoom) {
                 currentRoom = signal;
