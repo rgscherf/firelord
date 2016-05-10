@@ -82,8 +82,10 @@ public class PlayerController : MonoBehaviour {
     GameObject rollOverlay1;
     GameObject rollOverlay2;
 
-    const float timeToFinishRoll = 0.75f;
+    const float timeToFinishRoll = 0.85f;
     float timeToFinishRollCurrent;
+
+    const float DifferenceBetweenRollGraphicsAndEndOfRoll = 0.2f;
 
     const float rollCooldown = 0.75f;
     float rollCooldownCurrent;
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour {
         get { return _currentPotion; }
         set {
             _currentPotion = value;
-            uiController.PotionSwap(value);
+            uiController.PotionSwap(value, AmmoCount(value));
         }
     }
 
@@ -235,12 +237,12 @@ public class PlayerController : MonoBehaviour {
         rollOverlay1 = (GameObject) Instantiate(_rollOverlay1, gameObject.transform.position, Quaternion.identity);
         rollOverlay1.GetComponent<Rigidbody2D>().AddTorque(1200f);
         rollOverlay1.GetComponent<SpriteRenderer>().color = PotionColors.GetColor(currentPotion);
-        Object.Destroy(rollOverlay1, timeToFinishRoll);
+        Object.Destroy(rollOverlay1, timeToFinishRoll - DifferenceBetweenRollGraphicsAndEndOfRoll);
 
         rollOverlay2 = (GameObject) Instantiate(_rollOverlay2, gameObject.transform.position, Quaternion.identity);
         rollOverlay2.GetComponent<Rigidbody2D>().AddTorque(1200f);
         rollOverlay2.GetComponent<SpriteRenderer>().color = PotionColors.GetColor(currentPotion);
-        Object.Destroy(rollOverlay2, timeToFinishRoll);
+        Object.Destroy(rollOverlay2, timeToFinishRoll - DifferenceBetweenRollGraphicsAndEndOfRoll);
     }
 
     void ReleaseFire() {
@@ -256,6 +258,20 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+    public int AmmoCount(Potion request) {
+        switch (request) {
+            case Potion.Blast:
+                return blastammo;
+            case Potion.Quick:
+                return quickammo;
+            case Potion.Spine:
+                return spineammo;
+            case Potion.Venom:
+                return venomammo;
+        }
+        return 0;
+    }
+    
     public void PlayerDeath() {
         if (!dead) {
             dead = true;
@@ -268,6 +284,7 @@ public class PlayerController : MonoBehaviour {
     void InputFire() {
         if (Input.GetAxis("Fire") != 1 && firing) {
             if (blastCooldownCurrent > blastCooldown && blastammo > 0) {
+                uiController.PotionSwap(currentPotion, AmmoCount(currentPotion) - 1);
                 ReleaseFire();
             }
 
@@ -280,7 +297,7 @@ public class PlayerController : MonoBehaviour {
                 case Potion.None:
                     break;
                 case Potion.Blast:
-                    if(blastCooldownCurrent > blastCooldown) {
+                    if(blastCooldownCurrent > blastCooldown && blastammo > 0) {
                         blastHoldStrength += Time.deltaTime * blastWindupSpeed;
                         BlastGuidePaint();
                     }
@@ -297,6 +314,7 @@ public class PlayerController : MonoBehaviour {
                 default:
                     break;
             }
+            uiController.PotionSwap(currentPotion, AmmoCount(currentPotion));
         }
     }
 
@@ -391,6 +409,9 @@ public class PlayerController : MonoBehaviour {
     }
 
     public bool ReceivePotion(Potion newPotion) {
+        if(newPotion == currentPotion) {
+            uiController.PotionSwap(newPotion, AmmoCount(newPotion) + 1);
+        }
         switch (newPotion) {
             case Potion.Blast:
                 if (blastammo >= 9) {

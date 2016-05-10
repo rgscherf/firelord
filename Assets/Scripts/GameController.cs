@@ -218,7 +218,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void ButtonDispatch(Potion dispatch) {
-        uiController.PotionSwap(dispatch);
+        uiController.PotionSwap(dispatch, playerController.AmmoCount(dispatch));
     }
 
     void EndOfLevelPan() {

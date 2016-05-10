@@ -15,6 +15,8 @@ public static class PotionColors {
     public static Color Danger = new Color(1f, 0.632f, 0f, 1f);
 
     // basic color
+
+    public static Color Gray = new Color(0.5f,0.5f,0.5f,1f);
     public static Color White = new Color(1f,1f,1f,1f);
     // public static Color White = new Color(0.75f,0.75f,0.75f,1f);
 
@@ -31,6 +33,8 @@ public static class PotionColors {
                 return PotionColors.Spine;
             case Potion.Venom:
                 return PotionColors.Venom;
+            case Potion.None:
+                return PotionColors.Gray;
             default:
                 return PotionColors.White;
         }

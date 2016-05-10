@@ -33,8 +33,14 @@ public class UIController : MonoBehaviour {
     bool DamageAnimationFirstFrame;
     bool DamageAnimation;
 
+    Potion lastPotion;
 
-	// Use this for initialization
+
+    void Awake () {
+        playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
+
 	void Start () {
         BlastImage = GameObject.Find("blast-image").GetComponent<Image>();
         QuickImage = GameObject.Find("quick-image").GetComponent<Image>();
@@ -57,13 +63,13 @@ public class UIController : MonoBehaviour {
 
         // _playerDeathUI = GameObject.Find("death");
 
-        playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         maincamera = Camera.main;
 
         background = GameObject.Find("spritebackground").GetComponent<SpriteRenderer>();
 
         animationTime = playerHealth.invulntimer;
+
+        lastPotion = Potion.None;
 	}
 
 
@@ -120,17 +126,20 @@ public class UIController : MonoBehaviour {
     }
 
     void RenderPotionCooldown() {
-        BlastImage.color = playerController.blastCooldownCurrent > playerController.blastCooldown ? PotionColors.Blast : PotionColors.Blast * new Color(1f,1f,1f,0.25f);
-        QuickImage.color = playerController.quickCooldownCurrent > playerController.quickCooldown ? PotionColors.Quick : PotionColors.Quick * new Color(1f,1f,1f,0.25f);
-        SpineImage.color = playerController.spineCooldownCurrent > playerController.spineCooldown ? PotionColors.Spine : PotionColors.Spine * new Color(1f,1f,1f,0.25f);
-        VenomImage.color = playerController.venomCooldownCurrent > playerController.venomCooldown ? PotionColors.Venom : PotionColors.Venom * new Color(1f,1f,1f,0.25f);
+        BlastImage.color = playerController.blastCooldownCurrent < playerController.blastCooldown || playerController.blastammo == 0 ? PotionColors.Gray : PotionColors.Blast;
+        QuickImage.color = playerController.quickCooldownCurrent < playerController.quickCooldown || playerController.quickammo == 0 ? PotionColors.Gray : PotionColors.Quick;
+        SpineImage.color = playerController.spineCooldownCurrent < playerController.spineCooldown || playerController.spineammo == 0 ? PotionColors.Gray : PotionColors.Spine;
+        VenomImage.color = playerController.venomCooldownCurrent < playerController.venomCooldown || playerController.venomammo == 0 ? PotionColors.Gray : PotionColors.Venom;
     }
 
     public void UpdateRoom() {
-        PotionSwap(playerController.currentPotion);
+        PotionSwap(playerController.currentPotion, playerController.AmmoCount(playerController.currentPotion));
     }
 
-    public void PotionSwap(Potion dispatch) {
+    public void PotionSwap(Potion dispatch, int ammo) {
+        if (ammo == 0 || dispatch == Potion.None) { 
+            dispatch = Potion.None; 
+        }
         var activeGeometry = GameObject.FindGameObjectsWithTag("Geometry");
         foreach (var g in activeGeometry) {
             var geo = g.GetComponent<GeometryController>();

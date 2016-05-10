@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"veom",
+				"venomammo"
+			],
+			[
+				"player",
+				"playerController"
+			],
+			[
+				"ui",
+				"uiController"
+			],
+			[
+				"curr",
+				"currentPotion	(PlayerController.cs)"
+			],
+			[
+				"Potion",
+				"PotionSwap	(GameController.cs)"
+			],
+			[
 				"Getk",
 				"GetKeyDown(string name)	bool"
 			],
@@ -90,10 +110,6 @@
 			[
 				"camera",
 				"cameraOriginalPos"
-			],
-			[
-				"Potion",
-				"PotionColors"
 			],
 			[
 				"dama",
@@ -278,10 +294,6 @@
 			[
 				"blastc",
 				"blastCooldownCurrent"
-			],
-			[
-				"player",
-				"playerController"
 			],
 			[
 				"slow",
@@ -502,18 +514,6 @@
 			[
 				"startpa",
 				"StartPath(Vector3 start, Vector3 end, OnPathDelegate callback)	Path"
-			],
-			[
-				"repath",
-				"repath"
-			],
-			[
-				"Rot",
-				"Rotate(Vector3 axis, float angle)	void"
-			],
-			[
-				"l",
-				"Length	int { get; }"
 			]
 		]
 	},
@@ -553,6 +553,10 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
@@ -561,12 +565,10 @@
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/QuickPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/CameraController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/WizorbController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyOoze.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyWizardMovement.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PickupController.cs",
@@ -576,7 +578,6 @@
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryParentController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPuke.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PoisonController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BaseVenom.cs",
 		"/Users/rgscherf/Library/Application Support/Sublime Text 3/Packages/User/OmniSharpSublime.sublime-settings",
@@ -614,6 +615,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"1f",
+			"playerDeathUI",
+			"playerDeath",
 			"venomammo",
 			"death",
 			"dea",
@@ -808,16 +812,32 @@
 		"selected_items":
 		[
 			[
+				"uicon",
+				"Assets/Scripts/UIController.cs"
+			],
+			[
 				"player",
 				"Assets/Scripts/PlayerController.cs"
 			],
 			[
-				"gamecon",
+				"potioncol",
+				"Assets/Scripts/PotionColors.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"gameon",
 				"Assets/Scripts/GameController.cs"
 			],
 			[
-				"uicon",
+				"ui",
 				"Assets/Scripts/UIController.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"camera",
@@ -1024,10 +1044,6 @@
 				"Assets/Scripts/BaseVenom.cs"
 			],
 			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
 				"venomp",
 				"Assets/Scripts/VenomPotionController.cs"
 			],
@@ -1042,10 +1058,6 @@
 			[
 				"ven",
 				"Assets/Scripts/VenomPotionController.cs"
-			],
-			[
-				"ui",
-				"Assets/Scripts/UIController.cs"
 			],
 			[
 				"entit",
@@ -1102,10 +1114,6 @@
 			[
 				"entiti",
 				"Assets/Scripts/Entities.cs"
-			],
-			[
-				"potioncol",
-				"Assets/Scripts/PotionColors.cs"
 			],
 			[
 				"enemyf",
@@ -1198,10 +1206,10 @@
 	},
 	"settings":
 	{
-		"_vintageous_last_buffer_search": "shrap",
+		"_vintageous_last_buffer_search": "_tut",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_f",
-		"_vintageous_last_character_search": "j",
+		"_vintageous_last_char_search_command": "vi_big_f",
+		"_vintageous_last_character_search": ".",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
