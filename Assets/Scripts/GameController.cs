@@ -98,12 +98,12 @@ public class GameController : MonoBehaviour {
         }
 
         // tutorial stuff
-        var tut = GameObject.FindGameObjectWithTag("Tutorial");
-        Object.Destroy(tut);
+        // var tut = GameObject.FindGameObjectWithTag("Tutorial");
+        // Object.Destroy(tut);
 
-        if (level == 0) {
-            Instantiate(_tutorialMessages, new Vector2(0.2318467f, 1.47479f), Quaternion.identity);
-        } 
+        // if (level == 0) {
+        //     Instantiate(_tutorialMessages, new Vector2(0.2318467f, 1.47479f), Quaternion.identity);
+        // } 
 
         SetupRoom(currentRoom, player);
     }
