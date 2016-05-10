@@ -23,6 +23,8 @@ public class UIController : MonoBehaviour {
     Text Spineammo;
     Text Venomammo;
 
+    Text potionHelpText;
+
     GameObject tutroom1;
     GameObject tutroom2;
     GameObject tutroom3;
@@ -46,6 +48,8 @@ public class UIController : MonoBehaviour {
         playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
+        potionHelpText = GameObject.Find("potionHelpText").GetComponent<Text>();
+
         tutroom1 = transform.Find("UICanvas").Find("room1").gameObject;
         tutroom2 = transform.Find("UICanvas").Find("room2").gameObject;
         tutroom3 = transform.Find("UICanvas").Find("room3").gameObject;
@@ -62,8 +66,7 @@ public class UIController : MonoBehaviour {
 
     public void SetRoom(int room) {
         ClearTutoral();
-        if (room ==5) { return; }
-        Debug.Log(room);
+        if (room == 5) { return; }
         tutrooms[room - 1].SetActive(true);
     }
 
@@ -77,6 +80,7 @@ public class UIController : MonoBehaviour {
         Quickammo = GameObject.Find("quick-num").GetComponent<Text>();
         Spineammo = GameObject.Find("spine-num").GetComponent<Text>();
         Venomammo = GameObject.Find("venom-num").GetComponent<Text>();
+
 
         BlastImage.color = PotionColors.Blast;
         QuickImage.color = PotionColors.Quick;
@@ -171,6 +175,32 @@ public class UIController : MonoBehaviour {
             var geo = g.GetComponent<GeometryController>();
             geo.ColorSwap(dispatch);
         }
+        UpdateHelpText(dispatch, ammo);
+    }
+
+    void UpdateHelpText(Potion dispatch, int ammo) {
+        string text;
+        switch (dispatch) {
+            case Potion.Blast:
+                text = "Blast: Hold MOUSE1 to wind up. Inner ring damages, outer ring pushes.";
+                break;
+            case Potion.Quick:
+                text = "Quick: Fast projectile. Static charge can chain to other enemies.";
+                break;
+            case Potion.Spine:
+                text = "Spine: Sprout after short delay. Damage and greatly slow enemies.";
+                break;
+            case Potion.Venom:
+                text = "Venom: Sicken enemies. Steady damage over long period.";
+                break;
+            default:
+                text = "";
+                break;
+        }
+        if (potionHelpText == null) {
+            potionHelpText = GameObject.Find("potionHelpText").GetComponent<Text>();
+        }
+        potionHelpText.text = text;
     }
 
     void RenderPlayerHealth() {

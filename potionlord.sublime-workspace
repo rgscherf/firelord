@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"G",
+				"GetColor(Potion dispatch)	Color"
+			],
+			[
 				"World",
 				"WorldToViewportPoint(Vector3 position)	Vector3"
 			],
@@ -510,10 +514,6 @@
 			[
 				"ga",
 				"gameObject"
-			],
-			[
-				"attackcu",
-				"attackWindupCurrent"
 			]
 		]
 	},
@@ -616,6 +616,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"potionHelpText",
+			"TutorialCheck",
 			"_tutorialMessages",
 			"_tutorial",
 			"1f",
@@ -741,9 +743,7 @@
 			"MovingEntity",
 			"5f",
 			"geoparent",
-			"mo",
-			"child",
-			"1f"
+			"mo"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -775,18 +775,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -821,7 +814,11 @@
 		"selected_items":
 		[
 			[
-				"game",
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"gamecon",
 				"Assets/Scripts/GameController.cs"
 			],
 			[
@@ -829,12 +826,12 @@
 				"Assets/Scripts/UIController.cs"
 			],
 			[
-				"tutor",
-				"Assets/Scripts/TutorialController.cs"
+				"game",
+				"Assets/Scripts/GameController.cs"
 			],
 			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
+				"tutor",
+				"Assets/Scripts/TutorialController.cs"
 			],
 			[
 				"tutorialcon",
@@ -879,10 +876,6 @@
 			[
 				"tutorial",
 				"Assets/Scripts/TutorialText.cs"
-			],
-			[
-				"room",
-				"Assets/Scripts/Room.cs"
 			],
 			[
 				"quick",
@@ -1229,8 +1222,8 @@
 	{
 		"_vintageous_last_buffer_search": "_tut",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_t",
-		"_vintageous_last_character_search": ",",
+		"_vintageous_last_char_search_command": "vi_big_f",
+		"_vintageous_last_character_search": "=",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
