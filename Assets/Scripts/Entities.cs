@@ -23,6 +23,8 @@ public class Entities : MonoBehaviour {
     public GameObject ooze;
     public GameObject wizard;
     public GameObject wizorb;
+    public GameObject bigdog;
+    public GameObject bigdogattack;
 
     public GameObject ammoPickup;
     

@@ -11,7 +11,8 @@ public class EnemyWizard : MapObject {
     float attackCooldownCurrent;
     bool attacking;
 
-    const float windingUpTimer = 3f;
+    const float baseWindingUpTimer = 2f;
+    float windingUpTimer;
     float windingUpTimerCurrent;
     bool windingUp;
 
@@ -39,6 +40,7 @@ public class EnemyWizard : MapObject {
 	void Start () {
         baseColor = PotionColors.White;
         currentColor = baseColor;
+        spr = gameObject.GetComponent<SpriteRenderer>();
 
         entities = GameObject.Find("GameManager").GetComponent<Entities>();
         healthController = gameObject.GetComponent<HealthController>();
@@ -97,7 +99,7 @@ public class EnemyWizard : MapObject {
             } else if (healthdebit != 0) {
                 healthController.ReceiveDamage(healthdebit);
             }
-            currentColor = PotionColors.Venom;
+            currentColor = PotionColors.Venom + new Color (0.2f, 0.2f, 0.2f, 0f);
         } else {
             currentColor = baseColor;
         }
@@ -137,6 +139,7 @@ public class EnemyWizard : MapObject {
         coolingDownTimerCurrent = 0f;
     }
     void BeginAttackSequence() {
+        windingUpTimer = baseWindingUpTimer + Random.Range(-0.25f, 0.25f);
         attacking = true;
         windingUp = true;
     }
@@ -146,7 +149,6 @@ public class EnemyWizard : MapObject {
             poisoned = true;        
             currentColor = PotionColors.Venom;
             poisonController = new PoisonController();
-            // gameObject.AddComponent<VenomPuke>();
         }
     }
 

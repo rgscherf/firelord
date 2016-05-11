@@ -76,7 +76,7 @@ public class EnemyOoze : MapObject {
             } else if (healthdebit != 0) {
                 healthController.ReceiveDamage(healthdebit);
             }
-            currentColor = PotionColors.Venom;
+            currentColor = PotionColors.Venom + new Color (0.2f, 0.2f, 0.2f, 0f);
         } else {
             currentColor = baseColor;
         }
