@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 public class SpinePotionController : MonoBehaviour {
 
-    const float lifetime = 5f;
+    const float lifetime = 3f;
     const float spinSpeed = 60f;
     const int numThorns = 130;
     const float radius = 1.75f;
+    public int damageAtEndOfLife = 3;
 
     public float slowFactor = 0.75f;
-    public int shrapnelDamage = 1; 
+    public int shrapnelDamage = 2; 
 
     const float spawnTimer = 1f;
     float spawnTimerCurrent;

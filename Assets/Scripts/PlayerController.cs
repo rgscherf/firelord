@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     ////////////////////
     // vars for movement
     ////////////////////
-    const float speed = 9000;
+    const float speed = 12000;
     const float camRayLength = 100f;
 
     const float rollSpeedBoost = 2.5f;
@@ -122,7 +122,6 @@ public class PlayerController : MonoBehaviour {
         playerStart();
 
         blastGuide = gameObject.AddComponent<LineRenderer>();
-        blastGuide.material = new Material (Shader.Find("Particles/Additive"));
         blastGuide.SetWidth(0.01f, 0.01f);
         blastGuide.SetVertexCount(2);
         blastGuide.useWorldSpace = false;
@@ -148,8 +147,8 @@ public class PlayerController : MonoBehaviour {
 #region FixedUpdate
     void FixedUpdate() {
         if(dead) {return;}
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
         Move(h, v);
         // Turning();
         // Animating(h, v);

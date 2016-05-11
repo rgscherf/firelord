@@ -40,7 +40,7 @@ public class ParticleController : MonoBehaviour {
             var coll = Physics2D.OverlapPointAll(gameObject.transform.position);
             foreach (var c in coll) {
                 if (c.gameObject.tag == "MovingEntity") {
-                    c.GetComponent<HealthController>().ReceiveDamage(2);
+                    c.GetComponent<HealthController>().ReceiveDamage(spineController.shrapnelDamage);
                 }
             }
         }
@@ -92,7 +92,23 @@ public class ParticleController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void CallDeathTimer(float t) {
+    void DealDestroyDamage() {
+        var overlapped = Physics2D.OverlapPointAll(transform.position);
+        foreach (var o in overlapped) {
+            var go = o.gameObject;
+            if (go.tag == "MovingEntity") {
+                var hc = go.GetComponent<HealthController>();
+                if (hc != null) {
+                    hc.ReceiveDamage(spineController.damageAtEndOfLife);
+                }
+            }
+        }
+    }
+
+    void CallDeathTimer(float t, ParticleType thisparticle) {
+        if (thisparticle == ParticleType.spine) {
+            Invoke("DealDestroyDamage", t - 0.05f);
+        }
         Object.Destroy(gameObject, t);
     }
 
@@ -137,7 +153,7 @@ public class ParticleController : MonoBehaviour {
         if(flicker) {
             flickerColorPalette = new Color[] {col, col * new Color(1,1,1,0.60f), col * new Color(1,1,1,0.85f)};
         }
-        CallDeathTimer(timer);
+        CallDeathTimer(timer, whoInstantiated);
     }
 
     public void ApplyForce(Vector2 forceDirection) {
@@ -198,12 +214,12 @@ public class ParticleController : MonoBehaviour {
                     if (entrigid != null) {
                         entrigid.velocity *= 0.75f;
                     }
-                    if (Random.value < 0.75 * Time.deltaTime) {
-                        var hc = go.GetComponent<HealthController>();
-                        if (hc != null) {
-                            hc.ReceiveDamage(1);
-                        }
-                    }
+                    // if (Random.value < 0.75 * Time.deltaTime) {
+                    //     var hc = go.GetComponent<HealthController>();
+                    //     if (hc != null) {
+                    //         hc.ReceiveDamage(1);
+                    //     }
+                    // }
                 }
                 break;
 

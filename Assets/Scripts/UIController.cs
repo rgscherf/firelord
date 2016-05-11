@@ -43,6 +43,8 @@ public class UIController : MonoBehaviour {
 
     Potion lastPotion;
 
+    bool showTutorials = false;
+
 
     void Awake () {
         playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
@@ -65,9 +67,11 @@ public class UIController : MonoBehaviour {
     }
 
     public void SetRoom(int room) {
-        ClearTutoral();
-        if (room == 5) { return; }
-        tutrooms[room - 1].SetActive(true);
+        if (showTutorials) {
+            ClearTutoral();
+            if (room == 5) { return; }
+            tutrooms[room - 1].SetActive(true);
+        }
     }
 
 	void Start () {
@@ -167,6 +171,7 @@ public class UIController : MonoBehaviour {
     }
 
     public void PotionSwap(Potion dispatch, int ammo) {
+        UpdateHelpText(dispatch, ammo);
         if (ammo == 0 || dispatch == Potion.None) { 
             dispatch = Potion.None; 
         }
@@ -175,7 +180,6 @@ public class UIController : MonoBehaviour {
             var geo = g.GetComponent<GeometryController>();
             geo.ColorSwap(dispatch);
         }
-        UpdateHelpText(dispatch, ammo);
     }
 
     void UpdateHelpText(Potion dispatch, int ammo) {
@@ -188,10 +192,10 @@ public class UIController : MonoBehaviour {
                 text = "Quick: Fast projectile. Static charge can chain to other enemies.";
                 break;
             case Potion.Spine:
-                text = "Spine: Sprout after short delay. Damage and greatly slow enemies.";
+                text = "Spine: Sprout after delay. Greatly slow enemies. Damage at end of life.";
                 break;
             case Potion.Venom:
-                text = "Venom: Sicken enemies. Steady damage over long period.";
+                text = "Venom: Sicken many enemies. Steady damage over long period.";
                 break;
             default:
                 text = "";

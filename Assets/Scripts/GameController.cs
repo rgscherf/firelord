@@ -83,6 +83,12 @@ public class GameController : MonoBehaviour {
     }
 
     void GenerateLevel () {
+        var leftoverpotions = GameObject.FindGameObjectsWithTag("Pickup");
+        
+        foreach (var p in leftoverpotions) {
+            Object.Destroy(p);
+        }
+
         level += 1;
         endoflevel = false;
         SwapLevelStats();

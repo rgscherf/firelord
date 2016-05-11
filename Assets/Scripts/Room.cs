@@ -126,7 +126,7 @@ public class Room : MonoBehaviour {
             // special rooms for tutorial / intro will go here.
             switch (roomPositionInLevel) {
                 case 1:
-                    return baseRoom;
+                    return tut1;
                     break;
                 case 2:
                     return tut2;
@@ -294,6 +294,24 @@ XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX"
 
 };
 
+
+    const string tut1 =
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+D.............................D
+D............XX...............D
+D............XX...............D
+D.............................D
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX";
 
     const string tut2 =
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX

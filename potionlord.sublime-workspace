@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"Find",
+				"FindGameObjectsWithTag(string tag)	GameObject[]"
+			],
+			[
+				"spine",
+				"spineController"
+			],
+			[
+				"Overlappoin",
+				"OverlapPointAll(Vector2 point)	Collider2D[]"
+			],
+			[
+				"Phy",
+				"Physics2D"
+			],
+			[
 				"G",
 				"GetColor(Potion dispatch)	Color"
 			],
@@ -498,22 +514,6 @@
 			[
 				"base",
 				"baseColorPalette"
-			],
-			[
-				"Gam",
-				"GameObject	GameObject"
-			],
-			[
-				"game",
-				"gameObject"
-			],
-			[
-				"did",
-				"didDie"
-			],
-			[
-				"ga",
-				"gameObject"
 			]
 		]
 	},
@@ -553,9 +553,12 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PoisonController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/SpinePotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/TutorialController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
@@ -573,13 +576,10 @@
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFollow.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyWizardMovement.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PickupController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/SpinePotionController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ChestController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GeometryParentController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/MapObject.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPuke.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PoisonController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BaseVenom.cs",
 		"/Users/rgscherf/Library/Application Support/Sublime Text 3/Packages/User/OmniSharpSublime.sublime-settings",
 		"/Users/rgscherf/Library/Application Support/Sublime Text 3/Packages/OmniSharp/OmniSharpSublime.sublime-settings",
@@ -616,6 +616,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"typeof",
+			"debug",
+			"blastGuide",
+			"BlastGuide",
+			"blastGuide",
+			"BlastGuide",
+			"blastGuide",
 			"potionHelpText",
 			"TutorialCheck",
 			"_tutorialMessages",
@@ -736,14 +743,7 @@
 			"ButtonDispatch",
 			"buttonDispatch",
 			"gm",
-			"geoparent",
-			"1",
-			"playerPos",
-			"possibleSpawnPositionsArray",
-			"MovingEntity",
-			"5f",
-			"geoparent",
-			"mo"
+			"geoparent"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -814,11 +814,15 @@
 		"selected_items":
 		[
 			[
-				"room",
-				"Assets/Scripts/Room.cs"
+				"spine",
+				"Assets/Scripts/SpinePotionController.cs"
 			],
 			[
-				"gamecon",
+				"part",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"game",
 				"Assets/Scripts/GameController.cs"
 			],
 			[
@@ -826,7 +830,27 @@
 				"Assets/Scripts/UIController.cs"
 			],
 			[
-				"game",
+				"poison",
+				"Assets/Scripts/PoisonController.cs"
+			],
+			[
+				"partic",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"gamecon",
 				"Assets/Scripts/GameController.cs"
 			],
 			[
@@ -842,16 +866,8 @@
 				"Assets/Scripts/UIController.cs"
 			],
 			[
-				"player",
-				"Assets/Scripts/PlayerController.cs"
-			],
-			[
 				"potioncol",
 				"Assets/Scripts/PotionColors.cs"
-			],
-			[
-				"playercon",
-				"Assets/Scripts/PlayerController.cs"
 			],
 			[
 				"gameon",
@@ -946,20 +962,8 @@
 				"Assets/Scripts/EnemyWizard.cs"
 			],
 			[
-				"spine",
-				"Assets/Scripts/SpinePotionController.cs"
-			],
-			[
 				"blast",
 				"Assets/Scripts/BlastPotionController.cs"
-			],
-			[
-				"part",
-				"Assets/Scripts/ParticleController.cs"
-			],
-			[
-				"partic",
-				"Assets/Scripts/ParticleController.cs"
 			],
 			[
 				"parti",
@@ -1032,10 +1036,6 @@
 			[
 				"en",
 				"Assets/Scripts/Entities.cs"
-			],
-			[
-				"poison",
-				"Assets/Scripts/PoisonController.cs"
 			],
 			[
 				"ve",
@@ -1222,8 +1222,8 @@
 	{
 		"_vintageous_last_buffer_search": "_tut",
 		"_vintageous_last_buffer_search_command": "vi_slash",
-		"_vintageous_last_char_search_command": "vi_big_f",
-		"_vintageous_last_character_search": "=",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": "1",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
@@ -1233,7 +1233,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 293.0,
 	"status_bar_visible": true,
 	"template_settings":
