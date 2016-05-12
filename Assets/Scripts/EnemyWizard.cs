@@ -90,7 +90,6 @@ public class EnemyWizard : MapObject {
         }
 
         poisonComeDownCurrent += Time.deltaTime;
-
         if (poisoned) {
             poisonComeDownCurrent = 0f;
             int healthdebit = poisonController.Tick(Time.deltaTime);
@@ -103,7 +102,6 @@ public class EnemyWizard : MapObject {
         } else {
             currentColor = baseColor;
         }
-
         if(isFlickering) {
             Flicker();
         } else {

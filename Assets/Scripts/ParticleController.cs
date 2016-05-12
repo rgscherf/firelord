@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 
-public enum ParticleType { venom, ooze, quick, spine, effects}
+public enum ParticleType { venom, ooze, quick, spine, effects, enemyattack }
 
 public class ParticleController : MonoBehaviour {
 
@@ -166,6 +166,15 @@ public class ParticleController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         GameObject go = other.gameObject;
         switch (instantiator) {
+
+            case ParticleType.enemyattack:
+                if(go.tag == "Player") {
+                    var hc = go.GetComponent<HealthController>();
+                    if (hc != null) {
+                        hc.ReceiveDamage(1);
+                    }
+                }
+                break;
 
             case ParticleType.venom:
                 if(go.tag == "Mist") {

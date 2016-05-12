@@ -25,6 +25,8 @@ public class Entities : MonoBehaviour {
     public GameObject wizorb;
     public GameObject bigdog;
     public GameObject bigdogattack;
+    public GameObject firespirit;
+    public GameObject firespiritattack;
 
     public GameObject ammoPickup;
     
