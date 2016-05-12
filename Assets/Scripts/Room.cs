@@ -92,6 +92,8 @@ public class Room : MonoBehaviour {
                 return entities.firespirit;
             case 'C':
                 return entities.chest;
+            case 'G':
+                return entities.shrinegoat;
             case 'w':
                 return entities.wizard;
             case 'D':
@@ -151,11 +153,18 @@ public class Room : MonoBehaviour {
         switch (level) {
             case 1:
                 return level1[Random.Range(0, level1.Length)];
-            default:
+            case 2:
                 return level1[Random.Range(0, level1.Length)];
+                // return level2[Random.Range(0, level2.Length)];
         }
         return "";
     }
+
+    // readonly string[] level2 = {
+    // };
+
+
+
 
     readonly string[] level1 = {
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
@@ -176,7 +185,7 @@ X.............................X
 XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
 X.............................X
-X.............................X
+X........................d....X
 X.............................X
 X......XXXXX.......XXXXX......X
 X......XXXXX.......XXXXX......X
@@ -291,7 +300,7 @@ D..............C..............D
 D.............................D
 D............XXXXX............D
 X.............................X
-X.............................X
+X..................G..........X
 X.............................X
 X.............................X
 X.............................X
@@ -300,7 +309,7 @@ XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
 X.............................X
 X........X..........X.........X
 X........X..........X.........X
-X........X..........X.........X
+X........X....G.....X.........X
 X........X..........X.........X
 D........XX........XX.........D
 D.............................D
@@ -315,7 +324,7 @@ XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
 X.............................X
 X.............................X
-X..........X......X...........X
+X..........X..G...X...........X
 X..........X......X...........X
 X..........XXXXXXXX...........X
 D.............................D

@@ -469,6 +469,36 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    public void ZeroOutAmmo(Potion pot) {
+        switch (pot) {
+            case Potion.Blast:
+                blastammo = 0;
+                break;
+            case Potion.Quick:
+                quickammo = 0;
+                break;
+            case Potion.Spine:
+                spineammo = 0;
+                break;
+            case Potion.Venom:
+                venomammo = 0;
+                break;
+        }
+    }
+
+    // public void GoatShrine(Potion pot) {
+    //     int toDistribute = AmmoCount(pot);
+    //     int guaranteed = (int) Mathf.Floor(toDistribute / 3.0f);
+    //     int remainder = toDistribute % 3;
+    //     if (pot != Potion.Blast) { blastammo = Mathf.Min(9, blastammo + guaranteed); }
+    //     if (pot != Potion.Quick) { quickammo = Mathf.Min(9, quickammo + guaranteed); }
+    //     if (pot != Potion.Spine) { spineammo = Mathf.Min(9, spineammo + guaranteed); }
+    //     if (pot != Potion.Venom) { venomammo = Mathf.Min(9, venomammo + guaranteed); }
+    //     int remdist = 0;
+    //     while (remdist != remainder) {
+    //     }
+    // }
+
 #endregion
 
 }

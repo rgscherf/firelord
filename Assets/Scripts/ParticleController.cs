@@ -5,6 +5,21 @@ public enum ParticleType { venom, ooze, quick, spine, effects, enemyattack }
 
 public class ParticleController : MonoBehaviour {
 
+    public static Potion ParticleTypeToPotion(ParticleType part) {
+        switch (part) {
+            case ParticleType.venom:
+                return Potion.Venom;
+            case ParticleType.quick:
+                return Potion.Quick;
+            case ParticleType.spine:
+                return Potion.Spine;
+            case ParticleType.effects:
+                return Potion.Blast;
+            default:
+                return Potion.None;
+        }
+    }
+
     public ParticleType instantiator;
 
     SpriteRenderer spr;
