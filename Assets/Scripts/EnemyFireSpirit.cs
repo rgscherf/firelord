@@ -42,7 +42,7 @@ public class EnemyFireSpirit : MapObject {
         game = GameObject.Find("GameManager").GetComponent<GameController>();
         entities = GameObject.Find("GameManager").GetComponent<Entities>();
         healthController = gameObject.GetComponent<HealthController>();
-        healthController.health = healthController.defaultEnemyHealth;
+        healthController.health = 4;
         healthController.invulntimer = healthController.defaultEnemyInvulnTimer;
         spr = gameObject.GetComponent<SpriteRenderer>();
 
@@ -56,8 +56,6 @@ public class EnemyFireSpirit : MapObject {
 
     void Update() {
 
-        Vector2 pos = (Vector2)transform.position + ((Vector2) Random.insideUnitCircle * 0.1f);
-        transform.position = pos;
         switch (state) {
             case State.spawning:
                 IncrementSpawning();
@@ -107,6 +105,7 @@ public class EnemyFireSpirit : MapObject {
 
     void IncrementCasting() {
         castingTimerCurrent += Time.deltaTime;
+        transform.position = (Vector2)transform.position + ((Vector2) Random.insideUnitCircle * 0.1f);
 
         if (castingTimerCurrent > castingTimer) {
             InitiateAttack();

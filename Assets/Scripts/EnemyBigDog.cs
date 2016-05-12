@@ -51,7 +51,7 @@ public class EnemyBigDog : MapObject {
         rigid = gameObject.GetComponent<Rigidbody2D>();
         entities = GameObject.Find("GameManager").GetComponent<Entities>();
         healthController = gameObject.GetComponent<HealthController>();
-        healthController.health = healthController.defaultEnemyHealth;
+        healthController.health = 9;
         healthController.invulntimer = healthController.defaultEnemyInvulnTimer;
 	}
 	

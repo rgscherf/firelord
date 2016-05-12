@@ -73,7 +73,7 @@ public class EnemyWizard : MapObject {
             }
         }
         if (windingUp) {
-            const float windupshake = 0.09f;
+            const float windupshake = 0.01f;
             transform.position = (Vector2) transform.position + new Vector2(Random.Range(-windupshake, windupshake), Random.Range(-windupshake, windupshake));
             windingUpTimerCurrent += Time.deltaTime;
             if(windingUpTimerCurrent > windingUpTimer) {

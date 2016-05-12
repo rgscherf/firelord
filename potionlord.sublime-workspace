@@ -3,6 +3,102 @@
 	{
 		"selected_items":
 		[
+			[
+				"damag",
+				"damagedUnits"
+			],
+			[
+				"Collision",
+				"Collision2D	Collision2D"
+			],
+			[
+				"shrap",
+				"spineShrapnel	bool"
+			],
+			[
+				"gameover",
+				"gameovertext"
+			],
+			[
+				"this",
+				"thisLevelThrown	int"
+			],
+			[
+				"Get",
+				"GetComponent<T>()	T"
+			],
+			[
+				"las",
+				"lastLevelTime	float"
+			],
+			[
+				"Getcom",
+				"GetComponent<T>()	T"
+			],
+			[
+				"ui",
+				"uiController"
+			],
+			[
+				"Collider",
+				"Collider2D	Collider2D"
+			],
+			[
+				"getcom",
+				"GetComponent<T>()	T"
+			],
+			[
+				"q",
+				"Quick	Potion"
+			],
+			[
+				"actioncool",
+				"actionCooldownCurrent"
+			],
+			[
+				"gam",
+				"gameObject"
+			],
+			[
+				"action",
+				"actionCooldownCurrent"
+			],
+			[
+				"Collisi",
+				"Collision2D	Collision2D"
+			],
+			[
+				"Potion",
+				"PotionColors	PotionColors"
+			],
+			[
+				"fire",
+				"firespirit	GameObject"
+			],
+			[
+				"start",
+				"startingPos"
+			],
+			[
+				"starting",
+				"startingDistance"
+			],
+			[
+				"scale",
+				"scale(GameObject gameObject, Vector3 to, float time)	LTDescr"
+			],
+			[
+				"Particl",
+				"ParticleType"
+			],
+			[
+				"get",
+				"GetComponent<T>()	T"
+			],
+			[
+				"rotatear",
+				"RotateAround(Vector3 point, Vector3 axis, float angle)	void"
+			]
 		]
 	},
 	"build_system": "",
@@ -12,12 +108,12 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 168.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -37,10 +133,30 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyBigDog.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyFireSpirit.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/EnemyWizard.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/VenomPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PoisonController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineGoat.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PickupController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/SpinePotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/QuickPotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Prefabs/items/thrownQuick.prefab",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ChestController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Firespiritattack.cs"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -54,6 +170,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"windupsha",
+			"spinecon",
+			"shrapne",
+			"Spawning",
+			"init",
+			"toDistribute",
+			" };",
+			");",
+			"Blast",
+			"1",
+			"case",
+			"damageat"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -70,11 +198,11 @@
 	},
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 27.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"layout":
 	{
@@ -99,14 +227,22 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 124.0
+	},
 	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
 	{
 		"height": 0.0
 	},
 	"pinned_build_system": "",
 	"replace":
 	{
-		"height": 0.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -115,6 +251,142 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"player",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"spine",
+				"Assets/Scripts/SpinePotionController.cs"
+			],
+			[
+				"wizard",
+				"Assets/Scripts/EnemyWizard.cs"
+			],
+			[
+				"spinecon",
+				"Assets/Scripts/SpinePotionController.cs"
+			],
+			[
+				"particl",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"uicon",
+				"Assets/Scripts/UIController.cs"
+			],
+			[
+				"particle",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"fires",
+				"Assets/Scripts/EnemyFireSpirit.cs"
+			],
+			[
+				"wizr",
+				"Assets/Scripts/EnemyWizard.cs"
+			],
+			[
+				"poison",
+				"Assets/Scripts/PoisonController.cs"
+			],
+			[
+				"venom",
+				"Assets/Scripts/VenomPotionController.cs"
+			],
+			[
+				"blast",
+				"Assets/Scripts/BlastPotionController.cs"
+			],
+			[
+				"big",
+				"Assets/Scripts/EnemyBigDog.cs"
+			],
+			[
+				"fire",
+				"Assets/Scripts/EnemyFireSpirit.cs"
+			],
+			[
+				"room",
+				"Assets/Scripts/Room.cs"
+			],
+			[
+				"goat",
+				"Assets/Scripts/ShrineGoat.cs"
+			],
+			[
+				"spinec",
+				"Assets/Scripts/SpinePotionController.cs"
+			],
+			[
+				"quickp",
+				"Assets/Scripts/QuickPotionController.cs"
+			],
+			[
+				"venompo",
+				"Assets/Scripts/VenomPotionController.cs"
+			],
+			[
+				"quick",
+				"Assets/Prefabs/items/thrownQuick.prefab"
+			],
+			[
+				"parcon",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"partick",
+				"Assets/Prefabs/items/thrownQuick.prefab"
+			],
+			[
+				"pick",
+				"Assets/Scripts/PickupController.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
+			],
+			[
+				"chest",
+				"Assets/Scripts/ChestController.cs"
+			],
+			[
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"pickupcon",
+				"Assets/Scripts/PickupController.cs"
+			],
+			[
+				"chestcon",
+				"Assets/Scripts/ChestController.cs"
+			],
+			[
+				"parti",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"potioncolors",
+				"Assets/Scripts/PotionColors.cs"
+			],
+			[
+				"shrine",
+				"Assets/Scripts/ShrineGoat.cs"
+			],
+			[
+				"firesp",
+				"Assets/Scripts/EnemyFireSpirit.cs"
+			],
+			[
+				"particlecon",
+				"Assets/Scripts/ParticleController.cs"
+			]
 		],
 		"width": 0.0
 	},
@@ -138,6 +410,9 @@
 	},
 	"settings":
 	{
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": ".",
+		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
 		}
@@ -145,7 +420,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 300.0,
 	"status_bar_visible": true,
 	"template_settings":

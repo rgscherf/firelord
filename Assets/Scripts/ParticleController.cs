@@ -53,14 +53,6 @@ public class ParticleController : MonoBehaviour {
 	void Update () {
         spr.color = flicker ? flickerColorPalette[Random.Range(0, flickerColorPalette.Length)] : color;
 
-        if (spineShrapnel) {
-            var coll = Physics2D.OverlapPointAll(gameObject.transform.position);
-            foreach (var c in coll) {
-                if (c.gameObject.tag == "MovingEntity") {
-                    c.GetComponent<HealthController>().ReceiveDamage(spineController.shrapnelDamage);
-                }
-            }
-        }
 	}
 
     public void ExplodeVenom() {
@@ -68,14 +60,14 @@ public class ParticleController : MonoBehaviour {
     }
 
     void PrivateExplodeVenom() {
-        float blastRadius = 2f;
-        int damage = 1;
+        float blastRadius = 6f;
+        int damage = 3;
         float blastForce = 600f;
         int found = 0;
 
         var damagedUnits = Physics2D.OverlapCircleAll(gameObject.transform.position, blastRadius) ;
         damagedUnits = damagedUnits.OrderBy( v => Vector2.Distance(gameObject.transform.position, v.gameObject.transform.position)).ToArray();
-        foreach(var d in damagedUnits) {
+        foreach (var d in damagedUnits) {
             GameObject go = d.gameObject;
             if (go.tag == "MovingEntity") {
                 HealthController hc = go.GetComponent<HealthController>();
@@ -83,6 +75,9 @@ public class ParticleController : MonoBehaviour {
                     hc.ReceiveDamage(damage);
                 }
             }
+        }
+        foreach(var d in damagedUnits) {
+            GameObject go = d.gameObject;
             if (go.tag == "Particle") {
                 ParticleController pc = go.GetComponent<ParticleController>();
                 if (pc != null && pc.instantiator == ParticleType.venom) {
@@ -180,6 +175,12 @@ public class ParticleController : MonoBehaviour {
         spineShrapnel = true;
     }
 
+    void OnCollisionEnter2D(Collision2D other) {
+        if (spineShrapnel && other.gameObject.tag == "MovingEntity") {
+            other.gameObject.GetComponent<HealthController>().ReceiveDamage(2);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other) {
         GameObject go = other.gameObject;
         switch (instantiator) {
@@ -238,7 +239,7 @@ public class ParticleController : MonoBehaviour {
                 if(go.tag == "MovingEntity") {
                     var entrigid = go.GetComponent<Rigidbody2D>();
                     if (entrigid != null) {
-                        entrigid.velocity *= 0.75f;
+                        entrigid.velocity *= 0.2f;
                     }
                 }
                 break;

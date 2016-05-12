@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour {
     Image health3;
     HealthController playerHealth;
     PlayerController playerController;
+    GameController game;
 
     float cameraShakeAmt = 0.075f;
     Camera maincamera;
@@ -31,10 +32,10 @@ public class UIController : MonoBehaviour {
     GameObject tutroom4;
     GameObject[] tutrooms;
 
-    SpriteRenderer background;
+    GameObject stats;
+    GameObject gameovertext;
 
-    public GameObject _playerDeathUI;
-    GameObject playerDeathUI;
+    SpriteRenderer background;
 
     float animationTime;
     float animationTimeCurrent;
@@ -43,12 +44,13 @@ public class UIController : MonoBehaviour {
 
     Potion lastPotion;
 
-    bool showTutorials = false;
+    bool showTutorials = true;
 
 
     void Awake () {
         playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        game = GameObject.Find("GameManager").GetComponent<GameController>();
 
         potionHelpText = GameObject.Find("potionHelpText").GetComponent<Text>();
 
@@ -58,12 +60,32 @@ public class UIController : MonoBehaviour {
         tutroom4 = transform.Find("UICanvas").Find("room4").gameObject;
         tutrooms = new[] {tutroom1, tutroom2, tutroom3, tutroom4};
         ClearTutoral();
+
+        stats = transform.Find("UICanvas").Find("stats").gameObject;
+        stats.SetActive(false);
+
+        gameovertext = transform.Find("UICanvas").Find("gameover").gameObject;
+        gameovertext.SetActive(false);
     }
 
     public void ClearTutoral() {
         foreach (var r in tutrooms) {
             r.SetActive(false);
         }
+    }
+
+    public void ShowStats(int room) {
+        if (game.level < 2 || room != 1) { 
+            stats.SetActive(false);
+            return; 
+        }
+        stats.SetActive(true);
+        string line1 = "Entering level " + game.level;
+        string line2 = System.String.Format("Time last level: {0:F2}", game.lastLevelTime);
+        string line3 = "Potions thrown last level: " + game.lastLevelThrown;
+        string line4 = "Damage taken last level: " + game.lastLevelDamage;
+        string combinedString = line1 + "\n" + line2 + "\n" + line3 + "\n" + line4;
+        stats.GetComponent<Text>().text = combinedString;
     }
 
     public void SetRoom(int room) {
@@ -95,8 +117,6 @@ public class UIController : MonoBehaviour {
         health2 = GameObject.Find("health2").GetComponent<Image>();
         health3 = GameObject.Find("health3").GetComponent<Image>();
 
-        // _playerDeathUI = GameObject.Find("death");
-
         maincamera = Camera.main;
 
         background = GameObject.Find("spritebackground").GetComponent<SpriteRenderer>();
@@ -114,11 +134,11 @@ public class UIController : MonoBehaviour {
 	
     public void ChangePlayerDeathState(bool playerIsDead) {
         if (playerIsDead) {
-            playerDeathUI = (GameObject) Instantiate(_playerDeathUI);
-            var canvas = GameObject.Find("UICanvas");
-            playerDeathUI.transform.SetParent(canvas.transform, false);
+            gameovertext.SetActive(true);
+            Text deathstats = gameovertext.transform.Find("deathtext").GetComponent<Text>();
+            deathstats.text = System.String.Format("Your quest ended on level {0},\nhaving thrown {1} potions.\n\n A good death.\n\n\n\n\nPress R to restart.", game.level, game.lastLevelThrown + game.thisLevelThrown);
         } else {
-            Object.Destroy(playerDeathUI);
+            gameovertext.SetActive(false);
         }
     }
 
@@ -148,6 +168,10 @@ public class UIController : MonoBehaviour {
                 DamageAnimation = false;
                 animationTimeCurrent = 0f;
             }
+            var colors = new[] { PotionColors.Blast, PotionColors.Quick, PotionColors.Spine, PotionColors.Venom };
+            health1.color = colors[Random.Range(0, colors.Length)];
+            health2.color = colors[Random.Range(0, colors.Length)];
+            health3.color = colors[Random.Range(0, colors.Length)];
         }
 
 	}

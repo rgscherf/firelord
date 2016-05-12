@@ -2,7 +2,7 @@
 
 public class BlastPotionController : MonoBehaviour {
 
-    const int damage = 3;
+    const int damage = 4;
     const int blastForce = 600;
     const float damageradius = 1f;
     const float pushradius = 2f;

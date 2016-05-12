@@ -20,15 +20,13 @@ public class GameController : MonoBehaviour {
     List<GameObject> doorsInRoom;
     List<GameObject> finalDoorsInRoom;
 
-    float thisLevelTime;
+    public float thisLevelTime;
     public int thisLevelDamage;
     public int thisLevelThrown;
 
-    float lastLevelTime;
-    int lastLevelDamage;
-    int lastLevelThrown;
-
-    GameObject stats;
+    public float lastLevelTime;
+    public int lastLevelDamage;
+    public int lastLevelThrown;
 
     UIController uiController;
     PlayerController playerController;
@@ -44,7 +42,6 @@ public class GameController : MonoBehaviour {
     }
 
 	void Start () {
-        stats = GameObject.Find("stats");
         geometryParentController = GameObject.Find("GeometryParent").GetComponent<GeometryParentController>();
         GameStart();
 	}
@@ -107,17 +104,6 @@ public class GameController : MonoBehaviour {
         AstarPath.active.Scan();
         player.transform.position = new Vector2(-13, -3);
 
-        // stats
-        if (level < 2) {
-            stats.SetActive(false);
-        } else {
-            stats.SetActive(true);
-            TextMesh tm = stats.GetComponent<TextMesh>();
-            if (tm != null) {
-                tm.text = System.String.Format("Time last level: {0:F02} seconds. \nDamage Taken: {1}. \nPotions thrown: {2}. \nGood luck!!", lastLevelTime, lastLevelDamage, lastLevelThrown);
-            }
-        }
-
         SetupRoom(currentRoom, player);
     }
 
@@ -137,6 +123,7 @@ public class GameController : MonoBehaviour {
     void SetupRoom(int room, GameObject player) {
 
         UpdateTutorial();
+        uiController.ShowStats(room);
 
         gameCamera.ChangeRoom(currentRoom);
         mobsInRoom = 0;
