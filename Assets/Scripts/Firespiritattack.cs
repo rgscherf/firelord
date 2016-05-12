@@ -30,7 +30,6 @@ public class Firespiritattack : MonoBehaviour {
         var spawnPos = (Random.insideUnitCircle * 0.75f) + (Vector2) transform.position;
         var p = (GameObject) Instantiate(entities.particle, spawnPos, transform.rotation);
         p.GetComponent<ParticleController>().Init(ParticleType.enemyattack, true, PotionColors.Danger, 2f, 4);
-        // transform.RotateAround(new Vector3(0f,0f,0f), new Vector3(0f,0f,3f), 200 * Time.deltaTime);
 	}
 
     void OnTriggerStay2D(Collider2D other) {

@@ -5,7 +5,7 @@ using System.Linq;
 
 public class EnemyFireSpirit : MapObject {
 
-    enum State { spawning, /*windingUp,*/ casting, despawning };
+    enum State { spawning, casting, despawning };
 
     Entities entities;
     HealthController healthController;
@@ -24,9 +24,6 @@ public class EnemyFireSpirit : MapObject {
 
     float spawningTimer = 2f;
     float spawningTimerCurrent;
-
-    // float windingUpTimer = 2f;
-    // float windingUpTimerCurrent;
 
     float castingTimer = 3f;
     float castingTimerCurrent;
@@ -54,21 +51,17 @@ public class EnemyFireSpirit : MapObject {
         rigid = gameObject.GetComponent<Rigidbody2D>();
 
         state = State.spawning;
-        LeanTween.scale(gameObject, new Vector3(1f,1f,1f), 2f);
+        LeanTween.scale(gameObject, new Vector3(1f,1f,1f), spawningTimer);
     }
 
     void Update() {
 
         Vector2 pos = (Vector2)transform.position + ((Vector2) Random.insideUnitCircle * 0.1f);
         transform.position = pos;
-        // transform.RotateAround(player.transform.position, player.transform.position + new Vector3(1f,0f,0f), 0.5f);
         switch (state) {
             case State.spawning:
                 IncrementSpawning();
                 break;
-            // case State.windingUp:
-            //     IncrementWidingUp();
-            //     break;
             case State.casting:
                 IncrementCasting();
                 break;
@@ -104,21 +97,6 @@ public class EnemyFireSpirit : MapObject {
         }
     }
 
-    // void IncrementWidingUp() {
-    //     windingUpTimerCurrent += Time.deltaTime;
-    //     if (windingUpTimerCurrent > windingUpTimer) {
-    //         InitiateFires();
-    //         state = State.casting;
-    //     }
-    // }
-
-    // void InitiateFires() {
-    //     for (var i = 0; i < numAttacks; i++) {
-    //         var f = (GameObject) Instantiate(entities.firespiritattack, RandomClearPosition(), Quaternion.identity);
-    //         f.GetComponent<Firespiritattack>().Init(castingTimer, despawningTimer);
-    //     }
-    // }
-
     void InitiateAttack() {
         float startingDistance = 4f + Random.Range(0f, 3f);
         var startingPos = (Vector3) (Random.insideUnitCircle.normalized * startingDistance);
@@ -132,16 +110,17 @@ public class EnemyFireSpirit : MapObject {
 
         if (castingTimerCurrent > castingTimer) {
             InitiateAttack();
+            LeanTween.scale(gameObject, new Vector3(.1f,.1f,1f), despawningTimer);
             state = State.despawning;
         }
     }
 
     void IncrementDespawning() {
         despawningTimerCurrent += Time.deltaTime;
-        // lerp scale again
 
         if (despawningTimerCurrent > despawningTimer) {
             transform.position = RandomClearPosition();
+            LeanTween.scale(gameObject, new Vector3(1f,1f,1f), spawningTimer);
             state = State.spawning;
             CleanupTimers();
         }
@@ -149,7 +128,6 @@ public class EnemyFireSpirit : MapObject {
 
     void CleanupTimers() {
         spawningTimerCurrent = 0f;
-        // windingUpTimerCurrent = 0f;
         castingTimerCurrent = 0f;
         despawningTimerCurrent = 0f;
     }
