@@ -86,6 +86,10 @@ public class Room : MonoBehaviour {
                 return entities.mist;
             case 'o':
                 return entities.ooze;
+            case 'd':
+                return entities.bigdog;
+            case 'f':
+                return entities.firespirit;
             case 'C':
                 return entities.chest;
             case 'w':
@@ -154,6 +158,39 @@ public class Room : MonoBehaviour {
     }
 
     readonly string[] level1 = {
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X.....XXX.....................X
+X......XXX....................X
+X......XXX...ooo..............X
+D......XXX...........XXX......D
+D......XXX...........XXX......D
+D......XXX....f......XXX......D
+D......XXX...........XXX......D
+X............ooo.....XXX......X
+X....................XXX......X
+X.....................XXX.....X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+@"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
+X.............................X
+X.............................X
+X.............................X
+X......XXXXX.......XXXXX......X
+X......XXXXX.......XXXXX......X
+D.............................D
+D.............d...............D
+D.............................D
+D.............................D
+X......XXXXX.......XXXXX......X
+X......XXXXX.......XXXXX......X
+X.............................X
+X.............................X
+X.............................X
+XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX",
+
 @"XXXXXXXXXXXXXDDDDXXXXXXXXXXXXXX
 X...XXXXXXXXX....X......oo....X
 X..oo..XXXXX.....X............X

@@ -22,13 +22,13 @@ public class EnemyFireSpirit : MapObject {
     Color currentColor;
     Color baseColor;
 
-    float spawningTimer = 2f;
+    float spawningTimer = 1f;
     float spawningTimerCurrent;
 
     float castingTimer = 3f;
     float castingTimerCurrent;
 
-    float despawningTimer = 2f;
+    float despawningTimer = 1f;
     float despawningTimerCurrent;
 
     State state; 

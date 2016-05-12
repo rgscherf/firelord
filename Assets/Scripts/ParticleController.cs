@@ -22,6 +22,8 @@ public class ParticleController : MonoBehaviour {
     Color color;
     Color[] flickerColorPalette;
 
+    int damageAtEndOfLife = 3;
+
     SpinePotionController spineController;
     public QuickPotionController quickController;
 
@@ -99,7 +101,7 @@ public class ParticleController : MonoBehaviour {
             if (go.tag == "MovingEntity") {
                 var hc = go.GetComponent<HealthController>();
                 if (hc != null) {
-                    hc.ReceiveDamage(spineController.damageAtEndOfLife);
+                    hc.ReceiveDamage(damageAtEndOfLife);
                 }
             }
         }
@@ -223,12 +225,6 @@ public class ParticleController : MonoBehaviour {
                     if (entrigid != null) {
                         entrigid.velocity *= 0.75f;
                     }
-                    // if (Random.value < 0.75 * Time.deltaTime) {
-                    //     var hc = go.GetComponent<HealthController>();
-                    //     if (hc != null) {
-                    //         hc.ReceiveDamage(1);
-                    //     }
-                    // }
                 }
                 break;
 
