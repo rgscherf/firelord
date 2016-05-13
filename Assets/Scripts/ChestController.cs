@@ -6,7 +6,7 @@ public class ChestController : MonoBehaviour {
     public Sprite openSprite;
 
     bool opened;
-    int numPotions = 12;
+    int numPotions = 15;
 
     SpriteRenderer spr;
     Entities entities;
