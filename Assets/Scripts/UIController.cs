@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
 
+    bool showTutorials = true;
+
     Image health1;
     Image health2;
     Image health3;
@@ -39,13 +41,11 @@ public class UIController : MonoBehaviour {
 
     float animationTime;
     float animationTimeCurrent;
-    bool DamageAnimationFirstFrame;
-    bool DamageAnimation;
+    bool damageAnimationFirstFrame;
+    bool damageAnimation;
+    bool flashHealth;
 
     Potion lastPotion;
-
-    bool showTutorials = true;
-
 
     void Awake () {
         playerHealth = GameObject.Find("Player").GetComponent<HealthController>();
@@ -126,10 +126,16 @@ public class UIController : MonoBehaviour {
         lastPotion = Potion.None;
 	}
 
+    public void AnimateHealth() {
+        cameraOriginalPos = maincamera.transform.position;
+        flashHealth = true;
+    }
 
     public void AnimateDamage() {
-        DamageAnimationFirstFrame = true;
-        DamageAnimation = true;
+        cameraOriginalPos = maincamera.transform.position;
+        damageAnimationFirstFrame = true;
+        damageAnimation = true;
+        flashHealth = true;
     }
 	
     public void ChangePlayerDeathState(bool playerIsDead) {
@@ -148,13 +154,16 @@ public class UIController : MonoBehaviour {
         RenderPotionCooldown();
         RenderPotionAmmo();
 
-        if(DamageAnimationFirstFrame) {
+        if(damageAnimationFirstFrame) {
             background.color = PotionColors.White;
-            DamageAnimationFirstFrame = false;
-            cameraOriginalPos = maincamera.transform.position;
+            damageAnimationFirstFrame = false;
         }
-        if(DamageAnimation) {
+
+        if (damageAnimation || flashHealth) {
             animationTimeCurrent += Time.deltaTime;
+        }
+
+        if(damageAnimation) {
             float colorCo = (1 - (animationTimeCurrent / animationTime)) * 0.3f;
             Color[] animationColors = new[] {PotionColors.Danger * new Color(colorCo, colorCo, colorCo, 1f), Color.black};
             background.color = animationColors[Random.Range(0, animationColors.Length)];
@@ -163,17 +172,21 @@ public class UIController : MonoBehaviour {
                 var rand = new Vector3(Random.Range(-cameraShakeAmt, cameraShakeAmt), Random.Range(-cameraShakeAmt, cameraShakeAmt), 0f);
                 maincamera.transform.position += (Vector3) rand;
             }
-            if (animationTimeCurrent > animationTime) {
-                maincamera.transform.position = cameraOriginalPos;
-                DamageAnimation = false;
-                animationTimeCurrent = 0f;
-            }
+        }
+
+        if(flashHealth) {
             var colors = new[] { PotionColors.Blast, PotionColors.Quick, PotionColors.Spine, PotionColors.Venom };
             health1.color = colors[Random.Range(0, colors.Length)];
             health2.color = colors[Random.Range(0, colors.Length)];
             health3.color = colors[Random.Range(0, colors.Length)];
         }
 
+        if (animationTimeCurrent > animationTime) {
+            maincamera.transform.position = cameraOriginalPos;
+            damageAnimation = false;
+            flashHealth = false;
+            animationTimeCurrent = 0f;
+        }
 	}
 
     void RenderPotionAmmo() {

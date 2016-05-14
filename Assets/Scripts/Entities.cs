@@ -37,6 +37,7 @@ public class Entities : MonoBehaviour {
 
     public GameObject chest;
     public GameObject shrinegoat;
+    public GameObject shrineHeart;
 
     
     void Awake() {

@@ -3,6 +3,34 @@
 	{
 		"selected_items":
 		[
+			[
+				"shrine",
+				"shrineHeart	GameObject"
+			],
+			[
+				"animationTime",
+				"animationTimeCurrent"
+			],
+			[
+				"shakeTimer",
+				"shakeTimerCurrent"
+			],
+			[
+				"vec",
+				"Vector3	Vector3"
+			],
+			[
+				"player",
+				"playerHealthController"
+			],
+			[
+				"playerhealth",
+				"playerHealthController	(ShrineHeartController.cs)"
+			],
+			[
+				"Shr",
+				"ShrineHeartShard"
+			]
 		]
 	},
 	"build_system": "",
@@ -37,12 +65,19 @@
 	},
 	"file_history":
 	[
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/BlastPotionController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs"
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartShard.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -56,6 +91,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"FlashHealth",
+			"DamageAnimation",
+			"DamageAnimationFirstFrame"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -72,11 +110,11 @@
 	},
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 26.0
 	},
 	"input":
 	{
-		"height": 35.0
+		"height": 34.0
 	},
 	"layout":
 	{
@@ -103,7 +141,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 124.0
+		"height": 118.0
 	},
 	"output.find_results":
 	{
@@ -116,7 +154,7 @@
 	"pinned_build_system": "",
 	"replace":
 	{
-		"height": 0.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -126,24 +164,48 @@
 		"selected_items":
 		[
 			[
-				"chest",
-				"Assets/Scripts/ChestController.cs"
+				"playercon",
+				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"heartsh",
+				"Assets/Scripts/ShrineHeartShard.cs"
+			],
+			[
+				"heart",
+				"Assets/Scripts/ShrineHeartController.cs"
+			],
+			[
+				"shrinehea",
+				"Assets/Scripts/ShrineHeartController.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
+				"uicon",
+				"Assets/Scripts/UIController.cs"
+			],
+			[
+				"entities",
+				"Assets/Scripts/Entities.cs"
 			],
 			[
 				"room",
 				"Assets/Scripts/Room.cs"
 			],
 			[
-				"blas",
-				"Assets/Scripts/BlastPotionController.cs"
-			],
-			[
-				"blast",
-				"Assets/Scripts/BlastPotionController.cs"
-			],
-			[
-				"playercon",
+				"player",
 				"Assets/Scripts/PlayerController.cs"
+			],
+			[
+				"potioncol",
+				"Assets/Scripts/PotionColors.cs"
+			],
+			[
+				"healt",
+				"Assets/Scripts/HealthController.cs"
 			]
 		],
 		"width": 0.0
@@ -168,6 +230,8 @@
 	},
 	"settings":
 	{
+		"_vintageous_last_char_search_command": "vi_t",
+		"_vintageous_last_character_search": "}",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

@@ -96,6 +96,13 @@ public class HealthController : MonoBehaviour {
         }
     }
 
+    public void GiveHealth(int num) {
+        if (health <= 6 - num) {
+            health = health + num;
+            GameObject.Find("UI Manager").GetComponent<UIController>().AnimateHealth();
+        }
+    }
+
     void DamagePhantom(int amt) {
         var dp = (GameObject) Instantiate(entities.damagePhantom, gameObject.transform.position, Quaternion.identity);
         var spr = dp.GetComponent<SpriteRenderer>();
