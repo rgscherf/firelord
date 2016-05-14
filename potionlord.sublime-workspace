@@ -164,6 +164,14 @@
 		"selected_items":
 		[
 			[
+				"trigger",
+				"Assets/Scripts/RoomChangeTrigger.cs"
+			],
+			[
+				"gamecon",
+				"Assets/Scripts/GameController.cs"
+			],
+			[
 				"playercon",
 				"Assets/Scripts/PlayerController.cs"
 			],
@@ -178,10 +186,6 @@
 			[
 				"shrinehea",
 				"Assets/Scripts/ShrineHeartController.cs"
-			],
-			[
-				"gamecon",
-				"Assets/Scripts/GameController.cs"
 			],
 			[
 				"uicon",
