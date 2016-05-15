@@ -186,6 +186,9 @@ public class UIController : MonoBehaviour {
             damageAnimation = false;
             flashHealth = false;
             animationTimeCurrent = 0f;
+            health1.color = PotionColors.White;
+            health2.color = PotionColors.White;
+            health3.color = PotionColors.White;
         }
 	}
 

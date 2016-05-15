@@ -111,7 +111,7 @@ public class HealthController : MonoBehaviour {
         spr.sprite = sourceSprite;
         spr.color = sourceSpr.color * new Color(1f,1f,1f,0.4f);
         var tex = dp.transform.GetChild(0).gameObject.GetComponent<TextMesh>();
-        tex.color = PotionColors.Danger * new Color(1f,1f,1f,0.6f);
+        tex.color = (PotionColors.Danger * new Color(1f,1f,1f,0.6f)) + new Color (0.25f, 0.25f, 0.25f, 0f);
         tex.text = amt.ToString();
         dp.GetComponent<Rigidbody2D>().AddForce(((Vector2)gameObject.transform.position + new Vector2(10f,20f)) * 5f);
         Object.Destroy(dp, 0.6f);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class SpinePotionController : MonoBehaviour {
 
-    const float lifetime = 3f;
+    const float lifetime = 4f;
     const float spinSpeed = 60f;
     const int numThorns = 150;
     const float radius = 3f;

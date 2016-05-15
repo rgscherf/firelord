@@ -40,12 +40,16 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 0.0,
-		"last_filter": "",
+		"height": 388.0,
+		"last_filter": "color",
 		"selected_items":
 		[
+			[
+				"color",
+				"Color Picker"
+			]
 		],
-		"width": 0.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -65,15 +69,17 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/SpinePotionController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartShard.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Room.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs"
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PlayerController.cs"
 	],
 	"find":
 	{
@@ -91,6 +97,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"();",
+			"911",
 			"FlashHealth",
 			"DamageAnimation",
 			"DamageAnimationFirstFrame"
@@ -164,6 +172,34 @@
 		"selected_items":
 		[
 			[
+				"heart",
+				"Assets/Scripts/ShrineHeartController.cs"
+			],
+			[
+				"health",
+				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"particle",
+				"Assets/Scripts/ParticleController.cs"
+			],
+			[
+				"hearts",
+				"Assets/Scripts/ShrineHeartController.cs"
+			],
+			[
+				"spine",
+				"Assets/Scripts/SpinePotionController.cs"
+			],
+			[
+				"uicon",
+				"Assets/Scripts/UIController.cs"
+			],
+			[
+				"potioncol",
+				"Assets/Scripts/PotionColors.cs"
+			],
+			[
 				"trigger",
 				"Assets/Scripts/RoomChangeTrigger.cs"
 			],
@@ -180,16 +216,8 @@
 				"Assets/Scripts/ShrineHeartShard.cs"
 			],
 			[
-				"heart",
-				"Assets/Scripts/ShrineHeartController.cs"
-			],
-			[
 				"shrinehea",
 				"Assets/Scripts/ShrineHeartController.cs"
-			],
-			[
-				"uicon",
-				"Assets/Scripts/UIController.cs"
 			],
 			[
 				"entities",
@@ -202,10 +230,6 @@
 			[
 				"player",
 				"Assets/Scripts/PlayerController.cs"
-			],
-			[
-				"potioncol",
-				"Assets/Scripts/PotionColors.cs"
 			],
 			[
 				"healt",
@@ -234,8 +258,8 @@
 	},
 	"settings":
 	{
-		"_vintageous_last_char_search_command": "vi_t",
-		"_vintageous_last_character_search": "}",
+		"_vintageous_last_char_search_command": "vi_f",
+		"_vintageous_last_character_search": ";",
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{

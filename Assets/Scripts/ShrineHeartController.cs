@@ -11,7 +11,7 @@ public class ShrineHeartController : MapObject {
     const float shakeTimer = 1f;
     float shakeTimerCurrent;
 
-    const float actionCooldown = 0.25f;
+    const float actionCooldown = 0.00f;
     float actionCooldownCurrent;
 
     ShrineHeartShard shBlast;
@@ -73,7 +73,7 @@ public class ShrineHeartController : MapObject {
 
     void ProcessTrigger(Potion dispatch) {
         int numActive = new[] {shBlast, shQuick, shSpine, shVenom}.Where( s => s.active).ToArray().Length;
-        if (numActive > 1 || playerHealthController.health <= 4) {
+        if (numActive > 1 || playerHealthController.health <= 5) {
             var shard = PotionToShard(dispatch);
             if (shard.active) {
                 shard.active = false;

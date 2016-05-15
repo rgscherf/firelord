@@ -177,7 +177,7 @@ public class ParticleController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other) {
         if (spineShrapnel && other.gameObject.tag == "MovingEntity") {
-            other.gameObject.GetComponent<HealthController>().ReceiveDamage(2);
+            other.gameObject.GetComponent<HealthController>().ReceiveDamage(3);
         }
     }
 
