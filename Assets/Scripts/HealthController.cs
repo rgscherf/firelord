@@ -97,10 +97,8 @@ public class HealthController : MonoBehaviour {
     }
 
     public void GiveHealth(int num) {
-        if (health <= 6 - num) {
-            health = health + num;
-            GameObject.Find("UI Manager").GetComponent<UIController>().AnimateHealth();
-        }
+        health = Mathf.Min(6, health + num);
+        GameObject.Find("UI Manager").GetComponent<UIController>().AnimateHealth();
     }
 
     void DamagePhantom(int amt) {

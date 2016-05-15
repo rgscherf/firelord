@@ -69,12 +69,12 @@
 	},
 	"file_history":
 	[
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
+		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/PotionColors.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/UIController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/SpinePotionController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ParticleController.cs",
-		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/HealthController.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/Entities.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/ShrineHeartShard.cs",
 		"/Users/rgscherf/projects/unity/potionlord/Assets/Scripts/GameController.cs",
@@ -172,12 +172,16 @@
 		"selected_items":
 		[
 			[
-				"heart",
-				"Assets/Scripts/ShrineHeartController.cs"
+				"healthc",
+				"Assets/Scripts/HealthController.cs"
 			],
 			[
 				"health",
 				"Assets/Scripts/HealthController.cs"
+			],
+			[
+				"heart",
+				"Assets/Scripts/ShrineHeartController.cs"
 			],
 			[
 				"particle",
@@ -263,6 +267,7 @@
 		"_vintageous_reset_during_init": true,
 		"vintage":
 		{
+			"_cmdline_cd": "/Applications/Sublime Text.app/Contents/MacOS"
 		}
 	},
 	"show_minimap": true,

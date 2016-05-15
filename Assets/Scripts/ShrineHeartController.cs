@@ -72,7 +72,7 @@ public class ShrineHeartController : MapObject {
     }
 
     void ProcessTrigger(Potion dispatch) {
-        int numActive = new[] {shBlast, shQuick, shSpine, shVenom}.Where( s => s.active).ToArray().Length;
+        int numActive = new[] {shBlast, shQuick, shSpine, shVenom}.Where( s => s.active ).ToArray().Length;
         if (numActive > 1 || playerHealthController.health <= 5) {
             var shard = PotionToShard(dispatch);
             if (shard.active) {
